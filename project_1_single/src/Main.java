@@ -1,5 +1,14 @@
+import java.sql.SQLException;
+import java.sql.Statement;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        JDBC sql = new JDBC();
+        try {
+            sql.activateJDBC();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 }
