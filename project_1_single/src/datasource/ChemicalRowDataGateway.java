@@ -1,18 +1,75 @@
 package datasource;
 
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+
+//use count for ID's?
 public class ChemicalRowDataGateway {
 	long id;
 	String Name;
 	String inHabits;
 	long atomicNumber;
 	double atomicMass;
-	List<Long> ids = new ArrayList<>();
+	List<Long> madeOfIds = new ArrayList<>();
 	long Solute;
 	long dissolvedBy;
 	List<Long> dissolves = new ArrayList<>();
+	private static final String updateCreateString = "UPDATE chemical " + "  set name = ?, inHabits = ?, atomicNumber = ?, atomicMass = ?, madeOfIds = ?, solute = ?, dissolvedBy = ?, dissolves = ?";
+	private static final String updateFinderString = "UPDATE chemical " + " set id = ?, name = ?, inHabits = ?, atomicNumber = ?, atomicMass = ?, madeOfIds = ?, solute = ?, dissolvedBy = ?, dissolves = ?";
+
+
+	public ChemicalRowDataGateway(String name, String inHabits, long atomicNumber, double atomicMass, List<Long> madeOfIds, long solute, long dissolvedBy, List<Long> dissolves){
+		this.Name = name;
+		this.inHabits = inHabits;
+		this.atomicNumber = atomicNumber;
+		this.atomicMass = atomicMass;
+		this.madeOfIds = madeOfIds;
+		this.Solute = Solute;
+		this.dissolvedBy = dissolvedBy;
+		this.dissolves = dissolves;
+	}
+
+	public ChemicalRowDataGateway(long id, String Name, String inHabits, long atomicNumber, double atomicMass, List<Long> madeOfIds, long solute, long dissolvedBy, List<Long> dissolves) {
+		this.id = id;
+		this.Name = Name;
+		this.inHabits = inHabits;
+		this.atomicNumber = atomicNumber;
+		this.atomicMass = atomicMass;
+		this.madeOfIds = madeOfIds;
+		this.Solute = Solute;
+		this.dissolvedBy = dissolvedBy;
+		this.dissolves = dissolves;
+	}
+
+	public void persist(){
+		PreparedStatement updateStatement = null;
+		try {
+			updateStatement = DB.prepare(updateFinderString);
+			updateStatement.setLong(1, id);
+			updateStatement.setString(2, Name);
+			updateStatement.setString(3, inHabits);
+			updateStatement.setLong(4, atomicNumber);
+
+			updateStatement.execute();
+		} catch (Exception e) {
+			throw new ApplicationException(e);
+		} finally {DB.cleanUp(updateStatement);
+		}
+	}
+
+	public void update(){
+
+	}
+
+	public void insert(){
+		// if id doesn't exist yet
+	}
+
+	public void delete(){
+
+	}
 
 	public String getName() {
 		return Name;
@@ -55,11 +112,11 @@ public class ChemicalRowDataGateway {
 	}
 
 	public List<Long> getIds() {
-		return ids;
+		return madeOfIds;
 	}
 
-	public void setIds(List<Long> ids) {
-		this.ids = ids;
+	public void setMadeOfIds(List<Long> ids) {
+		this.madeOfIds = ids;
 	}
 
 	public long getSolute() {
@@ -85,4 +142,6 @@ public class ChemicalRowDataGateway {
 	public void setDissolves(List<Long> dissolves) {
 		this.dissolves = dissolves;
 	}
+
+
 }
