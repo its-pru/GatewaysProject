@@ -1,9 +1,8 @@
 package datasource;
 
-import java.sql.*;
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.List;
-
 
 //use count for ID's?
 public class ChemicalRowDataGateway {
@@ -16,8 +15,10 @@ public class ChemicalRowDataGateway {
 	long Solute;
 	long dissolvedBy;
 	List<Long> dissolves = new ArrayList<>();
+
 	private static final String updateCreateString = "UPDATE chemical " + "  set name = ?, inHabits = ?, atomicNumber = ?, atomicMass = ?, madeOfIds = ?, solute = ?, dissolvedBy = ?, dissolves = ?";
 	private static final String updateFinderString = "UPDATE chemical " + " set id = ?, name = ?, inHabits = ?, atomicNumber = ?, atomicMass = ?, madeOfIds = ?, solute = ?, dissolvedBy = ?, dissolves = ?";
+
 
 
 	public ChemicalRowDataGateway(String name, String inHabits, long atomicNumber, double atomicMass, List<Long> madeOfIds, long solute, long dissolvedBy, List<Long> dissolves){
