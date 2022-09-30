@@ -75,6 +75,9 @@ public class ChemicalRowDataGateway {
 	public void delete(){
 
 	}
+	public boolean find(String name){
+		return false;
+	}
 
 	public String getName() {
 		return Name;
