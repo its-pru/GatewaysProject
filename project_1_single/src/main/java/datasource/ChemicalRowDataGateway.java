@@ -19,8 +19,12 @@ public class ChemicalRowDataGateway {
 	private static final String updateCreateString = "UPDATE chemical " + "  set name = ?, inHabits = ?, atomicNumber = ?, atomicMass = ?, madeOfIds = ?, solute = ?, dissolvedBy = ?, dissolves = ?";
 	private static final String updateFinderString = "UPDATE chemical " + " set id = ?, name = ?, inHabits = ?, atomicNumber = ?, atomicMass = ?, madeOfIds = ?, solute = ?, dissolvedBy = ?, dissolves = ?";
 
+	JDBC jdbc = JDBC.getJDBC();
 
+	//Empty constructor used for JUnit tests
+	public ChemicalRowDataGateway(){
 
+	}
 	public ChemicalRowDataGateway(String name, String inHabits, long atomicNumber, double atomicMass, List<Long> madeOfIds, long solute, long dissolvedBy, List<Long> dissolves){
 		this.Name = name;
 		this.inHabits = inHabits;
@@ -44,21 +48,21 @@ public class ChemicalRowDataGateway {
 		this.dissolves = dissolves;
 	}
 
-	public void persist(){
-		PreparedStatement updateStatement = null;
-		try {
-			updateStatement = DB.prepare(updateFinderString);
-			updateStatement.setLong(1, id);
-			updateStatement.setString(2, Name);
-			updateStatement.setString(3, inHabits);
-			updateStatement.setLong(4, atomicNumber);
-
-			updateStatement.execute();
-		} catch (Exception e) {
-			throw new ApplicationException(e);
-		} finally {DB.cleanUp(updateStatement);
-		}
-	}
+//	public void persist(){
+//		PreparedStatement updateStatement = null;
+//		try {
+//			updateStatement = DB.prepare(updateFinderString);
+//			updateStatement.setLong(1, id);
+//			updateStatement.setString(2, Name);
+//			updateStatement.setString(3, inHabits);
+//			updateStatement.setLong(4, atomicNumber);
+//
+//			updateStatement.execute();
+//		} catch (Exception e) {
+//			throw new ApplicationException(e);
+//		} finally {DB.cleanUp(updateStatement);
+//		}
+//	}
 
 	public void update(){
 

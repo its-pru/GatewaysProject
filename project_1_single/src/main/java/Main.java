@@ -1,8 +1,8 @@
-import java.sql.SQLException;
-import java.sql.Statement;
+import datasource.ChemicalRowDataGateway;
+import datasource.JDBC;
 
 public class Main {
     public static void main(String[] args) {
-       JDBC jdbc = JDBC.getJDBC();
+       ChemicalRowDataGateway test = new ChemicalRowDataGateway();
     }
 }

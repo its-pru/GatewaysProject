@@ -6,7 +6,14 @@ import org.junit.Test;
 
 public class ChemicalRowDataGatewayTest extends TestCase {
     @Test
-    private void testJDBCConnect(){
+    public void testCreate(){
+        ChemicalRowDataGateway testGateway = new ChemicalRowDataGateway();
+        assertNotNull(testGateway);
+    }
+    @Test
+    public void testJDBCConnect(){
+        ChemicalRowDataGateway testGateway = new ChemicalRowDataGateway();
+
 
     }
 }

@@ -1,3 +1,5 @@
+package datasource;
+
 import java.sql.*;
 
 
@@ -27,9 +29,9 @@ public class JDBC {
     }
 
     /**
-     * ensures JDBC is functional
+     * ensures datasource.JDBC is functional
      *
-     * @return - whether JDBC is functional or not
+     * @return - whether datasource.JDBC is functional or not
      * @throws - SQLException
      */
     public boolean activateJDBC() throws SQLException {
