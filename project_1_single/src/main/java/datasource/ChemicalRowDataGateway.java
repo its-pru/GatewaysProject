@@ -1,6 +1,8 @@
 package datasource;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,16 +18,17 @@ public class ChemicalRowDataGateway {
 	long dissolvedBy;
 	List<Long> dissolves = new ArrayList<>();
 
-	private static final String updateCreateString = "UPDATE chemical " + "  set name = ?, inHabits = ?, atomicNumber = ?, atomicMass = ?, madeOfIds = ?, solute = ?, dissolvedBy = ?, dissolves = ?";
-	private static final String updateFinderString = "UPDATE chemical " + " set id = ?, name = ?, inHabits = ?, atomicNumber = ?, atomicMass = ?, madeOfIds = ?, solute = ?, dissolvedBy = ?, dissolves = ?";
-
+	private static final String updateCreateString = "INSERT INTO Chemical" + " set name = ?, atomicNumber = ?, atomicMass = ?, solute = ?, dissolvedBy = ?";
+	private static final String updateFinderString = "SELECT FROM Chemical WHERE id = ?";
+	private static final String deleteEntry = "DELETE FROM Chemical WHERE id = ?";
 	JDBC jdbc = JDBC.getJDBC();
 
 	//Empty constructor used for JUnit tests
 	public ChemicalRowDataGateway(){
 
 	}
-	public ChemicalRowDataGateway(String name, String inHabits, long atomicNumber, double atomicMass, List<Long> madeOfIds, long solute, long dissolvedBy, List<Long> dissolves){
+	//Create constructor
+	public ChemicalRowDataGateway(String name, long atomicNumber, double atomicMass, long Solute, long dissolvedBy) throws SQLException {
 		this.Name = name;
 		this.inHabits = inHabits;
 		this.atomicNumber = atomicNumber;
@@ -36,44 +39,51 @@ public class ChemicalRowDataGateway {
 		this.dissolves = dissolves;
 	}
 
-	public ChemicalRowDataGateway(long id, String Name, String inHabits, long atomicNumber, double atomicMass, List<Long> madeOfIds, long solute, long dissolvedBy, List<Long> dissolves) {
+	//Finder Constructor
+	public ChemicalRowDataGateway(long id) throws SQLException{
 		this.id = id;
-		this.Name = Name;
-		this.inHabits = inHabits;
-		this.atomicNumber = atomicNumber;
-		this.atomicMass = atomicMass;
-		this.madeOfIds = madeOfIds;
-		this.Solute = Solute;
-		this.dissolvedBy = dissolvedBy;
-		this.dissolves = dissolves;
+		try{
+			PreparedStatement findStatement = null;
+			findStatement = jdbc.getConnect().prepareStatement(updateFinderString);
+			findStatement.setLong(1, id);
+			findStatement.execute();
+			ResultSet results = findStatement.getResultSet();
+
+		}catch (SQLException e){
+			//exception for informing user there isn't an element with this id
+		}
 	}
 
-//	public void persist(){
-//		PreparedStatement updateStatement = null;
-//		try {
-//			updateStatement = DB.prepare(updateFinderString);
-//			updateStatement.setLong(1, id);
-//			updateStatement.setString(2, Name);
-//			updateStatement.setString(3, inHabits);
-//			updateStatement.setLong(4, atomicNumber);
-//
-//			updateStatement.execute();
-//		} catch (Exception e) {
-//			throw new ApplicationException(e);
-//		} finally {DB.cleanUp(updateStatement);
-//		}
-//	}
 
-	public void update(){
 
+	public void persist(){
+		PreparedStatement updateStatement = null;
+		try {
+			updateStatement = jdbc.getConnect().prepareStatement(updateFinderString);
+			updateStatement.setLong(1, id);
+			updateStatement.setString(2, Name);
+			updateStatement.setString(3, inHabits);
+			updateStatement.setLong(4, atomicNumber);
+
+			updateStatement.execute();
+		} catch (SQLException e) {
+			//throw new ApplicationException(e);
+		}
 	}
 
-	public void insert(){
-		// if id doesn't exist yet
-	}
 
-	public void delete(){
-
+	public boolean delete(int id){
+		//DELETE FROM `table_name` [WHERE condition]
+		PreparedStatement deleteStatement = null;
+		try{
+			deleteStatement = jdbc.getConnect().prepareStatement(deleteEntry);
+			deleteStatement.setLong(1,id);
+			deleteStatement.execute();
+			return true;
+		}catch (SQLException entryNotFound){
+			return false;
+			//throw general exception for business logic
+		}
 	}
 	public boolean find(String name){
 		return false;

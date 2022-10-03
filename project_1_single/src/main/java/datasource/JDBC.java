@@ -24,6 +24,10 @@ public class JDBC {
         activateJDBC();
     }
 
+    public Connection getConnect(){
+        return m_dbConn;
+    }
+
     public static JDBC getJDBC(){
         return singleton;
     }
@@ -43,7 +47,6 @@ public class JDBC {
         m_dbConn = DriverManager.getConnection(DB_LOCATION, LOGIN_NAME, PASSWORD);
 
         Statement stmt = m_dbConn.createStatement();
-
 
         return true;
     }
