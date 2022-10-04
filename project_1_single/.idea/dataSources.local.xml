@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="dataSourceStorageLocal" created-in="IU-222.4167.29">
-    <data-source name="@db.cs.ship.edu" uuid="e0ba9bba-b524-4c6c-a7dc-8d551122b4e5">
+  <component name="dataSourceStorageLocal" created-in="IU-212.5080.55">
+    <data-source name="MySQL - @db.cs.ship.edu [2]" uuid="866fcffb-d401-462f-a259-1ed96cf8851a">
       <database-info product="MySQL" version="8.0.25" jdbc-version="4.2" driver-name="MySQL Connector/J" driver-version="mysql-connector-java-8.0.25 (Revision: 08be9e9b4cba6aa115f9b27b215887af40b159e0)" dbms="MYSQL" exact-version="8.0.25" exact-driver-version="8.0">
         <extra-name-characters>#@</extra-name-characters>
         <identifier-quote-string>`</identifier-quote-string>
@@ -11,12 +11,7 @@
       <user-name>swe400_2</user-name>
       <schema-mapping>
         <introspection-scope>
-          <node kind="schema">
-            <name qname="@" />
-            <name qname="swe400_21" />
-            <name qname="swe400_22" />
-            <name qname="swe400_23" />
-          </node>
+          <node kind="schema" negative="1" />
         </introspection-scope>
       </schema-mapping>
     </data-source>
