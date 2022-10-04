@@ -13,14 +13,14 @@ public class ChemicalRowDataGatewayTest extends TestCase {
 
     @Test
     public void testCreate() throws Exception {
-        ChemicalRowDataGateway testInsert = null;
+        ChemicalRowDataGateway testCreate = null;
         try {
-           testInsert = new ChemicalRowDataGateway("Joe", 1000, 1000, 1000, 1000);
+           testCreate = new ChemicalRowDataGateway("Joe", 1000, 1000, 1000, 1000);
         }catch (AlreadyExistsException e){
             e.printStackTrace();
         }
-        assertNotNull(testInsert);
-        testInsert.delete(testInsert.getId());
+        assertNotNull(testCreate);
+        testCreate.delete(testCreate.getId());
     }
 
     @Test

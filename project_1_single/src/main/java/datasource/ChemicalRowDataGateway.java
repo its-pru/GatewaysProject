@@ -29,7 +29,15 @@ public class ChemicalRowDataGateway {
 	JDBC jdbc = JDBC.getJDBC();
 
 
-	//Create constructor
+	/**
+	 * Create Constructor for chemical row data gateway
+	 * @param name - name of the new chemical
+	 * @param atomicNumber -atomic number of the chemical
+	 * @param atomicMass - atomic mass of the chemical
+	 * @param Solute - id of solutes
+	 * @param dissolvedBy - id of acid this chemical can be dissolved by
+	 * @throws Exception - exception when unable to connect to DB or when user trues to create duplicates
+	 */
 	public ChemicalRowDataGateway(String name, long atomicNumber, double atomicMass, long Solute, long dissolvedBy) throws Exception {
 		this.Name = name;
 		this.atomicNumber = atomicNumber;
@@ -61,9 +69,11 @@ public class ChemicalRowDataGateway {
 		}
 	}
 
-	//Finder Constructor
-
-
+	/**
+	 * 	Finder Constructor for chemical row data gateway
+	 *  @param id - id of the chemical we are searching for
+	 *  @throws Exception - exception when unable to connect to DB or when user trues to create duplicates
+	 */
 	public ChemicalRowDataGateway(long id) throws Exception{
 		try{
 			PreparedStatement findStatement = null;
@@ -88,6 +98,10 @@ public class ChemicalRowDataGateway {
 	}
 
 
+	/**
+	 * Updates the database with the changes made to the gateway object
+	 * @throws Exception - throws when object is not able to connect to the database
+	 */
 	public void persist() throws Exception{
 		PreparedStatement updateStatement = null;
 		try {
@@ -107,6 +121,12 @@ public class ChemicalRowDataGateway {
 	}
 
 
+	/**
+	 * Deletes a chemical from the Chemical table
+	 * @param id - id of the chemical that will be deleted
+	 * @return - whether delete was successful or not
+	 * @throws Exception - throws when there isn't an entry found for the input ID
+	 */
 	public boolean delete(long id) throws Exception{
 		//DELETE FROM Chemical where id =?
 		Statement deleteStatement = null;
@@ -121,7 +141,16 @@ public class ChemicalRowDataGateway {
 		return true;
 	}
 
-	//ponder idea of return ID instead of Boolean
+	/**
+	 * Checks to see if a chemical exists
+	 * @param name - name of the chemical we're looking for
+	 * @param atomicNumber - chemicals atomic number
+	 * @param atomicMass - chemicals atomic mass
+	 * @param Solute - solute for which acid
+	 * @param dissolvedBy - which acid dissolves this
+	 * @return - boolean whether result is found or not
+	 * @throws Exception - throws when cannot connect to the database
+	 */
 	public boolean exists (String name, long atomicNumber, double atomicMass, long Solute, long dissolvedBy) throws Exception{
 		//select * from table where condition=value
 		// SELECT EXISTS(SELECT * FROM table1 WHERE ...)
@@ -141,73 +170,100 @@ public class ChemicalRowDataGateway {
 
 	}
 
-	public boolean find(String name){
-		return false;
-	}
+	/**
+	 *gets the name of the current chemical
+	 * @return - returns the name of the chemical
+	 */
 
 	public String getName() {
 		return Name;
 	}
 
+	/**
+	 * sets the name of the current chemical
+	 * @param name - name for chemical
+	 */
 	public void setName(String name) {
 		Name = name;
 	}
 
+	/**
+	 * gets the atomic number of the chemical
+	 * @return - atomic number of chemical
+	 */
 	public long getAtomicNumber() {
 		return atomicNumber;
 	}
 
+	/**
+	 * sets the atomic number
+	 * @param atomicNumber - atomic number being set
+	 */
 	public void setAtomicNumber(long atomicNumber) {
 		this.atomicNumber = atomicNumber;
 	}
 
+	/**
+	 * gets the id of the current element
+	 * @return - id
+	 */
 	public long getId() {
 		return id;
 	}
 
+	/**
+	 * sets the id of the current element
+	 * @param id - id being set
+	 */
 	public void setId(long id) {
 		this.id = id;
 	}
 
+	/**
+	 * gets the atomic mass of the chemical
+	 * @return - atomic mass of the chemical
+	 */
 	public double getAtomicMass() {
 		return atomicMass;
 	}
 
+	/**
+	 * sets the atomic mass of this chemical
+	 * @param atomicMass
+	 */
 	public void setAtomicMass(double atomicMass) {
 		this.atomicMass = atomicMass;
 	}
 
-	public List<Long> getIds() {
-		return madeOfIds;
-	}
-
-	public void setMadeOfIds(List<Long> ids) {
-		this.madeOfIds = ids;
-	}
-
+	/**
+	 * gets the solute for this chemical
+	 * @return - solute id
+	 */
 	public long getSolute() {
 		return Solute;
 	}
 
+	/**
+	 * sets the solute of this chemical
+	 * @param solute - solute id
+	 */
 	public void setSolute(long solute) {
 		Solute = solute;
 	}
 
+	/**
+	 * gets the id of the chemical this is dissolved by
+	 * @return - dissolvedBy id
+	 */
 	public long getDissolvedBy() {
 		return dissolvedBy;
 	}
 
+	/**
+	 * sets the id of the chemical this chemical is dissolved by
+	 * @param dissolvedBy - dissolvedBy id
+	 */
 	public void setDissolvedBy(long dissolvedBy) {
 		this.dissolvedBy = dissolvedBy;
 	}
-
-	public List<Long> getDissolves() {
-		return dissolves;
-	}
-
-	public void setDissolves(List<Long> dissolves) {
-		this.dissolves = dissolves;
-	}
-
-
 }
