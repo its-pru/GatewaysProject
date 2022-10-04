@@ -14,7 +14,6 @@ import java.util.List;
 public class ChemicalRowDataGateway {
 	long id;
 	String Name;
-	String inHabits;
 	long atomicNumber;
 	double atomicMass;
 	List<Long> madeOfIds = new ArrayList<>();
@@ -33,10 +32,8 @@ public class ChemicalRowDataGateway {
 	//Create constructor
 	public ChemicalRowDataGateway(String name, long atomicNumber, double atomicMass, long Solute, long dissolvedBy) throws Exception {
 		this.Name = name;
-		this.inHabits = inHabits;
 		this.atomicNumber = atomicNumber;
 		this.atomicMass = atomicMass;
-		this.madeOfIds = madeOfIds;
 		this.Solute = Solute;
 		this.dissolvedBy = dissolvedBy;
 
@@ -123,6 +120,27 @@ public class ChemicalRowDataGateway {
 		}
 		return true;
 	}
+
+	//ponder idea of return ID instead of Boolean
+	public boolean exists (String name, long atomicNumber, double atomicMass, long Solute, long dissolvedBy) throws Exception{
+		//select * from table where condition=value
+		// SELECT EXISTS(SELECT * FROM table1 WHERE ...)
+		PreparedStatement exists = null;
+		try{
+			exists = jdbc.getConnect().prepareStatement(existsString);
+			exists.setString(1, name);
+			exists.setLong(2, atomicNumber);
+			exists.setDouble(3, atomicMass);
+			exists.execute();
+			ResultSet rs = exists.getResultSet();
+			return rs.isBeforeFirst(); // returns false if the result set contains zero rows
+
+		} catch (SQLException throwables) {
+			throw new UnableToConnectException("Unable to check if value exists. Check network connection and try again");
+		}
+
+	}
+
 	public boolean find(String name){
 		return false;
 	}
@@ -149,14 +167,6 @@ public class ChemicalRowDataGateway {
 
 	public void setId(long id) {
 		this.id = id;
-	}
-
-	public String getInHabits() {
-		return inHabits;
-	}
-
-	public void setInHabits(String inHabits) {
-		this.inHabits = inHabits;
 	}
 
 	public double getAtomicMass() {
