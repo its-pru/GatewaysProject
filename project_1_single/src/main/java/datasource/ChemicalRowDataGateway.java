@@ -1,10 +1,14 @@
 package datasource;
 
+import Exceptions.*;
+
 import java.sql.PreparedStatement;
+import java.sql.Statement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
 
 //use count for ID's?
 public class ChemicalRowDataGateway {
@@ -25,12 +29,9 @@ public class ChemicalRowDataGateway {
 
 	JDBC jdbc = JDBC.getJDBC();
 
-	//Empty constructor used for JUnit tests
-	public ChemicalRowDataGateway(){
 
-	}
 	//Create constructor
-	public ChemicalRowDataGateway(String name, long atomicNumber, double atomicMass, long Solute, long dissolvedBy) throws SQLException {
+	public ChemicalRowDataGateway(String name, long atomicNumber, double atomicMass, long Solute, long dissolvedBy) throws Exception {
 		this.Name = name;
 		this.inHabits = inHabits;
 		this.atomicNumber = atomicNumber;
@@ -38,12 +39,35 @@ public class ChemicalRowDataGateway {
 		this.madeOfIds = madeOfIds;
 		this.Solute = Solute;
 		this.dissolvedBy = dissolvedBy;
-		this.dissolves = dissolves;
+
+		if(exists(name, atomicNumber, atomicMass, Solute, dissolvedBy)){
+			throw new AlreadyExistsException("Sorry. This already exists. Sounds like a skill issue to me");
+		}else {
+			try {
+				PreparedStatement insertStatement = null;
+				insertStatement = jdbc.getConnect().prepareStatement(updateCreateString, Statement.RETURN_GENERATED_KEYS);
+				insertStatement.setString(1, name);
+				insertStatement.setLong(2, atomicNumber);
+				insertStatement.setDouble(3, atomicMass);
+				insertStatement.setLong(4, dissolvedBy);
+				insertStatement.setLong(5, Solute);
+				insertStatement.execute();
+
+				ResultSet rs = insertStatement.getGeneratedKeys();
+				rs.first();
+				this.id = rs.getLong(1);
+
+			} catch (SQLException UnableToCreateException) {
+				UnableToCreateException.printStackTrace();
+				throw new UnableToCreateException("This entry could not be added.");
+			}
+		}
 	}
 
 	//Finder Constructor
-	public ChemicalRowDataGateway(long id) throws SQLException{
-		this.id = id;
+
+
+	public ChemicalRowDataGateway(long id) throws Exception{
 		try{
 			PreparedStatement findStatement = null;
 			findStatement = jdbc.getConnect().prepareStatement(updateFinderString, ResultSet.TYPE_SCROLL_SENSITIVE,
@@ -52,14 +76,22 @@ public class ChemicalRowDataGateway {
 			findStatement.execute();
 			ResultSet results = findStatement.getResultSet();
 
+			results.first();
+
+			this.id = results.getLong("ID");
+			this.Name = results.getString("name");
+			this.atomicNumber = results.getLong("atomicNumber");
+			this.atomicMass = results.getDouble("atomicMass");
+			this.Solute = results.getLong("solute");
+			this.dissolvedBy = results.getLong("dissolvedBy");
 		}catch (SQLException e){
-			//exception for informing user there isn't an element with this id
+				e.printStackTrace();
+			//throw new EntryNotFoundException("Could not find an entry for this ID");
 		}
 	}
 
 
-
-	public void persist(){
+	public void persist() throws Exception{
 		PreparedStatement updateStatement = null;
 		try {
 			updateStatement = jdbc.getConnect().prepareStatement(entryUpdateString);
@@ -72,23 +104,24 @@ public class ChemicalRowDataGateway {
 
 			updateStatement.execute();
 		} catch (SQLException e) {
-			//throw new ApplicationException(e);
+			e.printStackTrace();
+			throw new UnableToUpdateException("Unable to update entry!");
 		}
 	}
 
 
-	public boolean delete(int id){
-		//DELETE FROM `table_name` [WHERE condition]
-		PreparedStatement deleteStatement = null;
+	public boolean delete(long id) throws Exception{
+		//DELETE FROM Chemical where id =?
+		Statement deleteStatement = null;
 		try{
-			deleteStatement = jdbc.getConnect().prepareStatement(deleteEntry);
-			deleteStatement.setLong(1,id);
-			deleteStatement.execute();
-			return true;
+			deleteStatement = jdbc.getConnect().createStatement();
+			String deleteString = "DELETE FROM Chemical WHERE id = " + Long.toString(id);
+			deleteStatement.execute(deleteString);
+
 		}catch (SQLException entryNotFound){
-			return false;
-			//throw general exception for business logic
+			throw new EntryNotFoundException("Could not find entry with this id");
 		}
+		return true;
 	}
 	public boolean find(String name){
 		return false;
