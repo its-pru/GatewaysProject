@@ -91,6 +91,28 @@ public class ChemicalRowDataGatewayTest extends TestCase {
 
     }
 
+    @Test
+    public void testPersists() throws Exception{
+        ChemicalRowDataGateway testPersists = new ChemicalRowDataGateway("MouseAdapter", 1023420, 108943, 12354135,134513);
+        testPersists.setName("HAHA");
+        testPersists.setAtomicNumber(46253);
+        testPersists.setAtomicMass(420);
+        testPersists.setSolute(0);
+        testPersists.setDissolvedBy(80085);
+        testPersists.persist();
+
+        ChemicalRowDataGateway findPersists = new ChemicalRowDataGateway(testPersists.getId());
+        assertEquals(findPersists.getName(),"HAHA" );
+        assertEquals(findPersists.getAtomicNumber(), 46253);
+        assertEquals(findPersists.getAtomicMass(), 420.0);
+        assertEquals(findPersists.getSolute(), 0);
+        assertEquals(testPersists.getDissolvedBy(), 80085 );
+
+        testPersists.delete(testPersists.getId());
+        findPersists.delete(findPersists.getId());
+
+    }
+
 //    @Test
 //    public void testGood() throws Exception {
 //        // 👍
