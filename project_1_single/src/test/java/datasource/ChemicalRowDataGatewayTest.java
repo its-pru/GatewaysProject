@@ -1,5 +1,6 @@
 package datasource;
 
+import Exceptions.AlreadyExistsException;
 import junit.framework.TestCase;
 import junit.framework.TestResult;
 import org.junit.Assert;
@@ -9,28 +10,93 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class ChemicalRowDataGatewayTest extends TestCase {
-//    @Test
-//    public void testCreate() throws SQLException {
-//        ChemicalRowDataGateway testInsert = new ChemicalRowDataGateway("TestChemical2", 10, 10, 10,10);
-//        assertNotNull(testInsert);
-//    }
 
-//    @Test
-//    public void testInsertNewChemical() throws SQLException {
-//        ChemicalRowDataGateway testInsert = new ChemicalRowDataGateway("TestChemical", "Earth", 100, 1.2, new ArrayList<Long>(), 19, 44, new ArrayList<Long>());
-//
-//    }
+    @Test
+    public void testCreate() throws Exception {
+        ChemicalRowDataGateway testInsert = null;
+        try {
+           testInsert = new ChemicalRowDataGateway("Joe", 1000, 1000, 1000, 1000);
+        }catch (AlreadyExistsException e){
+            e.printStackTrace();
+        }
+        assertNotNull(testInsert);
+        testInsert.delete(testInsert.getId());
+    }
 
-    public void testFindChemical(){
-        ChemicalRowDataGateway testFind = new ChemicalRowDataGateway();
-        boolean success = testFind.find("TestChemical");
+    @Test
+    public void testFindChemical() throws Exception{
+        boolean success = true;
+        ChemicalRowDataGateway newChemical = new ChemicalRowDataGateway("Keyboard", 100000, 100000, 10000000, 100000000);
+
+        ChemicalRowDataGateway testFind = null;
+        try {
+            testFind = new ChemicalRowDataGateway(newChemical.getId());
+
+        }catch(SQLException e){
+            success = false;
+        }
+
+        assertTrue(success);
+        newChemical.delete(newChemical.getId());
+        testFind.delete(testFind.getId());
+
+    }
+
+
+    @Test
+    public void testExists()throws Exception{
+        ChemicalRowDataGateway testExist = new ChemicalRowDataGateway("TestExists", 100, 1200,10 ,10);
+        assertNotNull(testExist);
+
+        boolean exists = testExist.exists("TestExists", 100,1200,10,10);
+        assertTrue(exists);
+
+        exists = testExist.exists("FakeEntry", 1, 1, 1, 1);
+        assertFalse(exists);
+
+        testExist.delete(testExist.getId());
+
+    }
+
+    @Test
+    public void testDeleteChemical() throws Exception {
+        ChemicalRowDataGateway testDelete = new ChemicalRowDataGateway("TestChemical", 10, 10, 10,10);
+        boolean success = testDelete.delete(testDelete.getId());
         assertEquals(true, success);
+
+    }
+
+    @Test
+    public void testAlreadyExistingChemical() throws Exception {
+        boolean thrown = false;
+        ChemicalRowDataGateway chemical = null;
+
+        try {
+            chemical = new ChemicalRowDataGateway("chemical2", 101, 1201, 5, 6);
+        } catch (AlreadyExistsException alreadyExists) {
+            thrown = true;
+        }
+
+        assertFalse(thrown);
+
+        try {
+             chemical = new ChemicalRowDataGateway("chemical2", 101, 1201, 5, 6);
+        } catch (AlreadyExistsException alreadyExists) {
+            thrown = true;
+        }
+
+        chemical.delete(chemical.getId());
+
+        assertTrue(thrown);
+
     }
 
 //    @Test
-//    public void testDeleteChemical() throws SQLException {
-//        ChemicalRowDataGateway testDelete = new ChemicalRowDataGateway();
-//        boolean success = testDelete.delete(1);
-//        assertEquals(true, success);
+//    public void testGood() throws Exception {
+//        // 👍
+//        ChemicalRowDataGateway chemical = new ChemicalRowDataGateway("bob", 123, 345, 678, 910);
+//        assertNotNull(chemical);
+//        chemical.delete(chemical.getId());
 //    }
+
 }

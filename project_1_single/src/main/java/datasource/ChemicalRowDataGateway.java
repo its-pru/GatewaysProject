@@ -19,8 +19,10 @@ public class ChemicalRowDataGateway {
 	List<Long> dissolves = new ArrayList<>();
 
 	private static final String updateCreateString = "INSERT INTO Chemical" + " set name = ?, atomicNumber = ?, atomicMass = ?, solute = ?, dissolvedBy = ?";
-	private static final String updateFinderString = "SELECT FROM Chemical WHERE id = ?";
-	private static final String deleteEntry = "DELETE FROM Chemical WHERE id = ?";
+	private static final String updateFinderString = "SELECT * FROM Chemical WHERE id = ?";
+	private static final String entryUpdateString = "UPDATE Chemical SET name = ?, atomicNumber = ?, atomicMass = ?, solute = ?, dissolvedBy = ? WHERE ID = ?";
+	private static final String existsString = "SELECT * FROM Chemical WHERE name = ? OR atomicNumber = ? OR atomicMass = ?";
+
 	JDBC jdbc = JDBC.getJDBC();
 
 	//Empty constructor used for JUnit tests
@@ -44,7 +46,8 @@ public class ChemicalRowDataGateway {
 		this.id = id;
 		try{
 			PreparedStatement findStatement = null;
-			findStatement = jdbc.getConnect().prepareStatement(updateFinderString);
+			findStatement = jdbc.getConnect().prepareStatement(updateFinderString, ResultSet.TYPE_SCROLL_SENSITIVE,
+					ResultSet.CONCUR_UPDATABLE);
 			findStatement.setLong(1, id);
 			findStatement.execute();
 			ResultSet results = findStatement.getResultSet();
@@ -59,11 +62,13 @@ public class ChemicalRowDataGateway {
 	public void persist(){
 		PreparedStatement updateStatement = null;
 		try {
-			updateStatement = jdbc.getConnect().prepareStatement(updateFinderString);
-			updateStatement.setLong(1, id);
-			updateStatement.setString(2, Name);
-			updateStatement.setString(3, inHabits);
-			updateStatement.setLong(4, atomicNumber);
+			updateStatement = jdbc.getConnect().prepareStatement(entryUpdateString);
+			updateStatement.setString(1, Name);
+			updateStatement.setLong(2, atomicNumber);
+			updateStatement.setDouble(3, atomicMass);
+			updateStatement.setLong(4, Solute);
+			updateStatement.setLong(5, dissolvedBy);
+			updateStatement.setLong(6, id);
 
 			updateStatement.execute();
 		} catch (SQLException e) {
