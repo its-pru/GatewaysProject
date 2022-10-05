@@ -15,8 +15,8 @@ public class ChemicalRowDataGatewayTest extends TestCase {
     public void testCreate() throws Exception {
         ChemicalRowDataGateway testCreate = null;
         try {
-           testCreate = new ChemicalRowDataGateway("Joe", 1000, 1000, 1000, 1000);
-        }catch (AlreadyExistsException e){
+            testCreate = new ChemicalRowDataGateway("Joe", 1000, 1000, 1000, 1000);
+        } catch (AlreadyExistsException e) {
             e.printStackTrace();
         }
         assertNotNull(testCreate);
@@ -24,7 +24,7 @@ public class ChemicalRowDataGatewayTest extends TestCase {
     }
 
     @Test
-    public void testFindChemical() throws Exception{
+    public void testFindChemical() throws Exception {
         boolean success = true;
         ChemicalRowDataGateway newChemical = new ChemicalRowDataGateway("Keyboard", 100000, 100000, 10000000, 100000000);
 
@@ -32,7 +32,7 @@ public class ChemicalRowDataGatewayTest extends TestCase {
         try {
             testFind = new ChemicalRowDataGateway(newChemical.getId());
 
-        }catch(SQLException e){
+        } catch (SQLException e) {
             success = false;
         }
 
@@ -44,11 +44,11 @@ public class ChemicalRowDataGatewayTest extends TestCase {
 
 
     @Test
-    public void testExists()throws Exception{
-        ChemicalRowDataGateway testExist = new ChemicalRowDataGateway("TestExists", 100, 1200,10 ,10);
+    public void testExists() throws Exception {
+        ChemicalRowDataGateway testExist = new ChemicalRowDataGateway("TestExists", 100, 1200, 10, 10);
         assertNotNull(testExist);
 
-        boolean exists = testExist.exists("TestExists", 100,1200,10,10);
+        boolean exists = testExist.exists("TestExists", 100, 1200, 10, 10);
         assertTrue(exists);
 
         exists = testExist.exists("FakeEntry", 1, 1, 1, 1);
@@ -60,7 +60,7 @@ public class ChemicalRowDataGatewayTest extends TestCase {
 
     @Test
     public void testDeleteChemical() throws Exception {
-        ChemicalRowDataGateway testDelete = new ChemicalRowDataGateway("TestChemical", 10, 10, 10,10);
+        ChemicalRowDataGateway testDelete = new ChemicalRowDataGateway("TestChemical", 10, 10, 10, 10);
         boolean success = testDelete.delete(testDelete.getId());
         assertEquals(true, success);
 
@@ -80,7 +80,7 @@ public class ChemicalRowDataGatewayTest extends TestCase {
         assertFalse(thrown);
 
         try {
-             chemical = new ChemicalRowDataGateway("chemical2", 101, 1201, 5, 6);
+            chemical = new ChemicalRowDataGateway("chemical2", 101, 1201, 5, 6);
         } catch (AlreadyExistsException alreadyExists) {
             thrown = true;
         }
@@ -92,8 +92,8 @@ public class ChemicalRowDataGatewayTest extends TestCase {
     }
 
     @Test
-    public void testPersists() throws Exception{
-        ChemicalRowDataGateway testPersists = new ChemicalRowDataGateway("MouseAdapter", 1023420, 108943, 12354135,134513);
+    public void testPersists() throws Exception {
+        ChemicalRowDataGateway testPersists = new ChemicalRowDataGateway("MouseAdapter", 1023420, 108943, 12354135, 134513);
         testPersists.setName("HAHA");
         testPersists.setAtomicNumber(46253);
         testPersists.setAtomicMass(420);
@@ -102,11 +102,11 @@ public class ChemicalRowDataGatewayTest extends TestCase {
         testPersists.persist();
 
         ChemicalRowDataGateway findPersists = new ChemicalRowDataGateway(testPersists.getId());
-        assertEquals(findPersists.getName(),"HAHA" );
+        assertEquals(findPersists.getName(), "HAHA");
         assertEquals(findPersists.getAtomicNumber(), 46253);
         assertEquals(findPersists.getAtomicMass(), 420.0);
         assertEquals(findPersists.getSolute(), 0);
-        assertEquals(testPersists.getDissolvedBy(), 80085 );
+        assertEquals(testPersists.getDissolvedBy(), 80085);
 
         testPersists.delete(testPersists.getId());
         findPersists.delete(findPersists.getId());

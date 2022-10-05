@@ -12,6 +12,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.ResultSet;
+import DTO.MadeOfDTO;
+import datasource.MadeOfTableDataGateway;
 
 public class testMadeOfTableDataGateway extends TestCase{
 
@@ -19,7 +21,7 @@ public class testMadeOfTableDataGateway extends TestCase{
     public void testCreate() throws Exception{
     }
     @Test
-    public void testFindCompounds() throws Exception{
+    public void testFindElements() throws Exception{
         ChemicalRowDataGateway hydrogen = new ChemicalRowDataGateway("Hydrogen", 1, 1, 1, 1);
         ChemicalRowDataGateway oxygen = new ChemicalRowDataGateway("Oxygen", 2, 2, 2,2);
         ChemicalRowDataGateway h2o = new ChemicalRowDataGateway("H2O", 3, 3, 3,3);
@@ -28,20 +30,43 @@ public class testMadeOfTableDataGateway extends TestCase{
         chemicalIDs.add(hydrogen.getId());
         chemicalIDs.add(oxygen.getId());
 
-        MadeOfTableDataGateway testGateway = new MadeOfTableDataGateway();
-        testGateway.CreateNewCompound(h2o.getId(), chemicalIDs);
+        MadeOfTableDataGateway.CreateNewCompound(h2o.getId(), chemicalIDs);
 
-        boolean success = testGateway.findCompoundsWithOneElement(oxygen.getId());
-        assertTrue(success);
-        long compoundID = testGateway.getCompoundID();
-        assertEquals(compoundID, h2o.getId());
+        assertEquals(MadeOfTableDataGateway.findElements(h2o.getId()).getChemicalID(), h2o.getId());
+        assertEquals(MadeOfTableDataGateway.findElements(h2o.getId()).getListOfElementIDs(), chemicalIDs);
 
-        testGateway.deleteCompounds(h2o.getId());
+        MadeOfTableDataGateway.deleteCompounds(h2o.getId());
+        h2o.delete(h2o.getId());
         hydrogen.delete(hydrogen.getId());
         oxygen.delete(oxygen.getId());
 
-        h2o.delete(h2o.getId());
+    }
 
+    @Test
+    public void testFindCompoundsWithOneElement() throws Exception {
+        ChemicalRowDataGateway hydrogen = new ChemicalRowDataGateway("Hydrogen", 1, 1, 1, 1);
+        ChemicalRowDataGateway hydrogenPeroxide = new ChemicalRowDataGateway("H202", 4, 4, 2, 1);
+        ChemicalRowDataGateway oxygen = new ChemicalRowDataGateway("Oxygen", 2, 2, 2,2);
+        ChemicalRowDataGateway h2o = new ChemicalRowDataGateway("H2O", 3, 3, 3,3);
+
+        List<Long> chemicalIDs = new ArrayList<>();
+        chemicalIDs.add(hydrogen.getId());
+        chemicalIDs.add(oxygen.getId());
+
+        MadeOfTableDataGateway.CreateNewCompound(h2o.getId(), chemicalIDs);
+        MadeOfTableDataGateway.CreateNewCompound(hydrogenPeroxide.getId(), chemicalIDs);
+
+        List<MadeOfDTO> list = MadeOfTableDataGateway.findCompoundsWithOneElement(oxygen.getId());
+
+        assertEquals (list.get(0).getChemicalID(), h2o.getId());
+        assertEquals (list.get(1).getChemicalID(), hydrogenPeroxide.getId());
+
+        MadeOfTableDataGateway.deleteCompounds(h2o.getId());
+        MadeOfTableDataGateway.deleteCompounds(hydrogenPeroxide.getId());
+        h2o.delete(h2o.getId());
+        hydrogen.delete(hydrogen.getId());
+        oxygen.delete(oxygen.getId());
+        hydrogenPeroxide.delete((hydrogenPeroxide.getId()));
     }
 
     @Test
