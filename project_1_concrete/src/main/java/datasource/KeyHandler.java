@@ -20,7 +20,7 @@ public class KeyHandler {
         long newKey = curKey + 1;
 
         try{
-            PreparedStatement stmt = JDBC.getJDBC().getConnect().prepareStatement(updateKey);
+            PreparedStatement stmt = datasource.JDBC.getJDBC().getConnect().prepareStatement(updateKey);
             stmt.setLong(1, newKey);
             stmt.setLong(2, curKey);
             stmt.execute();
@@ -33,7 +33,7 @@ public class KeyHandler {
 
     private static long getCurrentKey() throws Exception{
         try{
-            Statement stmt =JDBC.getJDBC().getConnect().createStatement();
+            Statement stmt = datasource.JDBC.getJDBC().getConnect().createStatement();
             ResultSet rs = stmt.executeQuery(getCurKey);
             rs.next();
             return rs.getLong("key");

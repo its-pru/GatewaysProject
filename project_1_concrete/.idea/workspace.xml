@@ -5,15 +5,60 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8e32a31b-afee-4a76-b74b-64a093499b5d" name="Changes" comment="Created 4.5 of the gateways for Concrete Table Pattern">
-      <change afterPath="$PROJECT_DIR$/src/datasource/ChemicalTableDataGateway.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/datasource/KeyHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/exceptions/UnableToGetKeyException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/exceptions/UnableToUpdateKeyException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__junit_junit_4_13_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_hamcrest_hamcrest_core_1_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/DTO/AcidDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/DTO/BaseDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/DTO/CompoundDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/DTO/ElementDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/DTO/MetalDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/datasource/AcidRowDataGateway.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/datasource/BaseRowDataGateway.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/datasource/ChemicalTableDataGateway.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/datasource/CompoundRowDataGateway.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/datasource/ElementRowDataGateway.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/datasource/ElementTableDataGateway.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/datasource/JDBC.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/datasource/KeyHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/datasource/MadeOfTableDataGateway.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/datasource/MetalRowDataGateway.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/exceptions/AlreadyExistsException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/exceptions/EntryNotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/exceptions/UnableToConnectException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/exceptions/UnableToCreateException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/exceptions/UnableToGetKeyException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/exceptions/UnableToUpdateException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/exceptions/UnableToUpdateKeyException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/datasource/AcidRowDataGateway.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/datasource/AcidRowDataGateway.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/datasource/BaseRowDataGateway.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/datasource/BaseRowDataGateway.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/datasource/JDBC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/datasource/JDBC.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/datasource/KeyRowDataGateway.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project_1_concrete.iml" beforeDir="false" afterPath="$PROJECT_DIR$/project_1_concrete.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/datasource/AcidRowDataGateway.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/datasource/BaseRowDataGateway.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/datasource/ChemicalTableDataGateway.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/datasource/CompoundRowDataGateway.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/datasource/ElementRowDataGateway.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/datasource/JDBC.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/datasource/KeyHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/datasource/MadeOfTableDataGateway.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/datasource/MetalRowDataGateway.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/exceptions/AlreadyExistsException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/exceptions/EntryNotFoundException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/exceptions/UnableToConnectException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/exceptions/UnableToCreateException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/exceptions/UnableToGetKeyException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/exceptions/UnableToUpdateException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/exceptions/UnableToUpdateKeyException.java" beforeDir="false" />
+    </list>
+    <list id="f7b46270-8f0b-4686-bf87-19a391fa4df0" name="Changes by Evan" comment="">
+      <change afterPath="$PROJECT_DIR$/src/test/java/datasource/ElementTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/datasource/ElementTableDataGateway.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,6 +91,7 @@
     "ASKED_ADD_EXTERNAL_FILES": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "last_opened_file_path": "/home/taylor/Desktop/400Project1/mysql-connector-java-8.0.30.jar",
     "node.js.detected.package.eslint": "true",
@@ -55,6 +101,11 @@
     "project.structure.last.edited": "Global Libraries",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
+    ]
   }
 }]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -69,7 +120,8 @@
       <workItem from="1664972803272" duration="241000" />
       <workItem from="1664973087995" duration="564000" />
       <workItem from="1664973678169" duration="4358000" />
-      <workItem from="1664978476699" duration="3284000" />
+      <workItem from="1664978476699" duration="3559000" />
+      <workItem from="1664997281242" duration="5380000" />
     </task>
     <task id="LOCAL-00001" summary="Created 4.5 of the gateways for Concrete Table Pattern">
       <created>1664977842398</created>

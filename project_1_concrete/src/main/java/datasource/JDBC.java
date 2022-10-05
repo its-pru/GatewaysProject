@@ -15,7 +15,7 @@ public class JDBC {
         }
     }
 
-    public static final String DB_LOCATION = "jdbc:mysql://db.cs.ship.edu/swe400_21"; //jdbc:mysql://db.engr.ship.edu:3306/csc471_05?useTimezone=true&serverTimezone=UTC
+    public static final String DB_LOCATION = "jdbc:mysql://db.cs.ship.edu/swe400_22"; //jdbc:mysql://db.engr.ship.edu:3306/csc471_05?useTimezone=true&serverTimezone=UTC
     public static final String LOGIN_NAME = "swe400_2";
     public static final String PASSWORD = "pwd4swe400_2F22";
     protected Connection m_dbConn = null;
