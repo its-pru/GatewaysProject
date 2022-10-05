@@ -1,43 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="8e32a31b-afee-4a76-b74b-64a093499b5d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../project_1_class/.classpath" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project_1_class/.project" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project_1_class/.settings/org.eclipse.core.resources.prefs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project_1_class/.settings/org.eclipse.jdt.core.prefs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project_1_class/src/module-info.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.classpath" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.project" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.settings/org.eclipse.core.resources.prefs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.settings/org.eclipse.jdt.core.prefs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/module-info.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project_1_single/.classpath" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project_1_single/.project" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project_1_single/.settings/org.eclipse.core.resources.prefs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project_1_single/.settings/org.eclipse.jdt.core.prefs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project_1_single/src/module-info.java" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/datasource/AcidRowDataGateway.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/datasource/BaseRowDataGateway.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/datasource/CompoundRowDataGateway.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/datasource/ElementRowDataGateway.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/datasource/JDBC.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/datasource/KeyRowDataGateway.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/datasource/MadeOfTableDataGateway.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/datasource/MetalRowDataGateway.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/exceptions/AlreadyExistsException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/exceptions/EntryNotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/exceptions/UnableToConnectException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/exceptions/UnableToCreateException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/exceptions/UnableToUpdateException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../project_1_single/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../project_1_single/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../project_1_single/.idea/dataSources/866fcffb-d401-462f-a259-1ed96cf8851a.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../project_1_single/.idea/dataSources/866fcffb-d401-462f-a259-1ed96cf8851a.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../project_1_single/.idea/runConfigurations.xml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectId" id="2FMVcXBQhg8tw44JfrILkIW63Mf" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/taylor/Desktop/400Project1/project_1_single&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -46,8 +70,15 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1664302019555</updated>
+      <workItem from="1664971215017" duration="1562000" />
+      <workItem from="1664972803272" duration="241000" />
+      <workItem from="1664973087995" duration="564000" />
+      <workItem from="1664973678169" duration="4103000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -59,5 +90,8 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
 </project>
