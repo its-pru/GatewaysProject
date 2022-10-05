@@ -2,6 +2,7 @@ package datasource;
 
 import exceptions.EntryNotFoundException;
 import exceptions.UnableToConnectException;
+import exceptions.UnableToUpdateException;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -37,6 +38,11 @@ public class BaseRowDataGateway {
         }
     }
 
+    /**
+     * Finder Constructor for BaseRowDataGateway
+     * @param ID - ID of Base
+     * @throws Exception - throws when unable to find Base
+     */
     public BaseRowDataGateway(long ID) throws Exception{
         try{
             PreparedStatement stmt = JDBC.getJDBC().getConnect().prepareStatement(finderQuery);
@@ -51,6 +57,36 @@ public class BaseRowDataGateway {
         }
     }
 
+    /**
+     * Updates the database with the current values of this base
+     * @throws Exception - throws when unable to update in database
+     */
+    public void persist() throws Exception{
+        try{
+            PreparedStatement stmt = JDBC.getJDBC().getConnect().prepareStatement(updateQuery);
+            stmt.setString(1, name);
+            stmt.setLong(2,solute);
+            stmt.setLong(3, ID);
+            stmt.execute();
+        }catch (SQLException cannotUpdate){
+            throw new UnableToUpdateException("Unable to update this Base. Check connection and try again");
+        }
+    }
+
+    /**
+     * Deletes a base from the database
+     * @param ID - ID of base being deleted
+     * @throws Exception - throws when unable to delete
+     */
+    public void delete(long ID) throws Exception{
+        try{
+            PreparedStatement stmt = JDBC.getJDBC().getConnect().prepareStatement(deleteQuery);
+            stmt.setLong(1, ID);
+            stmt.execute();
+        }catch (SQLException e){
+            throw new UnableToConnectException("Unable to delete Base. Check connection and try again!");
+        }
+    }
 
     /**
      * Checks to see if a Compound with a certain name exists
@@ -67,5 +103,38 @@ public class BaseRowDataGateway {
         }catch(SQLException unableToConnect){
             throw new UnableToConnectException("Unable to check if Compound exists. Check Connection and try again!");
         }
+    }
+
+    /**
+     * sets the name of current base to input name
+     * @param name - new name for this base
+     */
+    public void setName(String name){
+        this.name = name;
+    }
+
+    /**
+     * sets the ID of element that the  base dissolves
+     * @param solute - ID of element that is a solute of this base
+     *
+     */
+    public void setSolute(long solute){
+        this.solute = solute;
+    }
+
+    /**
+     * gets the name of the current base
+     * @return - Name of the base
+     */
+    public String getName(){
+        return name;
+    }
+
+    /**
+     * gets the ID of Element that is a solute for this base
+     * @return - Element ID
+     */
+    public long getSolute(){
+        return solute;
     }
 }

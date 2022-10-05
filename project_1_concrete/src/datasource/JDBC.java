@@ -35,12 +35,12 @@ public class JDBC {
     /**
      * ensures datasource.JDBC is functional
      *
-     * @return - whether datasource.JDBC is functional or not
+     * @return - whether datasource JDBC is functional or not
      * @throws - SQLException
      */
     public boolean activateJDBC() throws SQLException {
         try {
-            DriverManager.registerDriver(new com.Made too many changes\\mysql.cj.jdbc.Driver());
+            DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
         } catch (SQLException sqle) {
             sqle.printStackTrace();
         }

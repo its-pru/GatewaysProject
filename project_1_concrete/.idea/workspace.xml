@@ -4,7 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e32a31b-afee-4a76-b74b-64a093499b5d" name="Changes" comment="Created 4.5 of the gateways for Concrete Table Pattern" />
+    <list default="true" id="8e32a31b-afee-4a76-b74b-64a093499b5d" name="Changes" comment="Created 4.5 of the gateways for Concrete Table Pattern">
+      <change afterPath="$PROJECT_DIR$/src/datasource/ChemicalTableDataGateway.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/datasource/KeyHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/exceptions/UnableToGetKeyException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/exceptions/UnableToUpdateKeyException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/datasource/AcidRowDataGateway.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/datasource/AcidRowDataGateway.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/datasource/BaseRowDataGateway.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/datasource/BaseRowDataGateway.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/datasource/JDBC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/datasource/JDBC.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/datasource/KeyRowDataGateway.java" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -31,19 +41,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/taylor/Desktop/400Project1/project_1_single&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/home/taylor/Desktop/400Project1/mysql-connector-java-8.0.30.jar",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Global Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2"
   }
-}</component>
+}]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -55,7 +68,8 @@
       <workItem from="1664971215017" duration="1562000" />
       <workItem from="1664972803272" duration="241000" />
       <workItem from="1664973087995" duration="564000" />
-      <workItem from="1664973678169" duration="4179000" />
+      <workItem from="1664973678169" duration="4358000" />
+      <workItem from="1664978476699" duration="3284000" />
     </task>
     <task id="LOCAL-00001" summary="Created 4.5 of the gateways for Concrete Table Pattern">
       <created>1664977842398</created>
