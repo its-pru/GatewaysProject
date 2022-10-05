@@ -4,25 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e32a31b-afee-4a76-b74b-64a093499b5d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/datasource/AcidRowDataGateway.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/datasource/BaseRowDataGateway.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/datasource/CompoundRowDataGateway.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/datasource/ElementRowDataGateway.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/datasource/JDBC.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/datasource/KeyRowDataGateway.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/datasource/MadeOfTableDataGateway.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/datasource/MetalRowDataGateway.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/exceptions/AlreadyExistsException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/exceptions/EntryNotFoundException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/exceptions/UnableToConnectException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/exceptions/UnableToCreateException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/exceptions/UnableToUpdateException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project_1_single/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../project_1_single/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project_1_single/.idea/dataSources/866fcffb-d401-462f-a259-1ed96cf8851a.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../project_1_single/.idea/dataSources/866fcffb-d401-462f-a259-1ed96cf8851a.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project_1_single/.idea/runConfigurations.xml" beforeDir="false" />
-    </list>
+    <list default="true" id="8e32a31b-afee-4a76-b74b-64a093499b5d" name="Changes" comment="Created 4.5 of the gateways for Concrete Table Pattern" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -73,8 +55,16 @@
       <workItem from="1664971215017" duration="1562000" />
       <workItem from="1664972803272" duration="241000" />
       <workItem from="1664973087995" duration="564000" />
-      <workItem from="1664973678169" duration="4103000" />
+      <workItem from="1664973678169" duration="4179000" />
     </task>
+    <task id="LOCAL-00001" summary="Created 4.5 of the gateways for Concrete Table Pattern">
+      <created>1664977842398</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1664977842398</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -93,5 +83,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Created 4.5 of the gateways for Concrete Table Pattern" />
+    <option name="LAST_COMMIT_MESSAGE" value="Created 4.5 of the gateways for Concrete Table Pattern" />
   </component>
 </project>

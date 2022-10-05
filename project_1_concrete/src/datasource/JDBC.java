@@ -40,7 +40,7 @@ public class JDBC {
      */
     public boolean activateJDBC() throws SQLException {
         try {
-            DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
+            DriverManager.registerDriver(new com.Made too many changes\\mysql.cj.jdbc.Driver());
         } catch (SQLException sqle) {
             sqle.printStackTrace();
         }
