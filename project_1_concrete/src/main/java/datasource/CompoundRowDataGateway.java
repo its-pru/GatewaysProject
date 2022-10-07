@@ -18,7 +18,7 @@ public class CompoundRowDataGateway {
     private static final String findQuery = "SELECT * FROM compound WHERE ID = ?";
     private static final String updateQuery = "UPDATE compound SET name = ? WHERE ID = ?";
     private static final String deleteQuery = "DELETE FROM compound WHERE ID = ?";
-    private static final String existsQuery = "SELECT * FROM compound WHERE NAME = ?";
+    private static final String existsQuery = "SELECT * FROM compound WHERE name = ?";
     /**
      * Create constructor for new Compound
      * @param ID - ID of new Compound

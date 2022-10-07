@@ -4,12 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e32a31b-afee-4a76-b74b-64a093499b5d" name="Changes" comment="Even Changed workspace.xml">
-      <change afterPath="$PROJECT_DIR$/src/test/java/datasource/ElementRowDataGatewayTest.java" afterDir="false" />
+    <list default="true" id="8e32a31b-afee-4a76-b74b-64a093499b5d" name="Changes" comment="Started ElementRowDataGatewayTest tests">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/datasource/ElementTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/datasource/ChemicalTableDataGateway.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/datasource/CompoundRowDataGateway.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/datasource/CompoundRowDataGateway.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/datasource/MadeOfTableDataGateway.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/datasource/MadeOfTableDataGateway.java" afterDir="false" />
     </list>
-    <list id="f7b46270-8f0b-4686-bf87-19a391fa4df0" name="Changes by Evan" comment="Changes by Evan" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -36,28 +36,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/home/taylor/Desktop/400Project1/mysql-connector-java-8.0.30.jar",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Global Libraries",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/taylor/Desktop/400Project1/mysql-connector-java-8.0.30.jar&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Global Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -71,7 +71,8 @@
       <workItem from="1664973087995" duration="564000" />
       <workItem from="1664973678169" duration="4358000" />
       <workItem from="1664978476699" duration="3559000" />
-      <workItem from="1664997281242" duration="6443000" />
+      <workItem from="1664997281242" duration="6471000" />
+      <workItem from="1665107831541" duration="1652000" />
     </task>
     <task id="LOCAL-00001" summary="Created 4.5 of the gateways for Concrete Table Pattern">
       <created>1664977842398</created>
@@ -101,7 +102,14 @@
       <option name="project" value="LOCAL" />
       <updated>1665002980159</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Started ElementRowDataGatewayTest tests">
+      <created>1665003996539</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1665003996539</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -124,6 +132,7 @@
     <MESSAGE value="finished gateways and setup database" />
     <MESSAGE value="Changes by Evan" />
     <MESSAGE value="Even Changed workspace.xml" />
-    <option name="LAST_COMMIT_MESSAGE" value="Even Changed workspace.xml" />
+    <MESSAGE value="Started ElementRowDataGatewayTest tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="Started ElementRowDataGatewayTest tests" />
   </component>
 </project>
