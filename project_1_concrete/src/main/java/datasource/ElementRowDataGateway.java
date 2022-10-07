@@ -67,8 +67,9 @@ public class ElementRowDataGateway{
 
             this.ID = ID;
             this.name = rs.getString("name");
-            this.atomicMass = rs.getDouble("atomicMass");
             this.atomicNumber = rs.getLong("atomicNumber");
+            this.atomicMass = rs.getDouble("atomicMass");
+
 
         }catch (SQLException notFound){
             throw new EntryNotFoundException("Element for this ID not found. Check ID and try again");
@@ -93,9 +94,11 @@ public class ElementRowDataGateway{
 
     /**
      * deletes an Element from the Database
+     *
+     * @return true - returns true if the id is deleted
      * @throws Exception - throws when Element being deleted isn't found
      */
-    public void delete()throws Exception{
+    public boolean delete(long id)throws Exception{
         try{
             PreparedStatement stmt = JDBC.getJDBC().getConnect().prepareStatement(deleteString);
             stmt.setLong(1, ID);
@@ -103,6 +106,7 @@ public class ElementRowDataGateway{
         }catch (SQLException e){
             throw new EntryNotFoundException("Could not find Element with this ID. Check ID and try again");
         }
+        return true;
     }
 
     /**

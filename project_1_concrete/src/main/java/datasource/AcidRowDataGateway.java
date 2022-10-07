@@ -83,17 +83,21 @@ public class AcidRowDataGateway {
     }
     /**
      * Deletes an acid from the Acid table
+     *
      * @param ID - ID of Acid being deleted
+     * @return true - if no exception is thrown
      * @throws Exception - throws when connection to the database cannot be established
      */
-    public void delete(long ID) throws Exception{
+    public boolean delete(long ID) throws Exception{
         try{
             PreparedStatement stmt = JDBC.getJDBC().getConnect().prepareStatement(deleteQuery);
             stmt.setLong(1, ID);
             stmt.execute();
+
         }catch (SQLException unableToDelete){
             throw new UnableToConnectException("Unable to Delete Acid. Check connection and try again!");
         }
+        return true;
     }
     /**
      * Checks to see if an Acid with a certain name exists

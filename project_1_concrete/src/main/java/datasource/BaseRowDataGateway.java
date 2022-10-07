@@ -75,10 +75,12 @@ public class BaseRowDataGateway {
 
     /**
      * Deletes a base from the database
+     *
      * @param ID - ID of base being deleted
+     * @return
      * @throws Exception - throws when unable to delete
      */
-    public void delete(long ID) throws Exception{
+    public boolean delete(long ID) throws Exception{
         try{
             PreparedStatement stmt = JDBC.getJDBC().getConnect().prepareStatement(deleteQuery);
             stmt.setLong(1, ID);
@@ -86,6 +88,7 @@ public class BaseRowDataGateway {
         }catch (SQLException e){
             throw new UnableToConnectException("Unable to delete Base. Check connection and try again!");
         }
+        return true;
     }
 
     /**

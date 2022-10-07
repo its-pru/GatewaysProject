@@ -97,9 +97,11 @@ public class MetalRowDataGateway{
 
     /**
      * deletes a Metal from the Database
+     *
+     * @return
      * @throws Exception - throws when Metal being deleted isn't found
      */
-    public void delete()throws Exception{
+    public boolean delete(long ID)throws Exception{
         try{
             PreparedStatement stmt = JDBC.getJDBC().getConnect().prepareStatement(deleteString);
             stmt.setLong(1, ID);
@@ -107,6 +109,7 @@ public class MetalRowDataGateway{
         }catch (SQLException e){
             throw new EntryNotFoundException("Could not find Metal with this ID. Check ID and try again");
         }
+        return true;
     }
 
     /**
