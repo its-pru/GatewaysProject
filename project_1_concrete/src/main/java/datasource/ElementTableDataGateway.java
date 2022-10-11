@@ -4,6 +4,7 @@ import DTO.ElementDTO;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,20 +17,24 @@ public class ElementTableDataGateway {
     public static List<ElementDTO> getElements(List<Long> ID) throws Exception {
         JDBC jdbc = JDBC.getJDBC();
         List<ElementDTO> ElementList = new ArrayList<ElementDTO>();
-        String query = "SELECT * FROM Element WHERE ID in (";
-        PreparedStatement stmt = jdbc.getConnect().prepareStatement(queryBuilder(ID.size(), query));
-        for (int i = 0; i < ID.size(); i++) {
-            stmt.setLong(i + 1, ID.get(i));
-        }
+        String query = "SELECT * FROM element WHERE ID in (";
+        try {
+            PreparedStatement stmt = jdbc.getConnect().prepareStatement(queryBuilder(ID.size(), query));
+            for (int i = 0; i < ID.size(); i++) {
+                stmt.setLong(i + 1, ID.get(i));
+            }
 
-        stmt.execute();
-        ResultSet rs = stmt.getResultSet();
-        while (rs.next()) {
-            long id = rs.getLong("ID");
-            String name = rs.getString("name");
-            long atomicNumber = rs.getLong("atomicNumber");
-            double atomicMass = rs.getDouble("atomicMass");
-            ElementList.add(new ElementDTO(id, name, atomicNumber, atomicMass));
+            stmt.execute();
+            ResultSet rs = stmt.getResultSet();
+            while (rs.next()) {
+                long id = rs.getLong("ID");
+                String name = rs.getString("name");
+                long atomicNumber = rs.getLong("atomicNumber");
+                double atomicMass = rs.getDouble("atomicMass");
+                ElementList.add(new ElementDTO(id, name, atomicNumber, atomicMass));
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
         }
 
         return ElementList;

@@ -19,7 +19,7 @@ public class ElementRowDataGateway{
 
     private static final String elementCreateString = "INSERT INTO element VALUES (?,?,?,?)";
     private static final String existsString= "SELECT * FROM element WHERE name = ? OR atomicNumber = ? OR atomicMass = ?";
-    private static final String finderString = " SELECT * FROM element WHERE name = ? OR atomicNumber = ? OR atomicMass = ?";
+    private static final String finderString = " SELECT * FROM element WHERE ID = ?";
     private static final String updateString = "UPDATE element SET name = ?, atomicNumber = ?, atomicMass = ? WHERE ID = ?";
     private static final String deleteString = "DELETE FROM element WHERE ID = ?";
 
@@ -48,6 +48,7 @@ public class ElementRowDataGateway{
                 stmt.setDouble(4, atomicMass);
                 stmt.execute();
             } catch (SQLException unableToCreate) {
+                unableToCreate.printStackTrace();
                 throw new UnableToCreateException("Unable to create Element. Check inputs and try again");
             }
         }
@@ -72,6 +73,7 @@ public class ElementRowDataGateway{
 
 
         }catch (SQLException notFound){
+
             throw new EntryNotFoundException("Element for this ID not found. Check ID and try again");
         }
     }
@@ -86,6 +88,7 @@ public class ElementRowDataGateway{
             stmt.setString(1, name);
             stmt.setLong(2, atomicNumber);
             stmt.setDouble(3, atomicMass);
+            stmt.setLong(4, ID);
             stmt.execute();
         }catch (SQLException e){
             throw new UnableToUpdateException("Unable to update element. Check network connection and try again!");

@@ -11,7 +11,7 @@ public class ElementTableDataGatewayTests extends TestCase {
     @Test
     public void testGetElements() throws Exception {
         ElementRowDataGateway element1 = new ElementRowDataGateway(1,"Rick", 1, 1);
-        ElementRowDataGateway element2 = new ElementRowDataGateway(1,"Don", 2, 2);
+        ElementRowDataGateway element2 = new ElementRowDataGateway(2,"Don", 2, 2);
 
         List<Long> listOfIDs = new ArrayList<Long>();
         listOfIDs.add(element1.getID());

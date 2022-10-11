@@ -20,7 +20,7 @@ public class MetalRowDataGateway{
 
     private static final String MetalCreateString = "INSERT INTO metal VALUES (?,?,?,?,?)";
     private static final String existsString= "SELECT * FROM metal WHERE name = ? OR atomicNumber = ? OR atomicMass = ?";
-    private static final String finderString = " SELECT * FROM metal WHERE name = ? OR atomicNumber = ? OR atomicMass = ?";
+    private static final String finderString = " SELECT * FROM metal WHERE ID = ?";
     private static final String updateString = "UPDATE metal SET name = ?, atomicNumber = ?, atomicMass = ?, dissolvedBy = ? WHERE ID = ?";
     private static final String deleteString = "DELETE FROM metal WHERE ID = ?";
 
@@ -74,6 +74,7 @@ public class MetalRowDataGateway{
             this.atomicNumber = rs.getLong("atomicNumber");
 
         }catch (SQLException notFound){
+            notFound.printStackTrace();
             throw new EntryNotFoundException("Metal for this ID not found. Check ID and try again");
         }
     }
@@ -89,8 +90,10 @@ public class MetalRowDataGateway{
             stmt.setLong(2, atomicNumber);
             stmt.setDouble(3, atomicMass);
             stmt.setLong(4, dissolvedBy);
+            stmt.setLong(5, ID);
             stmt.execute();
         }catch (SQLException e){
+            e.printStackTrace();
             throw new UnableToUpdateException("Unable to update Metal. Check network connection and try again!");
         }
     }

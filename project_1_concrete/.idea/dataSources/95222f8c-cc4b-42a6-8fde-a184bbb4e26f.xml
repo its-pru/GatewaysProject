@@ -1,7 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="@db.cs.ship.edu">
   <database-model serializer="dbm" dbms="MYSQL" family-id="MYSQL" format-version="4.43">
-    <root id="1"/>
+    <root id="1">
+      <DefaultCasing>exact</DefaultCasing>
+      <DefaultEngine>InnoDB</DefaultEngine>
+      <DefaultTmpEngine>InnoDB</DefaultTmpEngine>
+      <Grants>swe400_21|schema||swe400_2||ALTER|G
+swe400_21|schema||swe400_2||ALTER ROUTINE|G
+swe400_21|schema||swe400_2||CREATE|G
+swe400_21|schema||swe400_2||CREATE ROUTINE|G
+swe400_21|schema||swe400_2||CREATE TEMPORARY TABLES|G
+swe400_21|schema||swe400_2||CREATE VIEW|G
+swe400_21|schema||swe400_2||DELETE|G
+swe400_21|schema||swe400_2||DROP|G
+swe400_21|schema||swe400_2||EVENT|G
+swe400_21|schema||swe400_2||EXECUTE|G
+swe400_21|schema||swe400_2||INDEX|G
+swe400_21|schema||swe400_2||INSERT|G
+swe400_21|schema||swe400_2||LOCK TABLES|G
+swe400_21|schema||swe400_2||REFERENCES|G
+swe400_21|schema||swe400_2||SELECT|G
+swe400_21|schema||swe400_2||SHOW VIEW|G
+swe400_21|schema||swe400_2||TRIGGER|G
+swe400_21|schema||swe400_2||UPDATE|G
+swe400_22|schema||swe400_2||ALTER|G
+swe400_22|schema||swe400_2||ALTER ROUTINE|G
+swe400_22|schema||swe400_2||CREATE|G
+swe400_22|schema||swe400_2||CREATE ROUTINE|G
+swe400_22|schema||swe400_2||CREATE TEMPORARY TABLES|G
+swe400_22|schema||swe400_2||CREATE VIEW|G
+swe400_22|schema||swe400_2||DELETE|G
+swe400_22|schema||swe400_2||DROP|G
+swe400_22|schema||swe400_2||EVENT|G
+swe400_22|schema||swe400_2||EXECUTE|G
+swe400_22|schema||swe400_2||INDEX|G
+swe400_22|schema||swe400_2||INSERT|G
+swe400_22|schema||swe400_2||LOCK TABLES|G
+swe400_22|schema||swe400_2||REFERENCES|G
+swe400_22|schema||swe400_2||SELECT|G
+swe400_22|schema||swe400_2||SHOW VIEW|G
+swe400_22|schema||swe400_2||TRIGGER|G
+swe400_22|schema||swe400_2||UPDATE|G
+swe400_23|schema||swe400_2||ALTER|G
+swe400_23|schema||swe400_2||ALTER ROUTINE|G
+swe400_23|schema||swe400_2||CREATE|G
+swe400_23|schema||swe400_2||CREATE ROUTINE|G
+swe400_23|schema||swe400_2||CREATE TEMPORARY TABLES|G
+swe400_23|schema||swe400_2||CREATE VIEW|G
+swe400_23|schema||swe400_2||DELETE|G
+swe400_23|schema||swe400_2||DROP|G
+swe400_23|schema||swe400_2||EVENT|G
+swe400_23|schema||swe400_2||EXECUTE|G
+swe400_23|schema||swe400_2||INDEX|G
+swe400_23|schema||swe400_2||INSERT|G
+swe400_23|schema||swe400_2||LOCK TABLES|G
+swe400_23|schema||swe400_2||REFERENCES|G
+swe400_23|schema||swe400_2||SELECT|G
+swe400_23|schema||swe400_2||SHOW VIEW|G
+swe400_23|schema||swe400_2||TRIGGER|G
+swe400_23|schema||swe400_2||UPDATE|G</Grants>
+      <ServerVersion>8.0.25</ServerVersion>
+    </root>
     <collation id="2" parent="1" name="armscii8_bin">
       <Charset>armscii8</Charset>
     </collation>
@@ -1213,7 +1272,7 @@
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="364" parent="276" name="key">
+    <table id="364" parent="276" name="keyHandler">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
@@ -5023,7 +5082,7 @@
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="1137" parent="364" name="key">
+    <column id="1137" parent="364" name="CurrentKey">
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
