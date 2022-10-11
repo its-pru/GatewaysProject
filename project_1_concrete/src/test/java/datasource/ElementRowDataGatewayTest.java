@@ -70,7 +70,7 @@ public class ElementRowDataGatewayTest extends TestCase {
         testPersists.setAtomicNumber(3);
         testPersists.setAtomicMass(12);
         testPersists.persist();
-
+        assertEquals(true,testPersists.exists("Don", 3,12));
         testPersists.delete(testPersists.getID());
 
     }
