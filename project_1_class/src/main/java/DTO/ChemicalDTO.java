@@ -34,7 +34,7 @@ public class ChemicalDTO {
      * returns the name
      * @return
      */
-    public String getSolute() {
+    public String getName() {
         return name;
     }
 
@@ -42,7 +42,7 @@ public class ChemicalDTO {
      * sets the name
      * @param name
      */
-    public void setSolute(String name) {
+    public void getName(String name) {
         this.name = name;
     }
 }
