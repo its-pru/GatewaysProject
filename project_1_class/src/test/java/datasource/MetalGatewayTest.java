@@ -21,9 +21,9 @@ public class MetalGatewayTest extends TestCase {
         var lead = new MetalRowDataGateway(leadElement.getId(), testAcid.getId());
 
         assertNotNull(lead);
-        testSolute.delete(testSolute.getId());
-        testChem.delete(testChem.getId());
-        leadChem.delete(leadChem.getId());
+        testSolute.delete();
+        testChem.delete();
+        leadChem.delete();
     }
 
     @Test
@@ -40,9 +40,9 @@ public class MetalGatewayTest extends TestCase {
         assertEquals(lead.getDissolvedBy(), finder.getDissolvedBy());
         assertEquals(testAcid.getId(), finder.getDissolvedBy());
 
-        testSolute.delete(testSolute.getId());
-        testChem.delete(testChem.getId());
-        leadChem.delete(leadChem.getId());
+        testSolute.delete();
+        testChem.delete();
+        leadChem.delete();
 
     }
 
@@ -63,10 +63,10 @@ public class MetalGatewayTest extends TestCase {
         lead.persist();
         assertEquals(newAcid.getId(), lead.getDissolvedBy());
 
-        testSolute.delete(testSolute.getId());
-        testChem.delete(testChem.getId());
-        newChem.delete(newChem.getId());
-        leadChem.delete(leadChem.getId());
+        testSolute.delete();
+        testChem.delete();
+        newChem.delete();
+        leadChem.delete();
 
     }
 
@@ -92,8 +92,8 @@ public class MetalGatewayTest extends TestCase {
         assertEquals(metal.getId(), elementList.get(0).getID());
         assertEquals(metal.getDissolvedBy(), chemical3.getId());
 
-        chemical1.delete(chemical1.getId());
-        chemical2.delete(chemical2.getId());
-        chemical3.delete(chemical3.getId());
+        chemical1.delete();
+        chemical2.delete();
+        chemical3.delete();
     }
 }

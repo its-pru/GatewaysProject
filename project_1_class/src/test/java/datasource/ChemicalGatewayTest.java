@@ -12,7 +12,7 @@ public class ChemicalGatewayTest extends TestCase {
     public void testCreate() throws Exception{
         var tester = new ChemicalRowDataGateway("TestChem");
         assertNotNull(tester);
-        tester.delete(tester.getId());
+        tester.delete();
     }
 
     @Test
@@ -22,7 +22,7 @@ public class ChemicalGatewayTest extends TestCase {
 
         assertEquals("TestChem", finder.getName());
 
-        tester.delete(tester.getId());
+        tester.delete();
     }
 
     @Test
@@ -31,13 +31,13 @@ public class ChemicalGatewayTest extends TestCase {
         tester.setName("NewName");
         tester.persist();
         assertEquals("NewName",tester.getName());
-        tester.delete(tester.getId());
+        tester.delete();
     }
 
     @Test
     public void testDelete() throws Exception{
         var tester = new ChemicalRowDataGateway("TestChem");
-        boolean worked = tester.delete(tester.getId());
+        boolean worked = tester.delete();
         assertEquals(true, worked);
     }
     // Table Data Gateways
@@ -54,8 +54,8 @@ public class ChemicalGatewayTest extends TestCase {
         assertEquals(chemical1.getName(), chemicalList.get(0).getName());
         assertEquals(chemical2.getName(), chemicalList.get(1).getName());
 
-         chemical1.delete(chemical1.getId());
-         chemical2.delete(chemical2.getId());
+         chemical1.delete();
+         chemical2.delete();
 
     }
 

@@ -24,8 +24,8 @@ public class ElementRowDataGateway {
     /**
      * Create constructor
      *
-     * @param atomicNumber
-     * @param atomicMass
+     * @param atomicNumber - atomic number of the element
+     * @param atomicMass   - atomic mass of the element
      */
     public ElementRowDataGateway(long id, long atomicNumber, double atomicMass) throws Exception {
         if (exists(atomicNumber, atomicMass)) {
@@ -47,7 +47,13 @@ public class ElementRowDataGateway {
         }
     }
 
-    public ElementRowDataGateway(long id) throws Exception{
+    /**
+     * Finder constructor
+     *
+     * @param id - ID of an already created element
+     * @throws Exception - unable to find the row
+     */
+    public ElementRowDataGateway(long id) throws Exception {
         try {
             PreparedStatement findStatement = null;
             findStatement = JDBC.getJDBC().getConnect().prepareStatement(findQuery, ResultSet.TYPE_SCROLL_SENSITIVE,
@@ -65,6 +71,11 @@ public class ElementRowDataGateway {
         }
     }
 
+    /**
+     * Updates the row in the database
+     *
+     * @throws Exception - Unable to update the row in the database
+     */
     public void persist() throws Exception {
         try {
             PreparedStatement stmt = JDBC.getJDBC().getConnect().prepareStatement(updateQuery);
@@ -78,7 +89,13 @@ public class ElementRowDataGateway {
 
     }
 
-    public boolean delete(long id) throws Exception {
+    /**
+     * Deletes the row in the database
+     *
+     * @return - true if deletion succeeded
+     * @throws Exception - unable to find the row
+     */
+    public boolean delete() throws Exception {
         try {
             PreparedStatement stmt = JDBC.getJDBC().getConnect().prepareStatement(deleteQuery);
             stmt.setLong(1, id);
@@ -89,6 +106,14 @@ public class ElementRowDataGateway {
         return true;
     }
 
+    /**
+     * Checks if a base with identical parameters already exists
+     *
+     * @param atomicNumber - atomic number of the element
+     * @param atomicMass   - atomic mass of the element
+     * @return - true if it already exists
+     * @throws Exception - unable to check the database at all
+     */
     private boolean exists(long atomicNumber, double atomicMass) throws Exception {
         try {
             PreparedStatement stmt = JDBC.getJDBC().getConnect().prepareStatement(existsQuery);

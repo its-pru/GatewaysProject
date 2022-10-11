@@ -21,7 +21,7 @@ public class AcidRowDataGateway {
     public static final String deleteQuery = "DELETE FROM acid WHERE id = ?";
 
     /**
-     * Create constructor for chemical
+     * Create constructor
      *
      * @param id     - ID of an already created acid
      * @param solute - ID of object that dissolves in this acid
@@ -44,9 +44,10 @@ public class AcidRowDataGateway {
     }
 
     /**
-     * Finder constructor for a chemical
+     * Finder constructor
      *
      * @param id - ID of an already created acid
+     * @throws Exception - unable to find the row
      */
     public AcidRowDataGateway(long id) throws Exception {
         try {
@@ -65,6 +66,11 @@ public class AcidRowDataGateway {
 
     }
 
+    /**
+     * Updates the row in the database
+     *
+     * @throws Exception - Unable to update the row in the database
+     */
     public void persist() throws Exception {
         try {
             PreparedStatement stmt = JDBC.getJDBC().getConnect().prepareStatement(updateQuery);
@@ -77,7 +83,13 @@ public class AcidRowDataGateway {
 
     }
 
-    public boolean delete(long id) throws Exception {
+    /**
+     * Deletes the row in the database
+     *
+     * @return - true if deletion succeeded
+     * @throws Exception - unable to find the row
+     */
+    public boolean delete() throws Exception {
         try {
             PreparedStatement stmt = JDBC.getJDBC().getConnect().prepareStatement(deleteQuery);
             stmt.setLong(1, id);
@@ -88,6 +100,14 @@ public class AcidRowDataGateway {
         return true;
     }
 
+    /**
+     * Checks if an identical object exists before creation
+     *
+     * @param id     - ID of an acid
+     * @param solute - ID of a chemical that dissolves in this acid
+     * @return - true if it already exists
+     * @throws Exception - unable to check the database at all
+     */
     private boolean exists(long id, long solute) throws Exception {
         try {
             PreparedStatement stmt = JDBC.getJDBC().getConnect().prepareStatement(existsQuery);

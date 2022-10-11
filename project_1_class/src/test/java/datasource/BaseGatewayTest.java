@@ -17,8 +17,8 @@ public class BaseGatewayTest extends TestCase{
         var tester = new BaseRowDataGateway(testerChem1.getId(), testerChem2.getId());
         assertNotNull(tester);
 
-        testerChem1.delete(testerChem1.getId());
-        testerChem2.delete(testerChem2.getId());
+        testerChem1.delete();
+        testerChem2.delete();
 
     }
 
@@ -31,8 +31,8 @@ public class BaseGatewayTest extends TestCase{
 
         assertEquals(testerChem1.getId(), finder.getId());
         assertEquals(testerChem2.getId(), finder.getSolute());
-        testerChem1.delete(testerChem1.getId());
-        testerChem2.delete(testerChem2.getId());
+        testerChem1.delete();
+        testerChem2.delete();
 
     }
 
@@ -48,8 +48,8 @@ public class BaseGatewayTest extends TestCase{
 
         assertEquals(testerChem2.getId(), tester.getSolute());
 
-        testerChem1.delete(testerChem1.getId());
-        testerChem2.delete(testerChem2.getId());
+        testerChem1.delete();
+        testerChem2.delete();
 
     }
 
@@ -72,9 +72,9 @@ public class BaseGatewayTest extends TestCase{
         assertEquals(base1.getSolute(), baseList.get(0).getSolute());
         assertEquals(base2.getSolute(), baseList.get(1).getSolute());
 
-        chemical1.delete(chemical1.getId());
-        chemical2.delete(chemical2.getId());
-        chemical3.delete(chemical3.getId());
-        chemical4.delete(chemical4.getId());
+        chemical1.delete();
+        chemical2.delete();
+        chemical3.delete();
+        chemical4.delete();
     }
 }

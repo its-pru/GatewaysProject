@@ -29,9 +29,9 @@ public class MadeOfGatewayTest extends TestCase{
         assertEquals(MadeOfTableDataGateway.findElements(h2o.getId()).getListOfElementIDs(), chemicalIDs);
 
         //MadeOfTableDataGateway.deleteCompounds(h2o.getId());
-        h2o.delete(h2o.getId());
-        hydrogen1.delete(hydrogen1.getId());
-        oxygen1.delete(oxygen1.getId());
+        h2o.delete();
+        hydrogen1.delete();
+        oxygen1.delete();
 
     }
 
@@ -59,10 +59,10 @@ public class MadeOfGatewayTest extends TestCase{
 
         MadeOfTableDataGateway.deleteCompounds(h2o.getId());
         MadeOfTableDataGateway.deleteCompounds(hydrogenPeroxide.getId());
-        hydrogen1.delete(hydrogen1.getId());
-        oxygen1.delete(oxygen1.getId());
-        h2o.delete(h2o.getId());
-        hydrogenPeroxide.delete((hydrogenPeroxide.getId()));
+        hydrogen1.delete();
+        oxygen1.delete();
+        h2o.delete();
+        hydrogenPeroxide.delete();
     }
 
     @Test
@@ -84,9 +84,9 @@ public class MadeOfGatewayTest extends TestCase{
             thrown = true;
         }
         MadeOfTableDataGateway.deleteCompounds(hydrogen.getId());
-        helium1.delete(helium1.getId());
-        hydrogen.delete(hydrogen.getId());
-        helium.delete(helium.getId());
+        helium1.delete();
+        hydrogen.delete();
+        helium.delete();
         assertFalse(thrown);
 
     }
@@ -117,11 +117,11 @@ public class MadeOfGatewayTest extends TestCase{
         }
         MadeOfTableDataGateway.deleteElements(hydrogen.getId());
         MadeOfTableDataGateway.deleteElements(helium.getId());
-        helium1.delete(helium1.getId());
-        hydrogen1.delete(hydrogen1.getId());
-        water.delete(water.getId());
-        hydrogen.delete(hydrogen.getId());
-        helium.delete(helium.getId());
+        helium1.delete();
+        hydrogen1.delete();
+        water.delete();
+        hydrogen.delete();
+        helium.delete();
 
 
     }

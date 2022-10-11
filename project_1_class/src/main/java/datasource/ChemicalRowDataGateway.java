@@ -21,7 +21,7 @@ public class ChemicalRowDataGateway {
     public static final String deleteQuery = "DELETE FROM chemical WHERE id = ?";
 
     /**
-     * Create constructor for chemical
+     * Create constructor
      *
      * @param name - name of the new chemical
      */
@@ -44,9 +44,9 @@ public class ChemicalRowDataGateway {
     }
 
     /**
-     * Finder constructor for a chemical
-     *
+     * Finder constructor
      * @param id - ID of an already created chemical
+     * @throws Exception - unable to find the row
      */
     public ChemicalRowDataGateway(long id) throws Exception {
         try {
@@ -65,6 +65,11 @@ public class ChemicalRowDataGateway {
 
     }
 
+    /**
+     * Updates the row in the database
+     *
+     * @throws Exception - Unable to update the row in the database
+     */
     public void persist() throws Exception {
         try {
             PreparedStatement stmt = JDBC.getJDBC().getConnect().prepareStatement(updateQuery);
@@ -77,7 +82,13 @@ public class ChemicalRowDataGateway {
 
     }
 
-    public boolean delete(long id) throws Exception {
+    /**
+     * Deletes the row in the database
+     *
+     * @return - true if deletion succeeded
+     * @throws Exception - unable to find the row
+     */
+    public boolean delete() throws Exception {
         try {
             PreparedStatement stmt = JDBC.getJDBC().getConnect().prepareStatement(deleteQuery);
             stmt.setLong(1, id);
@@ -89,10 +100,11 @@ public class ChemicalRowDataGateway {
     }
 
     /**
-     * Method used to check if a chemical with the specified name already exists
+     * Checks if a base with identical parameters already exists
      *
      * @param name - name of the chemical
-     * @return - true if chemical exists
+     * @return - true if it already exists
+     * @throws Exception - unable to check the database at all
      */
     private boolean exists(String name) throws Exception {
         try {

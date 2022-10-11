@@ -16,7 +16,7 @@ public class ElementGatewayTest extends TestCase{
         var tester = new ElementRowDataGateway(testerChem1.getId(), 19, 39.0983);
         assertNotNull(tester);
 
-        testerChem1.delete(testerChem1.getId());
+        testerChem1.delete();
     }
 
     @Test
@@ -29,7 +29,7 @@ public class ElementGatewayTest extends TestCase{
         assertEquals(tester.getAtomicNumber(), finder.getAtomicNumber());
         assertEquals(tester.getAtomicMass(), tester.getAtomicMass());
 
-        testerChem1.delete(testerChem1.getId());
+        testerChem1.delete();
 
     }
 
@@ -45,7 +45,7 @@ public class ElementGatewayTest extends TestCase{
         assertEquals(tester.getAtomicNumber(), 1);
         assertEquals(tester.getAtomicMass(), 1.1);
 
-        testerChem1.delete(testerChem1.getId());
+        testerChem1.delete();
     }
 
 
@@ -66,7 +66,7 @@ public class ElementGatewayTest extends TestCase{
         assertEquals(element1.getAtomicMass(), elementList.get(0).getAtomicMass());
         assertEquals(element2.getAtomicMass(), elementList.get(1).getAtomicMass());
 
-        chemical1.delete(chemical1.getId());
-        chemical2.delete(chemical2.getId());
+        chemical1.delete();
+        chemical2.delete();
     }
 }

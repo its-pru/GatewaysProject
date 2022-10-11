@@ -19,7 +19,7 @@ public class BaseRowDataGateway {
     public static final String deleteQuery = "DELETE FROM base WHERE id = ?";
 
     /**
-     * Create constructor for chemical
+     * Create constructor
      *
      * @param id     - ID of an already created base
      * @param solute - ID of object that dissolves in this base
@@ -42,9 +42,10 @@ public class BaseRowDataGateway {
     }
 
     /**
-     * Finder constructor for a chemical
+     * Finder constructor
      *
      * @param id - ID of an already created base
+     * @throws Exception - unable to find the row
      */
     public BaseRowDataGateway(long id) throws Exception {
         try {
@@ -63,6 +64,11 @@ public class BaseRowDataGateway {
 
     }
 
+    /**
+     * Updates the row in the database
+     *
+     * @throws Exception - Unable to update the row in the database
+     */
     public void persist() throws Exception {
         try {
             PreparedStatement stmt = JDBC.getJDBC().getConnect().prepareStatement(updateQuery);
@@ -75,7 +81,13 @@ public class BaseRowDataGateway {
 
     }
 
-    public boolean delete(long id) throws Exception {
+    /**
+     * Deletes the row in the database
+     *
+     * @return - true if deletion succeeded
+     * @throws Exception - unable to find the row
+     */
+    public boolean delete() throws Exception {
         try {
             PreparedStatement stmt = JDBC.getJDBC().getConnect().prepareStatement(deleteQuery);
             stmt.setLong(1, id);
@@ -86,6 +98,14 @@ public class BaseRowDataGateway {
         return true;
     }
 
+    /**
+     * Checks if a base with identical parameters already exists
+     *
+     * @param id     - ID of a base
+     * @param solute - ID of a chemical that dissolves in this base
+     * @return - true if it already exists
+     * @throws Exception - unable to check the database at all
+     */
     private boolean exists(long id, long solute) throws Exception {
         try {
             PreparedStatement stmt = JDBC.getJDBC().getConnect().prepareStatement(existsQuery);

@@ -15,8 +15,8 @@ public class AcidGatewayTest extends TestCase {
         var testerChem2 = new ChemicalRowDataGateway("TestChem2");
         var tester = new AcidRowDataGateway(testerChem1.getId(), testerChem2.getId());
         assertNotNull(tester);
-        testerChem1.delete(testerChem1.getId());
-        testerChem2.delete(testerChem2.getId());
+        testerChem1.delete();
+        testerChem2.delete();
 
     }
 
@@ -28,8 +28,8 @@ public class AcidGatewayTest extends TestCase {
         var finder = new AcidRowDataGateway(tester.getId());
         assertEquals(testerChem1.getId(), finder.getId());
         assertEquals(testerChem2.getId(), finder.getSolute());
-        testerChem1.delete(testerChem1.getId());
-        testerChem2.delete(testerChem2.getId());
+        testerChem1.delete();
+        testerChem2.delete();
 
     }
 
@@ -41,8 +41,8 @@ public class AcidGatewayTest extends TestCase {
         tester.setSolute(testerChem2.getId());
         tester.persist();
         assertEquals(testerChem2.getId(), tester.getSolute());
-        testerChem1.delete(testerChem1.getId());
-        testerChem2.delete(testerChem2.getId());
+        testerChem1.delete();
+        testerChem2.delete();
 
     }
 
@@ -66,10 +66,10 @@ public class AcidGatewayTest extends TestCase {
         assertEquals(acid1.getSolute(), acidList.get(0).getSolute());
         assertEquals(acid2.getSolute(), acidList.get(1).getSolute());
 
-        chemical1.delete(chemical1.getId());
-        chemical2.delete(chemical2.getId());
-        chemical3.delete(chemical3.getId());
-        chemical4.delete(chemical4.getId());
+        chemical1.delete();
+        chemical2.delete();
+        chemical3.delete();
+        chemical4.delete();
     }
 
 }

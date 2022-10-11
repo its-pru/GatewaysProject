@@ -20,7 +20,13 @@ public class MetalRowDataGateway {
     public static final String updateQuery = "UPDATE metal SET dissolvedBy = ? WHERE id = ?";
     public static final String deleteQuery = "DELETE FROM metal WHERE id = ?";
 
-
+    /**
+     * Create constructor
+     *
+     * @param id          - ID of an already created element and chemical
+     * @param dissolvedBy - ID of an acid that dissolves this metal
+     * @throws Exception - unable to create this metal in the database
+     */
     public MetalRowDataGateway(long id, long dissolvedBy) throws Exception {
         if (exists(id, dissolvedBy)) {
             throw new AlreadyExistsException("An identical metal already exists");
@@ -38,7 +44,12 @@ public class MetalRowDataGateway {
         }
     }
 
-
+    /**
+     * Finder constructor
+     *
+     * @param id - ID of an already created metal
+     * @throws Exception - unable to find the row
+     */
     public MetalRowDataGateway(long id) throws Exception {
         try {
             PreparedStatement findStatement = null;
@@ -56,6 +67,11 @@ public class MetalRowDataGateway {
 
     }
 
+    /**
+     * Updates the row in the database
+     *
+     * @throws Exception - Unable to update the row in the database
+     */
     public void persist() throws Exception {
         try {
             PreparedStatement stmt = JDBC.getJDBC().getConnect().prepareStatement(updateQuery);
@@ -68,7 +84,13 @@ public class MetalRowDataGateway {
 
     }
 
-    public boolean delete(long id) throws Exception {
+    /**
+     * Deletes the row in the database
+     *
+     * @return - true if deletion succeeded
+     * @throws Exception - unable to find the row
+     */
+    public boolean delete() throws Exception {
         try {
             PreparedStatement stmt = JDBC.getJDBC().getConnect().prepareStatement(deleteQuery);
             stmt.setLong(1, id);
@@ -79,6 +101,13 @@ public class MetalRowDataGateway {
         return true;
     }
 
+    /**
+     * Checks if a base with identical parameters already exists
+     * @param id - ID of a metal
+     * @param dissolvedBy - ID of an acid that dissolves this metal
+     * @return - true if it already exists
+     * @throws Exception - unable to check the database at all
+     */
     private boolean exists(long id, long dissolvedBy) throws Exception {
         try {
             PreparedStatement stmt = JDBC.getJDBC().getConnect().prepareStatement(existsQuery);
