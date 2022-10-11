@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import java.sql.SQLException;
 
-public class CompoundRowDataGatewayTest {
+public class CompoundRowDataGatewayTest extends TestCase {
 
     @Test
     public void testCreate() throws Exception {
@@ -44,10 +44,10 @@ public class CompoundRowDataGatewayTest {
         CompoundRowDataGateway testExist = new CompoundRowDataGateway(16, "Tom");
         assertNotNull(testExist);
 
-        boolean exists = testExist.exists("Tom", 16, 18);
+        boolean exists = testExist.exists("Tom");
         assertTrue(exists);
 
-        exists = testExist.exists("FakeEntry", 3, 1);
+        exists = testExist.exists("Rick");
         assertFalse(exists);
 
         testExist.delete(testExist.getID());
