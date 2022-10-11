@@ -75,7 +75,7 @@ public class CompoundRowDataGateway {
      * Deletes entry with the current elements ID
      * @throws Exception - Throws when SQL is unable to connect
      */
-    public void delete() throws Exception{
+    public boolean delete(long ID) throws Exception{
         try{
             PreparedStatement stmt = JDBC.getJDBC().getConnect().prepareStatement(deleteQuery);
             stmt.setLong(1, ID);
@@ -83,6 +83,7 @@ public class CompoundRowDataGateway {
         }catch(SQLException unableToDelete){
             throw new UnableToConnectException("Unable to delete element. Check Connection any try again");
         }
+        return true;
     }
 
     /**
