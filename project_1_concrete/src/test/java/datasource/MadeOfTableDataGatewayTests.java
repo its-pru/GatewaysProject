@@ -65,8 +65,8 @@ public class MadeOfTableDataGatewayTests extends TestCase {
     @Test
     public void testDeleteElement() throws Exception{
         boolean thrown = false;
-        ElementRowDataGateway hydrogen = new ElementRowDataGateway(1,"Hydrogen", 1, 1, 2, 2);
-        ElementRowDataGateway helium = new ElementRowDataGateway(2,"Helium", 2, 2, 1, 1);
+        CompoundRowDataGateway hydrogen = new CompoundRowDataGateway(1,"Hydrogen");
+        ElementRowDataGateway helium = new ElementRowDataGateway(2,"Helium", 2, 2);
         List<Long> chemicalIDs = new ArrayList<>();
         chemicalIDs.add(helium.getID());
 
