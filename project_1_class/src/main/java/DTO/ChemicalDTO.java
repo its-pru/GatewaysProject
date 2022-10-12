@@ -1,8 +1,8 @@
 package DTO;
 
 public class ChemicalDTO {
-    long ID;
-    String name;
+    final long ID;
+    final String name;
 
     /**
      * Creates a chemical DTO
@@ -23,14 +23,6 @@ public class ChemicalDTO {
     }
 
     /**
-     * sets the ID
-     * @param ID
-     */
-    public void setID(long ID) {
-        this.ID = ID;
-    }
-
-    /**
      * returns the name
      * @return
      */
@@ -38,11 +30,4 @@ public class ChemicalDTO {
         return name;
     }
 
-    /**
-     * sets the name
-     * @param name
-     */
-    public void getName(String name) {
-        this.name = name;
-    }
 }

@@ -1,8 +1,8 @@
 package DTO;
 
 public class BaseDTO {
-    long ID;
-    long solute;
+    final long ID;
+    final long solute;
 
     /**
      * create a base DTO
@@ -22,13 +22,6 @@ public class BaseDTO {
         return ID;
     }
 
-    /**
-     * sets the ID
-     * @param ID
-     */
-    public void setID(long ID) {
-        this.ID = ID;
-    }
 
     /**
      * return the solute
@@ -38,11 +31,4 @@ public class BaseDTO {
         return solute;
     }
 
-    /**
-     * set the solute
-     * @param solute
-     */
-    public void setSolute(long solute) {
-        this.solute = solute;
-    }
 }

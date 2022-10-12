@@ -1,9 +1,9 @@
 package DTO;
 
 public class ElementDTO {
-    long ID;
-    long atomicNumber;
-    double atomicMass;
+    final long ID;
+    final long atomicNumber;
+    final double atomicMass;
 
     /**
      * Creates an element DTO
@@ -26,14 +26,6 @@ public class ElementDTO {
     }
 
     /**
-     * set the ID
-     * @param ID
-     */
-    public void setID(long ID) {
-        this.ID = ID;
-    }
-
-    /**
      * return the atomic number
      * @return
      */
@@ -41,13 +33,6 @@ public class ElementDTO {
         return atomicNumber;
     }
 
-    /**
-     * set the atomic number
-     * @param atomicNumber
-     */
-    public void setAtomicNumber(long atomicNumber) {
-        this.atomicNumber = atomicNumber;
-    }
 
     /**
      * return the atomic mass
@@ -57,11 +42,4 @@ public class ElementDTO {
         return atomicMass;
     }
 
-    /**
-     * set the atomic mass
-     * @param atomicMass
-     */
-    public void setAtomicMass(double atomicMass) {
-        this.atomicMass = atomicMass;
-    }
 }

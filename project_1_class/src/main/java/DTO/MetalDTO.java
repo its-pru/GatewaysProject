@@ -22,13 +22,6 @@ public class MetalDTO {
         return ID;
     }
 
-    /**
-     * sets the ID
-     * @param ID
-     */
-    public void setID(long ID) {
-        this.ID = ID;
-    }
 
     /**
      * returns the dissolved by ID
@@ -38,11 +31,4 @@ public class MetalDTO {
         return dissolvedBy;
     }
 
-    /**
-     * return the dissolved-by ID
-     * @param dissolvedBy
-     */
-    public void setDissolvedBy(long dissolvedBy) {
-        this.dissolvedBy = dissolvedBy;
-    }
 }
