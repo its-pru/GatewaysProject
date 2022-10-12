@@ -44,7 +44,8 @@ public class ChemicalTableDataGateway {
             double atomicMass = rs.getDouble("atomicMass");
             long dissolvedBy = rs.getLong("dissolvedBy");
             long solute = rs.getLong("solute");
-            chemicalList.add(new ChemicalDTO(id, name, atomicNumber, atomicMass, dissolvedBy, solute));
+            Type type = Type.valueOf(rs.getString("type"));
+            chemicalList.add(new ChemicalDTO(id, name, atomicNumber, atomicMass, dissolvedBy, solute, type));
         }
 
         return chemicalList;

@@ -5,8 +5,8 @@ import java.util.ArrayList;
 
 public class MadeOfDTO {
 
-    List<Long> listOfElementIDs = new ArrayList<Long>();
-    long chemicalID;
+    final List<Long> listOfElementIDs;
+    final long chemicalID;
 
     /**
      * Object used for transfering data from gateways to business logic layer

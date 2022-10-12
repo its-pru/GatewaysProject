@@ -28,8 +28,8 @@ public class ChemicalTableDataGatewayTest extends TestCase {
 
     @Test
     public void testGetChemicals() throws Exception {
-        ChemicalRowDataGateway testChem1 = new ChemicalRowDataGateway("TestChem1", 100, 100, 100, 100);
-        ChemicalRowDataGateway testChem2 = new ChemicalRowDataGateway("TestChem2", 200, 200, 200, 200);
+        ChemicalRowDataGateway testChem1 = new ChemicalRowDataGateway("TestChem1", 100, 100, 100, 100, Type.ACID);
+        ChemicalRowDataGateway testChem2 = new ChemicalRowDataGateway("TestChem2", 200, 200, 200, 200, Type.METAL);
 
         List<Long> listOfIDs = new ArrayList<Long>();
         listOfIDs.add(testChem1.getId());
@@ -39,7 +39,7 @@ public class ChemicalTableDataGatewayTest extends TestCase {
         assertEquals(testChem1.getName(), chemicalList.get(0).getName());
         assertEquals(testChem2.getName(), chemicalList.get(1).getName());
 
-        testChem1.delete(testChem1.getId());
-        testChem2.delete(testChem2.getId());
+        testChem1.delete();
+        testChem2.delete();
     }
 }

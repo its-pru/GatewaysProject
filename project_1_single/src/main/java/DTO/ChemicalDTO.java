@@ -1,15 +1,18 @@
 package DTO;
 
+import datasource.Type;
+
 /**
  * an object that stores data for a chemical
  */
 public class ChemicalDTO {
-    long ID;
-    String name;
-    long atomicNumber;
-    double atomicMass;
-    long dissolvedBy;
-    long solute;
+    final long ID;
+    final String name;
+    final long atomicNumber;
+    final double atomicMass;
+    final long dissolvedBy;
+    final long solute;
+    final Type type;
 
     /**
      * create and initialize a chemical DTO
@@ -21,77 +24,16 @@ public class ChemicalDTO {
      * @param dissolvedBy
      * @param solute
      */
-    public ChemicalDTO(long ID, String name, long atomicNumber, double atomicMass, long dissolvedBy, long solute) {
+    public ChemicalDTO(long ID, String name, long atomicNumber, double atomicMass, long dissolvedBy, long solute, Type type) {
         this.ID = ID;
         this.name = name;
         this.atomicNumber = atomicNumber;
         this.atomicMass = atomicMass;
         this.dissolvedBy = dissolvedBy;
         this.solute = solute;
+        this.type = type;
     }
 
-    /**
-     * update the ID
-     *
-     * @param ID
-     */
-    public void setID(long ID) {
-        this.ID = ID;
-    }
-
-    /**
-     * update the name
-     *
-     * @param name
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    /**
-     * update the atomic number
-     *
-     * @param atomicNumber
-     */
-    public void setAtomicNumber(long atomicNumber) {
-        this.atomicNumber = atomicNumber;
-    }
-
-    /**
-     * update the atomic mass
-     *
-     * @param atomicMass
-     */
-    public void setAtomicMass(double atomicMass) {
-        this.atomicMass = atomicMass;
-    }
-
-    /**
-     * update the dissolved by
-     *
-     * @param dissolvedBy
-     */
-    public void setDissolvedBy(long dissolvedBy) {
-        this.dissolvedBy = dissolvedBy;
-    }
-
-    /**
-     * update the solute
-     *
-     * @param solute
-     */
-    public void setSolute(long solute) {
-        this.solute = solute;
-    }
-
-    /**
-     * return the ID
-     *
-     * @return ID
-     */
-    public long getID() {
-        return ID;
-    }
 
     /**
      * return the name

@@ -966,11 +966,13 @@ swe400_23|schema||swe400_2||UPDATE|G</Grants>
     </column>
     <foreign-key id="287" parent="279" name="acid_solute_fk">
       <ColNames>solute</ColNames>
+      <OnDelete>cascade</OnDelete>
       <RefColNames>id</RefColNames>
       <RefTableName>chemical</RefTableName>
     </foreign-key>
     <foreign-key id="288" parent="279" name="acid_id_fk">
       <ColNames>id</ColNames>
+      <OnDelete>cascade</OnDelete>
       <RefColNames>id</RefColNames>
       <RefTableName>chemical</RefTableName>
     </foreign-key>
@@ -993,11 +995,13 @@ swe400_23|schema||swe400_2||UPDATE|G</Grants>
     </column>
     <foreign-key id="293" parent="280" name="solute_fk">
       <ColNames>solute</ColNames>
+      <OnDelete>cascade</OnDelete>
       <RefColNames>id</RefColNames>
       <RefTableName>chemical</RefTableName>
     </foreign-key>
     <foreign-key id="294" parent="280" name="id_fk">
       <ColNames>id</ColNames>
+      <OnDelete>cascade</OnDelete>
       <RefColNames>id</RefColNames>
       <RefTableName>chemical</RefTableName>
     </foreign-key>
@@ -1044,6 +1048,7 @@ swe400_23|schema||swe400_2||UPDATE|G</Grants>
     </column>
     <foreign-key id="304" parent="282" name="id">
       <ColNames>id</ColNames>
+      <OnDelete>cascade</OnDelete>
       <RefColNames>id</RefColNames>
       <RefTableName>chemical</RefTableName>
     </foreign-key>
@@ -1062,11 +1067,13 @@ swe400_23|schema||swe400_2||UPDATE|G</Grants>
     </column>
     <foreign-key id="308" parent="283" name="compound_fk">
       <ColNames>compoundID</ColNames>
+      <OnDelete>cascade</OnDelete>
       <RefColNames>id</RefColNames>
       <RefTableName>chemical</RefTableName>
     </foreign-key>
     <foreign-key id="309" parent="283" name="element_fk">
       <ColNames>elementID</ColNames>
+      <OnDelete>cascade</OnDelete>
       <RefColNames>id</RefColNames>
       <RefTableName>element</RefTableName>
     </foreign-key>
@@ -1089,11 +1096,13 @@ swe400_23|schema||swe400_2||UPDATE|G</Grants>
     </column>
     <foreign-key id="314" parent="284" name="metal_dissolvedBy_fk">
       <ColNames>dissolvedBy</ColNames>
+      <OnDelete>cascade</OnDelete>
       <RefColNames>id</RefColNames>
       <RefTableName>chemical</RefTableName>
     </foreign-key>
     <foreign-key id="315" parent="284" name="metal_id_fk">
       <ColNames>id</ColNames>
+      <OnDelete>cascade</OnDelete>
       <RefColNames>id</RefColNames>
       <RefTableName>chemical</RefTableName>
     </foreign-key>
