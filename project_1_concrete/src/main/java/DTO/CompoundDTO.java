@@ -3,9 +3,9 @@ package DTO;
 import java.util.List;
 
 public class CompoundDTO {
-    long ID;
-    String name;
-    List<Long> madeOf;
+    final long ID;
+    final String name;
+    final List<Long> madeOf;
     /**
      * Inititalizes a compound DTO object
      *
@@ -16,32 +16,6 @@ public class CompoundDTO {
     public CompoundDTO(long ID, String name, List<Long> madeOf) {
         this.ID = ID;
         this.name = name;
-        this.madeOf = madeOf;
-    }
-    /**
-     * update the ID
-     *
-     * @param ID
-     */
-    public void setID(long ID) {
-        this.ID = ID;
-    }
-
-    /**
-     * update the name
-     *
-     * @param name
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    /**
-     * update the made of
-     *
-     * @param madeOf
-     */
-    public void setMadeOf(List<Long> madeOf) {
         this.madeOf = madeOf;
     }
 

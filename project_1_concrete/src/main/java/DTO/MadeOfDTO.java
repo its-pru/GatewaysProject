@@ -4,8 +4,8 @@ import javax.swing.text.Element;
 import java.util.List;
 
 public class MadeOfDTO {
-    long compoundID;
-    List<Long> ElementIDs;
+    final long compoundID;
+    final List<Long> ElementIDs;
 
     public MadeOfDTO(long compoundID, List<Long> ElementIDs) {
         this.compoundID = compoundID;

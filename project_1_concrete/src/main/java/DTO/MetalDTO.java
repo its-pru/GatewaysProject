@@ -1,11 +1,11 @@
 package DTO;
 
 public class MetalDTO {
-    long ID;
-    String name;
-    long atomicNumber;
-    double atomicMass;
-    long dissolvedBy;
+    final long ID;
+    final String name;
+    final long atomicNumber;
+    final double atomicMass;
+    final long dissolvedBy;
 
     /**
      * Inititalizes a metal DTO object
@@ -21,49 +21,6 @@ public class MetalDTO {
         this.name = name;
         this.atomicNumber = atomicNumber;
         this.atomicMass = atomicMass;
-        this.dissolvedBy = dissolvedBy;
-    }
-    /**
-     * update the ID
-     *
-     * @param ID
-     */
-    public void setID(long ID) {
-        this.ID = ID;
-    }
-
-    /**
-     * update the name
-     *
-     * @param name
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    /**
-     * update the atomic number
-     *
-     * @param atomicNumber
-     */
-    public void setAtomicNumber(long atomicNumber) {
-        this.atomicNumber = atomicNumber;
-    }
-
-    /**
-     * update the atomic mass
-     *
-     * @param atomicMass
-     */
-    public void setAtomicMass(double atomicMass) {
-        this.atomicMass = atomicMass;
-    }
-    /**
-     * update the dissolved by
-     *
-     * @param dissolvedBy
-     */
-    public void setDissolvedBy(long dissolvedBy) {
         this.dissolvedBy = dissolvedBy;
     }
     /**
@@ -102,6 +59,11 @@ public class MetalDTO {
         return atomicMass;
     }
 
+    /**
+     * return the dissolved by
+     *
+     * @return dissolvedBy
+     */
     public long getDissolvedBy() {
         return dissolvedBy;
     }

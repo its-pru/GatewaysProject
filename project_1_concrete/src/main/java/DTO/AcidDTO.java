@@ -3,10 +3,10 @@ package DTO;
 import java.util.List;
 
 public class AcidDTO {
-    long ID;
-    String name;
-    long solute;
-    List<Long> dissolves;
+    final long ID;
+    final String name;
+    final long solute;
+    final List<Long> dissolves;
 
     /**
      * Inititalizes a acid DTO object
@@ -22,40 +22,6 @@ public class AcidDTO {
         this.solute = solute;
         this.dissolves = dissolves;
     }
-    /**
-     * update the ID
-     *
-     * @param ID
-     */
-    public void setID(long ID) {
-        this.ID = ID;
-    }
-
-    /**
-     * update the name
-     *
-     * @param name
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
-    /**
-     * update the solute
-     *
-     * @param solute
-     */
-    public void setSolute(long solute) {
-        this.solute = solute;
-    }
-    /**
-     * update the dissolves
-     *
-     * @param dissolves
-     */
-    public void setMadeOf(List<Long> dissolves) {
-        this.dissolves = dissolves;
-    }
-
     /**
      * return the ID
      *
@@ -86,7 +52,7 @@ public class AcidDTO {
      *
      * @return dissolves
      */
-    public List<Long> getMadeOf() {
+    public List<Long> getDissolves() {
         return dissolves;
     }
 }

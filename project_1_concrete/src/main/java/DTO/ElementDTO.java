@@ -1,10 +1,10 @@
 package DTO;
 
 public class ElementDTO {
-    long ID;
-    String name;
-    long atomicNumber;
-    double atomicMass;
+    final long ID;
+    final String name;
+    final long atomicNumber;
+    final double atomicMass;
 
     /**
      * Inititalizes a element DTO object
@@ -20,42 +20,6 @@ public class ElementDTO {
         this.atomicNumber = atomicNumber;
         this.atomicMass = atomicMass;
     }
-    /**
-     * update the ID
-     *
-     * @param ID
-     */
-    public void setID(long ID) {
-        this.ID = ID;
-    }
-
-    /**
-     * update the name
-     *
-     * @param name
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    /**
-     * update the atomic number
-     *
-     * @param atomicNumber
-     */
-    public void setAtomicNumber(long atomicNumber) {
-        this.atomicNumber = atomicNumber;
-    }
-
-    /**
-     * update the atomic mass
-     *
-     * @param atomicMass
-     */
-    public void setAtomicMass(double atomicMass) {
-        this.atomicMass = atomicMass;
-    }
-
     /**
      * return the ID
      *
