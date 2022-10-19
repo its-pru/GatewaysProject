@@ -16,10 +16,8 @@ public class ChemicalRowDataGateway {
     String Name;
     long atomicNumber;
     double atomicMass;
-    List<Long> madeOfIds = new ArrayList<>();
     long Solute;
     long dissolvedBy;
-    List<Long> dissolves = new ArrayList<>();
     Type type;
 
     private static final String updateCreateString = "INSERT INTO Chemical" + " set name = ?, atomicNumber = ?, atomicMass = ?, solute = ?, dissolvedBy = ?, type = ?";

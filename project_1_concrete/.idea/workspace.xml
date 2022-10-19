@@ -5,6 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8e32a31b-afee-4a76-b74b-64a093499b5d" name="Changes" comment="Started ElementRowDataGatewayTest tests">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10_12_22,_12_46_PM_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10_12_22__12_46_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10_12_22__12_46_PM__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -40,7 +42,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/taylor/Desktop/400Project1/mysql-connector-java-8.0.30.jar&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Evan/Desktop/SWE400PROJ/project_1_concrete&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -91,6 +93,9 @@
       <workItem from="1664978476699" duration="3559000" />
       <workItem from="1664997281242" duration="6471000" />
       <workItem from="1665107831541" duration="1652000" />
+      <workItem from="1666034182571" duration="10000" />
+      <workItem from="1666037621156" duration="1640000" />
+      <workItem from="1666205771395" duration="146000" />
     </task>
     <task id="LOCAL-00001" summary="Created 4.5 of the gateways for Concrete Table Pattern">
       <created>1664977842398</created>
