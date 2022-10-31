@@ -21,14 +21,19 @@ public class ChemicalRowDataGateway {
     public static final String deleteQuery = "DELETE FROM chemical WHERE id = ?";
 
     /**
-     * Create constructor
-     *
-     * @param name - name of the new chemical
+     * Blank constructor for create static method
      */
-    public ChemicalRowDataGateway(String name) throws Exception {
-        if (exists(name)) {
-            throw new AlreadyExistsException("A Chemical with this name already exists. Check name and try again!");
-        }
+    public ChemicalRowDataGateway(){};
+
+    /**
+     *
+     * @param name
+     * @return
+     * @throws Exception
+     */
+    public static ChemicalRowDataGateway createChemicalRowDataGateway(String name) throws Exception {
+
+        ChemicalRowDataGateway chemical = new ChemicalRowDataGateway();
         try {
             PreparedStatement stmt = JDBC.getJDBC().getConnect().prepareStatement(createQuery, Statement.RETURN_GENERATED_KEYS);
             stmt.setString(1, name);

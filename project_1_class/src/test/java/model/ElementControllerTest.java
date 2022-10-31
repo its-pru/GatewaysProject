@@ -84,7 +84,7 @@ public class ElementControllerTest
     }
 
     @Test
-    public void canUpdateName()
+    public void canUpdateName() throws Exception
     {
         // put the object I'm getting into the database
         new ElementMapper("Oxygen", 8, 15.99);
@@ -103,7 +103,7 @@ public class ElementControllerTest
     }
 
     @Test
-    public void canUpdateAndPersistName() throws ElementNotFoundException
+    public void canUpdateAndPersistName() throws Exception
     {
         // put the object I'm getting into the database
         new ElementMapper("Oxygen", 8, 15.99);
@@ -123,7 +123,7 @@ public class ElementControllerTest
         checkElementDetails((new ElementMapper("Yucky Oxygen")).getMyElement(), "Yucky Oxygen", 8, 15.999);
     }
     @Test
-    public void canPersistEverythingExceptName() throws ElementNotFoundException
+    public void canPersistEverythingExceptName() throws Exception
     {
         // put the object I'm getting into the database
         new ElementMapper("Oxygen", 8, 15.99);
@@ -149,7 +149,7 @@ public class ElementControllerTest
     }
 
     @Test
-    public void canRetrieveARange()
+    public void canRetrieveARange() throws Exception
     {
         fillDBWithSequentialRecords(15, 32 );
 
@@ -188,7 +188,7 @@ public class ElementControllerTest
     }
 
     @Test
-    public void canGetPeriod()
+    public void canGetPeriod() throws Exception
     {
         int[] periodStartPoint = {1, 3, 11, 19, 37, 55, 87};
         for (int period = 1; period <= periodStartPoint.length; period++)
