@@ -40,9 +40,9 @@ public class ChemicalRowDataGateway {
             stmt.execute();
             ResultSet rs = stmt.getGeneratedKeys();
             rs.first();
-            this.id = rs.getLong(1);
-            this.name = name;
-
+            chemical.setId(rs.getLong(1));
+            chemical.setName(name);
+            return chemical;
         } catch (SQLException UnableToConnect) {
             throw new UnableToConnectException("Unable to create Chemical. Check connection and try again!");
         }
@@ -54,7 +54,7 @@ public class ChemicalRowDataGateway {
      * @param name - name of an already created chemical
      * @throws Exception - unable to find the row
      */
-    public ChemicalRowDataGateway(long id) throws Exception {
+    public ChemicalRowDataGateway(String name) throws Exception {
         try {
             PreparedStatement findStatement = null;
             findStatement = JDBC.getJDBC().getConnect().prepareStatement(findQuery, ResultSet.TYPE_SCROLL_SENSITIVE,
