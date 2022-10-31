@@ -1,8 +1,9 @@
-package datasource;
+package model;
 
+import model.Controller.ElementController;
 import model.Element;
-import model.mapper.ElementMapper;
-import model.mapper.ElementNotFoundException;
+import model.Mapper.ElementMapper;
+import model.Mapper.ElementNotFoundException;
 import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
@@ -25,8 +26,7 @@ public class ElementControllerTest
     }
 
     @Test
-    public void canGetExistingElement()
-    {
+    public void canGetExistingElement() throws Exception {
         // put the object I'm getting into the database
         new ElementMapper("Oxygen", 8, 15.99);
 
@@ -46,7 +46,7 @@ public class ElementControllerTest
     }
 
     @Test
-    public void canUpdateAtomicNumber() throws ElementNotFoundException
+    public void canUpdateAtomicNumber() throws Exception
     {
         // put the object I'm getting into the database
         new ElementMapper("Oxygen", 8, 15.99);
@@ -65,7 +65,7 @@ public class ElementControllerTest
     }
 
     @Test
-    public void canUpdateAtomicWeight() throws ElementNotFoundException
+    public void canUpdateAtomicWeight() throws Exception
     {
         // put the object I'm getting into the database
         new ElementMapper("Oxygen", 8, 15.99);
@@ -140,8 +140,7 @@ public class ElementControllerTest
         checkElementDetails((new ElementMapper("Oxygen")).getMyElement(), "Oxygen", 42, 42.25);
     }
     @Test
-    public void canDelete()
-    {
+    public void canDelete() throws Exception {
         // put the object I'm deleting into the database
         new ElementMapper("Oxygen", 8, 15.99);
         ElementController.delete("Oxygen");
@@ -172,8 +171,7 @@ public class ElementControllerTest
     }
 
     @Test
-    public void canRetrieveAll()
-    {
+    public void canRetrieveAll() throws Exception {
         fillDBWithSequentialRecords(42, 67 );
         int numRecords = 67 - 42 + 1;
         Element[] resultElements = ElementController.getAllElements();
@@ -208,8 +206,7 @@ public class ElementControllerTest
     }
 
     private void fillDBWithSequentialRecords(int firstAtomicNumber,
-                                            int lastAtomicNumber)
-    {
+                                            int lastAtomicNumber) throws Exception {
         int quantity = lastAtomicNumber - firstAtomicNumber +1;
         ElementForTest[] testData = new ElementForTest[quantity];
         for (int i = 0; i < quantity; i++)
@@ -220,8 +217,7 @@ public class ElementControllerTest
     }
 
     private static void checkPeriodForAtomicNumber(int atomicNumber,
-                                                   int expectedPeriod)
-    {
+                                                   int expectedPeriod) throws Exception {
         ElementMapper mapper = new ElementMapper("Name" + atomicNumber,
                 atomicNumber, 42.2);
         assertEquals(expectedPeriod, mapper.getMyElement().getPeriod());
@@ -256,8 +252,7 @@ public class ElementControllerTest
                 resultElement.getAtomicNumber() <= last);
     }
 
-    private void loadDB(ElementForTest @NotNull [] elements)
-    {
+    private void loadDB(ElementForTest @NotNull [] elements) throws Exception {
         for (ElementForTest e : elements)
         {
             new ElementMapper(e.name, e.atomicNumber, e.atomicMass);

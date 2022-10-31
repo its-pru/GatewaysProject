@@ -62,7 +62,7 @@ public class ElementRowDataGateway {
             findStatement.execute();
             ResultSet results = findStatement.getResultSet();
             results.first();
-            this.id = results.getLong("id");
+            this.id = results.getLong("ID");
             this.atomicNumber = results.getLong("atomicNumber");
             this.atomicMass = results.getDouble("atomicMass");
         } catch (SQLException e) {

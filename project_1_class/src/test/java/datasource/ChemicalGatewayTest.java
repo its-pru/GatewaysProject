@@ -18,7 +18,7 @@ public class ChemicalGatewayTest extends TestCase {
     @Test
     public void testFinder() throws Exception{
         var tester = new ChemicalRowDataGateway("TestChem");
-        var finder = new ChemicalRowDataGateway(tester.getId());
+        var finder = new ChemicalRowDataGateway(tester.getName());
 
         assertEquals("TestChem", finder.getName());
 

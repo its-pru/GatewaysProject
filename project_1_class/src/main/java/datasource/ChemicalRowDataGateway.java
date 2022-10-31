@@ -45,7 +45,8 @@ public class ChemicalRowDataGateway {
 
     /**
      * Finder constructor
-     * @param id - ID of an already created chemical
+     *
+     * @param name - name of an already created chemical
      * @throws Exception - unable to find the row
      */
     public ChemicalRowDataGateway(long id) throws Exception {
@@ -53,14 +54,13 @@ public class ChemicalRowDataGateway {
             PreparedStatement findStatement = null;
             findStatement = JDBC.getJDBC().getConnect().prepareStatement(findQuery, ResultSet.TYPE_SCROLL_SENSITIVE,
                     ResultSet.CONCUR_UPDATABLE);
-            findStatement.setLong(1, id);
+            findStatement.setString(1, name);
             findStatement.execute();
             ResultSet results = findStatement.getResultSet();
             results.first();
-            this.id = results.getLong("id");
             this.name = results.getString("name");
         } catch (SQLException e) {
-            throw new EntryNotFoundException("Could not find an entry for this ID");
+            throw new EntryNotFoundException("Could not find an entry for this name");
         }
 
     }
