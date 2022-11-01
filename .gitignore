@@ -4,3 +4,6 @@
 /project_1_class/target/
 /project_1_single/target/
 /project_1_concrete/target/
+/project_1_class/.attach_pid*
+/project_1_concrete/.attach_pid*
+/project_1_single/.attach_pid*
