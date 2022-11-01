@@ -69,11 +69,13 @@ public class ChemicalTableDataGateway {
 
         return sb.toString();
     }
-    // right now this just clears every row from every table in the database
+    // right now this just clears every row from every table in the database and resets the auto increment
     public static void rollback() throws UnableToConnectException {
         try {
             PreparedStatement delete = JDBC.getJDBC().getConnect().prepareStatement("DELETE FROM chemical");
             delete.execute();
+            PreparedStatement reset = JDBC.getJDBC().getConnect().prepareStatement("ALTER TABLE chemical AUTO_INCREMENT = 1");
+            reset.execute();
         } catch (SQLException e) {
             throw new UnableToConnectException("Unable to rollback database");
         }
