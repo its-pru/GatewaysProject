@@ -5,7 +5,15 @@ import model.Mapper.ElementMapper;
 import model.Mapper.ElementNotFoundException;
 
 public class ElementController {
-    public static void delete(String name) {
+    /**
+     *
+     * @param name
+     * @throws
+     * I think this is how deleting an element would look
+     */
+    public static void delete(String name) throws Exception { //IDEA: create mapper here, add a persist method in mapper.
+        ElementMapper mapper = new ElementMapper(name);
+        mapper.deleteElement(name);
     }
 
     public static Element[] getElementsBetween(int firstAtomicNumber, int lastAtomicNumber) {
@@ -21,7 +29,7 @@ public class ElementController {
     }
 
     private Element myElement;
-    public ElementController(String name) throws ElementNotFoundException {
+    public ElementController(String name) throws Exception {
         ElementMapper mapper = new ElementMapper(name);
         myElement = mapper.getMyElement();
 
@@ -33,12 +41,15 @@ public class ElementController {
     }
 
     public void setAtomicNumber(int newAtomicNumber) {
+        myElement.setAtomicNumber(newAtomicNumber);
     }
 
     public void setAtomicMass(double newAtomicMass) {
+        myElement.setAtomicMass(newAtomicMass);
     }
 
     public void setName(String newName) {
+        myElement.setName(newName);
     }
 
     public void persist() {

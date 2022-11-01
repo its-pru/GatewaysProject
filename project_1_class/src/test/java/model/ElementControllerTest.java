@@ -35,6 +35,7 @@ public class ElementControllerTest
 
         // Make sure everything is in the controller
         checkElementDetails(controller.getMyElement(), "Oxygen", 8, 15.999);
+        //System.out.println(controller.getMyElement().getAtomicMass());
     }
 
 
@@ -243,6 +244,8 @@ public class ElementControllerTest
         catch (ElementNotFoundException e)
         {
             // no worries - we are hoping to see this.
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

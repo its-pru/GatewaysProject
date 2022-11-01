@@ -2,23 +2,39 @@ package model;
 
 public class Element
 {
-    public String getName()
-    {
-        return null;
+    String name;
+    long atomicNumber;
+    double atomicMass;
+
+    public Element (String name, int atomicNumber, double atomicMass) {
+        this.name = name;
+        this.atomicMass = atomicMass;
+        this.atomicNumber = atomicNumber;
     }
 
-    public int getAtomicNumber()
+    public String getName()
     {
-        return 0;
+        return name;
+    }
+
+    public long getAtomicNumber()
+    {
+        return atomicNumber;
     }
 
     public double getAtomicMass()
     {
-        return 0;
+        return atomicMass;
     }
 
     public int getPeriod()
     {
         return 0;
     }
+
+    public void setName(String name) {this.name = name;}
+
+    public void setAtomicNumber(long atomicNumber) {this.atomicNumber = atomicNumber;}
+
+    public void setAtomicMass(double atomicMass) {this.atomicMass = atomicMass;}
 }
