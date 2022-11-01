@@ -1,7 +1,9 @@
 package datasource;
 
 import DTO.BaseDTO;
+import DTO.ChemicalDTO;
 import DTO.ElementDTO;
+import exceptions.UnableToConnectException;
 
 import java.sql.PreparedStatement;
 import java.sql.Statement;
@@ -11,12 +13,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ElementTableDataGateway {
+    public static List<ElementDTO> getAllElements() throws UnableToConnectException {
+        try {
+            List<ElementDTO> elementList = new ArrayList<ElementDTO>();
+            PreparedStatement stmt = JDBC.getJDBC().getConnect().prepareStatement("SELECT * FROM element");
+            stmt.execute();
+            ResultSet rs = stmt.getResultSet();
+            while (rs.next()) {
+                long id = rs.getLong("ID");
+                long atomicNumber = rs.getLong("atomicNumber");
+                double atomicMass = rs.getDouble("atomicMass");
+                elementList.add(new ElementDTO(id, atomicNumber, atomicMass));
+            }
+            return elementList;
+        } catch (SQLException e) {
+            throw new UnableToConnectException("Unable to get Chemicals");
+        }
+    }
     /**
      * Selects a group of elements based on ids
      *
      * @param ID - list of ids
      */
-    public static List<ElementDTO> getBases(List<Long> ID) throws Exception {
+    public static List<ElementDTO> getElements(List<Long> ID) throws Exception {
         JDBC jdbc = JDBC.getJDBC();
         List<ElementDTO> elementList = new ArrayList<ElementDTO>();
         String query = "SELECT * FROM element WHERE ID in (";

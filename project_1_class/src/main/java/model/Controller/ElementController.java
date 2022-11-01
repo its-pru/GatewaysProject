@@ -18,8 +18,8 @@ public class ElementController {
         return null;
     }
 
-    public static Element[] getAllElements() {
-        return null;
+    public static Element[] getAllElements() throws ElementNotFoundException {
+        return ElementMapper.getAllElements();
     }
 
     public Element getMyElement() {
@@ -33,7 +33,6 @@ public class ElementController {
         ElementMapper mapper = new ElementMapper(name);
         myElement = mapper.getMyElement();
         nameBefore = myElement.getName();
-
     }
 
     public ElementController(String name, int atomicNumber, double atomicMass) throws Exception {

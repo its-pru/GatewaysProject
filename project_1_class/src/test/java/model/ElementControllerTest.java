@@ -197,8 +197,7 @@ public class ElementControllerTest
         for (int period = 1; period <= periodStartPoint.length; period++)
         {
             checkPeriodForAtomicNumber(periodStartPoint[period], period);
-            checkPeriodForAtomicNumber(periodStartPoint[period + 1] - 1,
-                    period);
+            checkPeriodForAtomicNumber(periodStartPoint[period + 1] - 1, period);
         }
     }
 

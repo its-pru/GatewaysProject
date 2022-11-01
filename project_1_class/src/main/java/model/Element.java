@@ -5,11 +5,13 @@ public class Element
     String name;
     int atomicNumber;
     double atomicMass;
+    int period;
 
     public Element (String name, int atomicNumber, double atomicMass) {
         this.name = name;
         this.atomicMass = atomicMass;
         this.atomicNumber = atomicNumber;
+
     }
 
     public String getName()
@@ -29,7 +31,7 @@ public class Element
 
     public int getPeriod()
     {
-        return 0;
+        return period;
     }
 
     public void setName(String name) {this.name = name;}
