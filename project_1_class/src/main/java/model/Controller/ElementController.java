@@ -6,10 +6,8 @@ import model.Mapper.ElementNotFoundException;
 
 public class ElementController {
     /**
-     *
      * @param name
-     * @throws
-     * I think this is how deleting an element would look
+     * @throws Exception
      */
     public static void delete(String name) throws Exception { //IDEA: create mapper here, add a persist method in mapper.
         ElementMapper mapper = new ElementMapper(name);
@@ -29,15 +27,19 @@ public class ElementController {
     }
 
     private Element myElement;
+    private String nameBefore;
+
     public ElementController(String name) throws Exception {
         ElementMapper mapper = new ElementMapper(name);
         myElement = mapper.getMyElement();
+        nameBefore = myElement.getName();
 
     }
 
     public ElementController(String name, int atomicNumber, double atomicMass) throws Exception {
         ElementMapper mapper = new ElementMapper(name, atomicNumber, atomicMass);
         myElement = mapper.getMyElement();
+        nameBefore = myElement.getName();
     }
 
     public void setAtomicNumber(int newAtomicNumber) {
@@ -52,6 +54,10 @@ public class ElementController {
         myElement.setName(newName);
     }
 
-    public void persist() {
+    public void persist() throws Exception {
+        ElementMapper mapper = new ElementMapper(nameBefore);
+        mapper.persistElement(myElement.getName(), myElement.getAtomicNumber(), myElement.getAtomicMass());
+        myElement = mapper.getMyElement();
+        nameBefore = myElement.getName();
     }
 }

@@ -95,7 +95,7 @@ public class ElementRowDataGateway {
      * @return - true if deletion succeeded
      * @throws Exception - unable to find the row
      */
-    public boolean delete() throws Exception {
+    public boolean delete() throws EntryNotFoundException {
         try {
             PreparedStatement stmt = JDBC.getJDBC().getConnect().prepareStatement(deleteQuery);
             stmt.setLong(1, id);
@@ -114,7 +114,7 @@ public class ElementRowDataGateway {
      * @return - true if it already exists
      * @throws Exception - unable to check the database at all
      */
-    private boolean exists(long atomicNumber, double atomicMass) throws Exception {
+    private boolean exists(long atomicNumber, double atomicMass) throws UnableToConnectException {
         try {
             PreparedStatement stmt = JDBC.getJDBC().getConnect().prepareStatement(existsQuery);
             stmt.setLong(1, atomicNumber);

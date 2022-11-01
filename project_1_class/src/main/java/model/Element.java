@@ -3,7 +3,7 @@ package model;
 public class Element
 {
     String name;
-    long atomicNumber;
+    int atomicNumber;
     double atomicMass;
 
     public Element (String name, int atomicNumber, double atomicMass) {
@@ -17,7 +17,7 @@ public class Element
         return name;
     }
 
-    public long getAtomicNumber()
+    public int getAtomicNumber()
     {
         return atomicNumber;
     }
@@ -34,7 +34,7 @@ public class Element
 
     public void setName(String name) {this.name = name;}
 
-    public void setAtomicNumber(long atomicNumber) {this.atomicNumber = atomicNumber;}
+    public void setAtomicNumber(int atomicNumber) {this.atomicNumber = atomicNumber;}
 
     public void setAtomicMass(double atomicMass) {this.atomicMass = atomicMass;}
 }

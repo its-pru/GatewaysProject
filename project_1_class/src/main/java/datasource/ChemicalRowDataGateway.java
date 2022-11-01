@@ -42,7 +42,7 @@ public class ChemicalRowDataGateway {
      * @param name - name of an already created chemical
      * @throws Exception - unable to find the row
      */
-    public ChemicalRowDataGateway(String name) throws Exception {
+    public ChemicalRowDataGateway(String name) throws EntryNotFoundException {
         try {
             PreparedStatement findStatement = null;
             findStatement = JDBC.getJDBC().getConnect().prepareStatement(findQuery, ResultSet.TYPE_SCROLL_SENSITIVE,
@@ -82,7 +82,7 @@ public class ChemicalRowDataGateway {
      * @return - true if deletion succeeded
      * @throws Exception - unable to find the row
      */
-    public boolean delete() throws Exception {
+    public boolean delete() throws EntryNotFoundException {
         try {
             PreparedStatement stmt = JDBC.getJDBC().getConnect().prepareStatement(deleteQuery);
             stmt.setLong(1, id);

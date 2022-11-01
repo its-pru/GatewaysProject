@@ -2,6 +2,7 @@ package model.Mapper;
 
 import datasource.ChemicalRowDataGateway;
 import datasource.ElementRowDataGateway;
+import exceptions.EntryNotFoundException;
 import model.Element;
 
 public class ElementMapper
@@ -13,24 +14,11 @@ public class ElementMapper
      */
     public ElementMapper(String name, int atomicNumber, double atomicMass) throws Exception
     {
-        ChemicalRowDataGateway createChemical = null;
-        long chemicalID = 0;
-        ElementRowDataGateway createElement = null;
 
-        try{
-            createChemical = createChemical.createChemicalRowDataGateway(name); //Creating chemical in database.
-            chemicalID = createChemical.getId();
-            createChemical.persist();
-        }catch(Exception e){
+        ChemicalRowDataGateway chemical = ChemicalRowDataGateway.createChemicalRowDataGateway(name); //Creating chemical in database.
 
-        }
+        new ElementRowDataGateway(chemical.getId(), atomicNumber, atomicMass); //using already created chemical to create element in database.
 
-        try {
-            createElement = new ElementRowDataGateway(chemicalID, atomicNumber, atomicMass); //using already created chemical to create element in database.
-            createElement.persist();
-        }catch(Exception elementException){
-
-        }
 
        myElement = new Element(name, atomicNumber, atomicMass);
     }
@@ -39,26 +27,22 @@ public class ElementMapper
      * Constructor for objects that exist in the db
      * @param name
      */
-    public ElementMapper(String name) throws ElementNotFoundException
-    {
-        ChemicalRowDataGateway createChemical = null;
-        long chemicalID = 0;
-        ElementRowDataGateway createElement = null;
-
-        try{
-            createChemical = new ChemicalRowDataGateway(name);
-            chemicalID = createChemical.getId();
-        }catch(Exception e){
-
-        }
-
+    public ElementMapper(String name) throws ElementNotFoundException {
+        ChemicalRowDataGateway chemical = null;
         try {
-            createElement = new ElementRowDataGateway(chemicalID);
-        }catch(Exception elementException){
-
+            chemical = new ChemicalRowDataGateway(name);
+        } catch (EntryNotFoundException e) {
+            throw new ElementNotFoundException();
         }
 
-        myElement = new Element(name, (int) createElement.getAtomicNumber(), createElement.getAtomicMass());
+        ElementRowDataGateway element = null;
+        try {
+            element = new ElementRowDataGateway(chemical.getId());
+        } catch (Exception e) {
+            throw new ElementNotFoundException();
+        }
+
+        myElement = new Element(name, (int) element.getAtomicNumber(), element.getAtomicMass());
     }
 
     public Element getMyElement()
@@ -78,5 +62,19 @@ public class ElementMapper
 
         chemical.delete();
         element.delete();
+    }
+
+    public void persistElement(String name, int atomicNumber, double atomicMass) throws Exception {
+        ChemicalRowDataGateway chemical = new ChemicalRowDataGateway(myElement.getName());
+        ElementRowDataGateway element = new ElementRowDataGateway(chemical.getId());
+
+        chemical.setName(name);
+        element.setAtomicNumber(atomicNumber);
+        element.setAtomicMass(atomicMass);
+
+        chemical.persist();
+        element.persist();
+
+        myElement = new Element(name, atomicNumber, atomicMass);
     }
 }

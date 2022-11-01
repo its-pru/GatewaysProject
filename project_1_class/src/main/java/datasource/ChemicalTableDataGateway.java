@@ -1,6 +1,7 @@
 package datasource;
 
 import DTO.ChemicalDTO;
+import exceptions.UnableToConnectException;
 
 import java.sql.PreparedStatement;
 import java.sql.Statement;
@@ -67,6 +68,15 @@ public class ChemicalTableDataGateway {
         sb.append(")");
 
         return sb.toString();
+    }
+    // right now this just clears every row from every table in the database
+    public static void rollback() throws UnableToConnectException {
+        try {
+            PreparedStatement delete = JDBC.getJDBC().getConnect().prepareStatement("DELETE FROM chemical");
+            delete.execute();
+        } catch (SQLException e) {
+            throw new UnableToConnectException("Unable to rollback database");
+        }
     }
 
 }

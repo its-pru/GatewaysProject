@@ -1,5 +1,7 @@
 package model;
 
+import datasource.ChemicalTableDataGateway;
+import exceptions.UnableToConnectException;
 import model.Controller.ElementController;
 import model.Element;
 import model.Mapper.ElementMapper;
@@ -8,6 +10,7 @@ import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
+import java.sql.SQLException;
 import java.util.Objects;
 import java.util.Random;
 
@@ -20,9 +23,8 @@ public class ElementControllerTest
     public static final int FIRST_ATOMIC_NUMBER_IN_DB = 42;
 
     @AfterEach
-    public void rollback()
-    {
-        // make the database roll back the changes this test made
+    public void rollback() throws UnableToConnectException {
+        ChemicalTableDataGateway.rollback();
     }
 
     @Test
@@ -34,7 +36,7 @@ public class ElementControllerTest
         ElementController controller = new ElementController("Oxygen");
 
         // Make sure everything is in the controller
-        checkElementDetails(controller.getMyElement(), "Oxygen", 8, 15.999);
+        checkElementDetails(controller.getMyElement(), "Oxygen", 8, 15.99);
         //System.out.println(controller.getMyElement().getAtomicMass());
     }
 
@@ -59,10 +61,10 @@ public class ElementControllerTest
         controller.setAtomicNumber(42);
 
         // That's enough to get it into the model layer
-        checkElementDetails(controller.getMyElement(), "Oxygen", 42, 15.999);
+        checkElementDetails(controller.getMyElement(), "Oxygen", 42, 15.99);
 
         // Make sure it did not go all the way to the database
-        checkElementDetails(new ElementMapper("Oxygen").getMyElement(), "Oxygen", 8, 15.999);
+        checkElementDetails(new ElementMapper("Oxygen").getMyElement(), "Oxygen", 8, 15.99);
     }
 
     @Test
@@ -81,7 +83,7 @@ public class ElementControllerTest
         checkElementDetails(controller.getMyElement(), "Oxygen", 8, 42.25);
 
         // Make sure it did not go all the way to the database
-        checkElementDetails(new ElementMapper("Oxygen").getMyElement(), "Oxygen", 8, 15.999);
+        checkElementDetails(new ElementMapper("Oxygen").getMyElement(), "Oxygen", 8, 15.99);
     }
 
     @Test
@@ -97,7 +99,7 @@ public class ElementControllerTest
         controller.setName("Yucky Oxygen");
 
         // That's enough to get it into the model layer
-        checkElementDetails(controller.getMyElement(), "Yucky Oxygen", 8, 15.999);
+        checkElementDetails(controller.getMyElement(), "Yucky Oxygen", 8, 15.99);
 
         // Make sure it did not go all the way to the database
         checkThatElementIsNotInDB("Yucky Oxygen");
@@ -117,11 +119,11 @@ public class ElementControllerTest
         controller.persist();
 
         // That's enough to get it into the model layer
-        checkElementDetails(controller.getMyElement(), "Yucky Oxygen", 8, 15.999);
+        checkElementDetails(controller.getMyElement(), "Yucky Oxygen", 8, 15.99);
 
         // Make sure it got all the way to the database
         checkThatElementIsNotInDB("Oxygen");
-        checkElementDetails((new ElementMapper("Yucky Oxygen")).getMyElement(), "Yucky Oxygen", 8, 15.999);
+        checkElementDetails((new ElementMapper("Yucky Oxygen")).getMyElement(), "Yucky Oxygen", 8, 15.99);
     }
     @Test
     public void canPersistEverythingExceptName() throws Exception
@@ -200,11 +202,11 @@ public class ElementControllerTest
         }
     }
 
-    @Test
-    public void canGetAllCompoundsContainingElement()
-    {
-        fail("Dr. Wellington hasn't written this one yet");
-    }
+//    @Test
+//    public void canGetAllCompoundsContainingElement()
+//    {
+//        fail("Dr. Wellington hasn't written this one yet");
+//    }
 
     private void fillDBWithSequentialRecords(int firstAtomicNumber,
                                             int lastAtomicNumber) throws Exception {
