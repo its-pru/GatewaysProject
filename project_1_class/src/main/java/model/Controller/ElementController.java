@@ -27,7 +27,7 @@ public class ElementController {
     }
 
     private Element myElement;
-    private String nameBefore;
+    private String nameBefore; // need this so it can persist if the name changes
 
     public ElementController(String name) throws Exception {
         ElementMapper mapper = new ElementMapper(name);
