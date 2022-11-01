@@ -12,8 +12,8 @@ public class ElementGatewayTest extends TestCase{
     // Row Data Gateways
     @Test
     public void testCreate() throws Exception{
-        var testerChem1 = new ChemicalRowDataGateway("Potassium");
-        var tester = new ElementRowDataGateway(testerChem1.getId(), 19, 39.0983);
+        ChemicalRowDataGateway testerChem1 = ChemicalRowDataGateway.createChemicalRowDataGateway("Potassium");
+        ElementRowDataGateway tester = new ElementRowDataGateway(testerChem1.getId(), 19, 39.0983);
         assertNotNull(tester);
 
         testerChem1.delete();
@@ -21,9 +21,9 @@ public class ElementGatewayTest extends TestCase{
 
     @Test
     public void testFinder() throws Exception{
-        var testerChem1 = new ChemicalRowDataGateway("Potassium");
-        var tester = new ElementRowDataGateway(testerChem1.getId(), 19, 39.0983);
-        var finder = new ElementRowDataGateway(tester.getId());
+        ChemicalRowDataGateway testerChem1 = ChemicalRowDataGateway.createChemicalRowDataGateway("Potassium");
+        ElementRowDataGateway tester = new ElementRowDataGateway(testerChem1.getId(), 19, 39.0983);
+        ElementRowDataGateway finder = new ElementRowDataGateway(tester.getId());
 
         assertEquals(testerChem1.getId(), finder.getId());
         assertEquals(tester.getAtomicNumber(), finder.getAtomicNumber());
@@ -35,8 +35,8 @@ public class ElementGatewayTest extends TestCase{
 
     @Test
     public void testPersist() throws Exception{
-        var testerChem1 = new ChemicalRowDataGateway("Potassium");
-        var tester = new ElementRowDataGateway(testerChem1.getId(), 19, 39.0983);
+        ChemicalRowDataGateway testerChem1 = ChemicalRowDataGateway.createChemicalRowDataGateway("Potassium");
+        ElementRowDataGateway tester = new ElementRowDataGateway(testerChem1.getId(), 19, 39.0983);
         tester.setAtomicNumber(1);
         tester.setAtomicMass(1.1);
 
@@ -52,8 +52,8 @@ public class ElementGatewayTest extends TestCase{
 //Table Data Gateway tests
     @Test
     public void testGetElements() throws Exception {
-        ChemicalRowDataGateway chemical1 = new ChemicalRowDataGateway("chemical1");
-        ChemicalRowDataGateway chemical2 = new ChemicalRowDataGateway("chemical2");
+        ChemicalRowDataGateway chemical1 = ChemicalRowDataGateway.createChemicalRowDataGateway("chemical1");
+        ChemicalRowDataGateway chemical2 = ChemicalRowDataGateway.createChemicalRowDataGateway("chemical2");
 
         ElementRowDataGateway element1 = new ElementRowDataGateway(chemical1.getId(), 1, 1);
         ElementRowDataGateway element2 = new ElementRowDataGateway(chemical2.getId(), 2, 2);

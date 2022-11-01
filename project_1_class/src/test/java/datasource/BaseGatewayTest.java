@@ -12,9 +12,9 @@ public class BaseGatewayTest extends TestCase{
     // Row Data Gateways
     @Test
     public void testCreate() throws Exception{
-        var testerChem1 = new ChemicalRowDataGateway("TestChem1");
-        var testerChem2 = new ChemicalRowDataGateway("TestChem2");
-        var tester = new BaseRowDataGateway(testerChem1.getId(), testerChem2.getId());
+        ChemicalRowDataGateway testerChem1 = ChemicalRowDataGateway.createChemicalRowDataGateway("TestChem1");
+        ChemicalRowDataGateway testerChem2 = ChemicalRowDataGateway.createChemicalRowDataGateway("TestChem2");
+        BaseRowDataGateway tester = new BaseRowDataGateway(testerChem1.getId(), testerChem2.getId());
         assertNotNull(tester);
 
         testerChem1.delete();
@@ -24,10 +24,10 @@ public class BaseGatewayTest extends TestCase{
 
     @Test
     public void testFinder() throws Exception{
-        var testerChem1 = new ChemicalRowDataGateway("TestChem1");
-        var testerChem2 = new ChemicalRowDataGateway("TestChem2");
-        var tester = new BaseRowDataGateway(testerChem1.getId(), testerChem2.getId());
-        var finder = new BaseRowDataGateway(tester.getId());
+        ChemicalRowDataGateway testerChem1 = ChemicalRowDataGateway.createChemicalRowDataGateway("TestChem1");
+        ChemicalRowDataGateway testerChem2 = ChemicalRowDataGateway.createChemicalRowDataGateway("TestChem2");
+        BaseRowDataGateway tester = new BaseRowDataGateway(testerChem1.getId(), testerChem2.getId());
+        BaseRowDataGateway finder = new BaseRowDataGateway(tester.getId());
 
         assertEquals(testerChem1.getId(), finder.getId());
         assertEquals(testerChem2.getId(), finder.getSolute());
@@ -38,9 +38,9 @@ public class BaseGatewayTest extends TestCase{
 
     @Test
     public void testPersist() throws Exception{
-        var testerChem1 = new ChemicalRowDataGateway("TestChem1");
-        var testerChem2 = new ChemicalRowDataGateway("TestChem2");
-        var tester = new BaseRowDataGateway(testerChem1.getId(), testerChem1.getId());
+        ChemicalRowDataGateway testerChem1 = ChemicalRowDataGateway.createChemicalRowDataGateway("TestChem1");
+        ChemicalRowDataGateway testerChem2 = ChemicalRowDataGateway.createChemicalRowDataGateway("TestChem2");
+        BaseRowDataGateway tester = new BaseRowDataGateway(testerChem1.getId(), testerChem1.getId());
 
         tester.setSolute(testerChem2.getId());
 
@@ -56,10 +56,10 @@ public class BaseGatewayTest extends TestCase{
     //Table Data Gateway tests
     @Test
     public void testGetBases() throws Exception{
-        ChemicalRowDataGateway chemical1 = new ChemicalRowDataGateway("chemical1");
-        ChemicalRowDataGateway chemical2 = new ChemicalRowDataGateway("chemical2");
-        ChemicalRowDataGateway chemical3 = new ChemicalRowDataGateway("chemical3");
-        ChemicalRowDataGateway chemical4 = new ChemicalRowDataGateway("chemical4");
+        ChemicalRowDataGateway chemical1 = ChemicalRowDataGateway.createChemicalRowDataGateway("chemical1");
+        ChemicalRowDataGateway chemical2 = ChemicalRowDataGateway.createChemicalRowDataGateway("chemical2");
+        ChemicalRowDataGateway chemical3 = ChemicalRowDataGateway.createChemicalRowDataGateway("chemical3");
+        ChemicalRowDataGateway chemical4 = ChemicalRowDataGateway.createChemicalRowDataGateway("chemical4");
 
         BaseRowDataGateway base1 = new BaseRowDataGateway(chemical1.getId(), chemical2.getId());
         BaseRowDataGateway base2 = new BaseRowDataGateway(chemical3.getId(), chemical4.getId());

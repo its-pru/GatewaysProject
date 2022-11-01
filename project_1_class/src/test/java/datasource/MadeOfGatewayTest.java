@@ -12,12 +12,12 @@ public class MadeOfGatewayTest extends TestCase{
 
     @Test
     public void testFindElements() throws Exception{
-        ChemicalRowDataGateway hydrogen1 = new ChemicalRowDataGateway("Hydrogen");
-        ChemicalRowDataGateway oxygen1 = new ChemicalRowDataGateway("Oxygen");
+        ChemicalRowDataGateway hydrogen1 = ChemicalRowDataGateway.createChemicalRowDataGateway("Hydrogen");
+        ChemicalRowDataGateway oxygen1 = ChemicalRowDataGateway.createChemicalRowDataGateway("Oxygen");
 
         ElementRowDataGateway hydrogen = new ElementRowDataGateway(hydrogen1.getId(), 1, 1.00784);
         ElementRowDataGateway oxygen = new ElementRowDataGateway(oxygen1.getId(), 8, 15.999);
-        ChemicalRowDataGateway h2o = new ChemicalRowDataGateway("H2O");
+        ChemicalRowDataGateway h2o = ChemicalRowDataGateway.createChemicalRowDataGateway("H2O");
 
         List<Long> chemicalIDs = new ArrayList<>();
         chemicalIDs.add(hydrogen1.getId());
@@ -37,13 +37,13 @@ public class MadeOfGatewayTest extends TestCase{
 
     @Test
     public void testFindCompoundsWithOneElement() throws Exception {
-        ChemicalRowDataGateway hydrogen1 = new ChemicalRowDataGateway("Hydrogen");
-        ChemicalRowDataGateway oxygen1 = new ChemicalRowDataGateway("oxygen");
+        ChemicalRowDataGateway hydrogen1 = ChemicalRowDataGateway.createChemicalRowDataGateway("Hydrogen");
+        ChemicalRowDataGateway oxygen1 = ChemicalRowDataGateway.createChemicalRowDataGateway("oxygen");
 
         ElementRowDataGateway hydrogen = new ElementRowDataGateway(hydrogen1.getId(), 1, 1);
-        ChemicalRowDataGateway hydrogenPeroxide = new ChemicalRowDataGateway("H202");
+        ChemicalRowDataGateway hydrogenPeroxide = ChemicalRowDataGateway.createChemicalRowDataGateway("H202");
         ElementRowDataGateway oxygen = new ElementRowDataGateway(oxygen1.getId(), 8, 15);
-        ChemicalRowDataGateway h2o = new ChemicalRowDataGateway("H2O");
+        ChemicalRowDataGateway h2o = ChemicalRowDataGateway.createChemicalRowDataGateway("H2O");
 
         List<Long> chemicalIDs = new ArrayList<>();
         chemicalIDs.add(hydrogen.getId());
@@ -69,8 +69,8 @@ public class MadeOfGatewayTest extends TestCase{
     public void testDeleteElement() throws Exception{
         boolean thrown = false;
 
-        ChemicalRowDataGateway helium1 = new ChemicalRowDataGateway("helium1");
-        ChemicalRowDataGateway hydrogen = new ChemicalRowDataGateway("hydrogen1");
+        ChemicalRowDataGateway helium1 = ChemicalRowDataGateway.createChemicalRowDataGateway("helium1");
+        ChemicalRowDataGateway hydrogen = ChemicalRowDataGateway.createChemicalRowDataGateway("hydrogen1");
         ElementRowDataGateway helium = new ElementRowDataGateway(helium1.getId(), 2, 2);
         List<Long> chemicalIDs = new ArrayList<>();
         chemicalIDs.add(helium.getId());
@@ -95,11 +95,11 @@ public class MadeOfGatewayTest extends TestCase{
     public void testsDeleteCompound() throws Exception{
         boolean thrown = false;
 
-        ChemicalRowDataGateway hydrogen1 = new ChemicalRowDataGateway("hydrogen");
-        ChemicalRowDataGateway helium1 = new ChemicalRowDataGateway("helium");
+        ChemicalRowDataGateway hydrogen1 = ChemicalRowDataGateway.createChemicalRowDataGateway("hydrogen");
+        ChemicalRowDataGateway helium1 = ChemicalRowDataGateway.createChemicalRowDataGateway("helium");
         ElementRowDataGateway hydrogen = new ElementRowDataGateway(hydrogen1.getId(), 1, 1);
         ElementRowDataGateway helium = new ElementRowDataGateway(helium1.getId(), 2, 2);
-        ChemicalRowDataGateway water = new ChemicalRowDataGateway("water");
+        ChemicalRowDataGateway water = ChemicalRowDataGateway.createChemicalRowDataGateway("water");
 
         List<Long> chemicalIDs = new ArrayList<>();
         chemicalIDs.add(hydrogen.getId());

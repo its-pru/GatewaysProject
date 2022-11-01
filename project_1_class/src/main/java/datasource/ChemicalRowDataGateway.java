@@ -16,33 +16,21 @@ public class ChemicalRowDataGateway {
 
     public static final String existsQuery = "SELECT * FROM chemical WHERE name = ?";
     public static final String createQuery = "INSERT INTO chemical (name) VALUES (?)";
-    public static final String findQuery = "SELECT * FROM chemical WHERE id = ?";
+    public static final String findQuery = "SELECT * FROM chemical WHERE name = ?";
     public static final String updateQuery = "UPDATE chemical SET name = ? WHERE id = ?";
     public static final String deleteQuery = "DELETE FROM chemical WHERE id = ?";
 
     /**
-     * Blank constructor for create static method
-     */
-    public ChemicalRowDataGateway(){};
-
-    /**
-     *
      * @param name
      * @return
      * @throws Exception
      */
     public static ChemicalRowDataGateway createChemicalRowDataGateway(String name) throws Exception {
-
-        ChemicalRowDataGateway chemical = new ChemicalRowDataGateway();
         try {
-            PreparedStatement stmt = JDBC.getJDBC().getConnect().prepareStatement(createQuery, Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement stmt = JDBC.getJDBC().getConnect().prepareStatement(createQuery);
             stmt.setString(1, name);
             stmt.execute();
-            ResultSet rs = stmt.getGeneratedKeys();
-            rs.first();
-            chemical.setId(rs.getLong(1));
-            chemical.setName(name);
-            return chemical;
+            return new ChemicalRowDataGateway(name);
         } catch (SQLException UnableToConnect) {
             throw new UnableToConnectException("Unable to create Chemical. Check connection and try again!");
         }
@@ -63,6 +51,7 @@ public class ChemicalRowDataGateway {
             findStatement.execute();
             ResultSet results = findStatement.getResultSet();
             results.first();
+            this.id = results.getLong("id");
             this.name = results.getString("name");
         } catch (SQLException e) {
             throw new EntryNotFoundException("Could not find an entry for this name");
