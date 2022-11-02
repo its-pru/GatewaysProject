@@ -1,5 +1,6 @@
 package model;
 
+import datasource.ChemicalTableDataGateway;
 import model.Controller.CompoundController;
 import model.Controller.ElementController;
 import model.Mapper.CompoundMapper;
@@ -24,9 +25,9 @@ public class CompoundControllerTest
     public static final double OXYGEN_ATOMIC_MASS = 15.9;
     private final String[] WATER_ELEMENT_NAMES={"Hydrogen","Hydrogen","Oxygen"};
     @AfterEach
-    public void rollback()
+    public void rollback() throws Exception
     {
-        // make the database roll back the changes this test made
+        ChemicalTableDataGateway.rollback();
     }
 
     @Test

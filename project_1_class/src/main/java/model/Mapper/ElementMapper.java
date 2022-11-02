@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ElementMapper {
-    public static Element[] getAllElements() throws ElementNotFoundException {
+    public static Element[] getAllElements() throws Exception {
         List<ChemicalDTO> chemicals = null;
         List<ElementDTO> elements = null;
         try {
@@ -37,13 +37,14 @@ public class ElementMapper {
             }
             int atomicNumber = (int) element.getAtomicNumber();
             double atomicMass = element.getAtomicMass();
-            temp.add(new Element(name, atomicNumber, atomicMass));
+            temp.add(new Element(name, atomicNumber, atomicMass, new ElementMapper(name)));
         }
         return temp.toArray(new Element[temp.size()]);
     }
 
 
     private Element myElement;
+
 
     /**
      * Create a new element in the database, and store the resulting model object
@@ -52,7 +53,7 @@ public class ElementMapper {
     public ElementMapper(String name, int atomicNumber, double atomicMass) throws Exception {
         ChemicalRowDataGateway chemical = ChemicalRowDataGateway.createChemicalRowDataGateway(name); //Creating chemical in database.
         new ElementRowDataGateway(chemical.getId(), atomicNumber, atomicMass); //using already created chemical to create element in database.
-        myElement = new Element(name, atomicNumber, atomicMass);
+        myElement = new Element(name, atomicNumber, atomicMass, this);
     }
 
     /**
@@ -60,7 +61,7 @@ public class ElementMapper {
      *
      * @param name
      */
-    public ElementMapper(String name) throws ElementNotFoundException {
+    public ElementMapper(String name) throws Exception {
         ChemicalRowDataGateway chemical = null;
         try {
             chemical = new ChemicalRowDataGateway(name);
@@ -75,7 +76,7 @@ public class ElementMapper {
             throw new ElementNotFoundException();
         }
 
-        myElement = new Element(name, (int) element.getAtomicNumber(), element.getAtomicMass());
+        myElement = new Element(name, (int) element.getAtomicNumber(), element.getAtomicMass(), this);
     }
 
     public Element getMyElement() {
@@ -94,17 +95,47 @@ public class ElementMapper {
         element.delete();
     }
 
-    public void persistElement(String name, int atomicNumber, double atomicMass) throws Exception {
-        ChemicalRowDataGateway chemical = new ChemicalRowDataGateway(myElement.getName());
+    public void persistElement(Element newElement) throws Exception {
+        ChemicalRowDataGateway chemical = new ChemicalRowDataGateway(myElement.getNameBefore());
         ElementRowDataGateway element = new ElementRowDataGateway(chemical.getId());
 
-        chemical.setName(name);
-        element.setAtomicNumber(atomicNumber);
-        element.setAtomicMass(atomicMass);
+        chemical.setName(newElement.getName());
+        element.setAtomicNumber(newElement.getAtomicNumber());
+        element.setAtomicMass(newElement.getAtomicMass());
 
         chemical.persist();
         element.persist();
 
-        myElement = new Element(name, atomicNumber, atomicMass);
+
+    }
+
+    /**
+     * Gets all of the Elements in a given range
+     * @param start First atomic number in the range
+     * @param end Last atomic number in the range
+     * @return
+     */
+    public static Element[] getElementsBetweenRange(int start, int end){
+        List<Element> elements = new ArrayList<Element>();
+        try {
+            List<ElementDTO> elementDTOs = ElementTableDataGateway.getElementsBetweenRange(start, end);
+
+            List<Long> ElementIDs = new ArrayList<Long>();
+
+            for(int i = 0; i < elementDTOs.size(); i++){
+                ElementIDs.add(elementDTOs.get(i).getID());
+            }
+
+            List<ChemicalDTO> ChemicalDTOS = ChemicalTableDataGateway.getChemicals(ElementIDs);
+
+            for(int i = 0; i < elementDTOs.size(); i++){
+                elements.add(new Element(ChemicalDTOS.get(i).getName(), (int)elementDTOs.get(i).getAtomicNumber(), elementDTOs.get(i).getAtomicMass(), new ElementMapper(ChemicalDTOS.get(i).getName())));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        Element[] elementArray = new Element[elements.size()];
+        elementArray = elements.toArray(elementArray);
+        return elementArray;
     }
 }

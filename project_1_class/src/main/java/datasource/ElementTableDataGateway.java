@@ -30,6 +30,28 @@ public class ElementTableDataGateway {
             throw new UnableToConnectException("Unable to get Chemicals");
         }
     }
+
+    public static List<ElementDTO> getElementsBetweenRange(int start, int end) throws Exception{
+        List<ElementDTO> elementList = new ArrayList<ElementDTO>();
+        JDBC jdbc = JDBC.getJDBC();
+
+        PreparedStatement stmt = jdbc.getConnect().prepareStatement("SELECT * FROM element WHERE atomicNumber BETWEEN ? AND ? ");
+        stmt.setInt(1, start);
+        stmt.setInt(2, end);
+        ResultSet rs = stmt.executeQuery();
+
+        while (rs.next()) {
+
+            long id = rs.getLong("id");
+            long atomicNumber = rs.getLong("atomicNumber");
+            double atomicMass = rs.getDouble("atomicMass");
+            elementList.add(new ElementDTO(id, atomicNumber, atomicMass));
+        }
+
+        return elementList;
+
+
+    }
     /**
      * Selects a group of elements based on ids
      *

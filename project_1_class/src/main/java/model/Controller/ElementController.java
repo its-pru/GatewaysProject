@@ -15,10 +15,10 @@ public class ElementController {
     }
 
     public static Element[] getElementsBetween(int firstAtomicNumber, int lastAtomicNumber) {
-        return null;
+        return ElementMapper.getElementsBetweenRange(firstAtomicNumber, lastAtomicNumber);
     }
 
-    public static Element[] getAllElements() throws ElementNotFoundException {
+    public static Element[] getAllElements() throws Exception {
         return ElementMapper.getAllElements();
     }
 
@@ -27,18 +27,15 @@ public class ElementController {
     }
 
     private Element myElement;
-    private String nameBefore; // need this so it can persist if the name changes
 
     public ElementController(String name) throws Exception {
         ElementMapper mapper = new ElementMapper(name);
         myElement = mapper.getMyElement();
-        nameBefore = myElement.getName();
     }
 
     public ElementController(String name, int atomicNumber, double atomicMass) throws Exception {
         ElementMapper mapper = new ElementMapper(name, atomicNumber, atomicMass);
         myElement = mapper.getMyElement();
-        nameBefore = myElement.getName();
     }
 
     public void setAtomicNumber(int newAtomicNumber) {
@@ -54,9 +51,6 @@ public class ElementController {
     }
 
     public void persist() throws Exception {
-        ElementMapper mapper = new ElementMapper(nameBefore);
-        mapper.persistElement(myElement.getName(), myElement.getAtomicNumber(), myElement.getAtomicMass());
-        myElement = mapper.getMyElement();
-        nameBefore = myElement.getName();
+        myElement.persist();
     }
 }

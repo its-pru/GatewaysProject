@@ -39,7 +39,8 @@ public class ChemicalTableDataGateway {
         List<ChemicalDTO> chemicalList = new ArrayList<ChemicalDTO>();
         String query = "SELECT * FROM chemical WHERE ID in (";
         try {
-            PreparedStatement stmt = JDBC.getJDBC().getConnect().prepareStatement(queryBuilder(ID.size(), query));
+            String finished = queryBuilder(ID.size(), query);
+            PreparedStatement stmt = JDBC.getJDBC().getConnect().prepareStatement(finished);
             for (int i = 0; i < ID.size(); i++) {
                 stmt.setLong(i + 1, ID.get(i));
             }
@@ -54,6 +55,7 @@ public class ChemicalTableDataGateway {
 
             return chemicalList;
         } catch (SQLException e) {
+            e.printStackTrace();
             throw new UnableToConnectException("Unable to get Chemicals");
         }
 
