@@ -30,6 +30,7 @@ public class CompoundControllerTest
         ChemicalTableDataGateway.rollback();
     }
 
+    //Unsure but used ChemicalRowDataGateway to create the compound entry
     @Test
     public void canGetExistingCompound() throws Exception
     {
@@ -43,8 +44,7 @@ public class CompoundControllerTest
     }
 
     @Test
-    public void canCreateCompound()
-    {
+    public void canCreateCompound() throws Exception {
         CompoundController.createCompound ("Water");
 
         assertEquals("Water", new CompoundController("Water").getMyCompound().getName());
@@ -58,8 +58,7 @@ public class CompoundControllerTest
 //    }
 
     @Test
-    public void canUpdateName()
-    {
+    public void canUpdateName() throws Exception {
         // put the object I'm getting into the database
         CompoundMapper.createCompound("Sulfuric Acid");
 
@@ -91,8 +90,7 @@ public class CompoundControllerTest
     }
 
     @Test
-    public void canDelete()
-    {
+    public void canDelete() throws Exception {
         // put the object I'm deleting into the database
         CompoundMapper.createCompound("HCl");
 
@@ -143,7 +141,7 @@ public class CompoundControllerTest
 
     @Test
     public void exceptionOnAddNonexistingElement()
-            throws ElementNotFoundException
+            throws Exception
     {
         CompoundMapper.createCompound("Water");
 

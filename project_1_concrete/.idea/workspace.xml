@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e32a31b-afee-4a76-b74b-64a093499b5d" name="Changes" comment="Started ElementRowDataGatewayTest tests">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="8e32a31b-afee-4a76-b74b-64a093499b5d" name="Changes" comment="Started ElementRowDataGatewayTest tests" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -96,6 +94,7 @@
       <workItem from="1666205771395" duration="146000" />
       <workItem from="1666811058850" duration="43000" />
       <workItem from="1666811359913" duration="10000" />
+      <workItem from="1667218532015" duration="60000" />
     </task>
     <task id="LOCAL-00001" summary="Created 4.5 of the gateways for Concrete Table Pattern">
       <created>1664977842398</created>

@@ -8,8 +8,8 @@ public class Compound extends Chemical{
     public Compound(String name) {
         super(name);
     }
-    public void setName(String name) { this.name = name; }
-    public String getName() { return name; }
+    public void setName(String name) { super.setName(name); }
+    public String getName() { return super.getName(); }
     public void setMadeOf(List<String> madeOf) { this.madeOf = madeOf; } // todo Do we need this?
     public List<String> getMadeOf() { return madeOf; }
     public void addElement(String element){

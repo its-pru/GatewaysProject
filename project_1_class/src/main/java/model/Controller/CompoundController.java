@@ -1,6 +1,7 @@
 package model.Controller;
 
 import datasource.ChemicalRowDataGateway;
+import exceptions.EntryNotFoundException;
 import model.Mapper.CompoundMapper;
 import model.Mapper.ElementMapper;
 import java.util.ArrayList;
@@ -11,22 +12,25 @@ import model.Element;
 public class CompoundController {
     private Compound myCompound;
 
-    public CompoundController(String name){
-        myCompound = new Compound(name);
-        //Create mapper and entry in database
+    public CompoundController(String name) throws Exception {
+        CompoundMapper mapper = new CompoundMapper(name);
+        myCompound = mapper.getMyCompound();
+        //Find Mapper in DB
     }
 
-    public static void delete(String hCl) {
-
+    public static void delete(String hCl) throws EntryNotFoundException {
+        CompoundMapper.deleteCompound(hCl);
     }
 
-    public static void createCompound(String water) {
-
+    public static void createCompound(String water) throws Exception {
+        CompoundMapper.createCompound(water);
     }
 
-    public void addElement(String hydrogen) {
+    public void addElement(String hydrogen) throws Exception {
+        CompoundMapper mapper = new CompoundMapper(myCompound.getName());
         myCompound.addElement(hydrogen);
-        //Create relationship in database using CompoundMapper
+        mapper.addElement(hydrogen);
+
     }
 
     public double getAtomicMass() throws Exception {
@@ -49,7 +53,7 @@ public class CompoundController {
     }
 
     //TODO: ponder changing return type to Compound
-    public ChemicalRowDataGateway getMyCompound() {
-        return null;
+    public Compound getMyCompound() {
+        return myCompound;
     }
 }
