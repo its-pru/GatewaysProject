@@ -1,6 +1,6 @@
 package model;
 
-import datasource.ChemicalTableDataGateway;
+import exceptions.CompoundNotFoundException;
 import model.Controller.CompoundController;
 import model.Controller.ElementController;
 import model.Mapper.CompoundMapper;
@@ -25,12 +25,11 @@ public class CompoundControllerTest
     public static final double OXYGEN_ATOMIC_MASS = 15.9;
     private final String[] WATER_ELEMENT_NAMES={"Hydrogen","Hydrogen","Oxygen"};
     @AfterEach
-    public void rollback() throws Exception
+    public void rollback()
     {
-        ChemicalTableDataGateway.rollback();
+        // make the database roll back the changes this test made
     }
 
-    //Unsure but used ChemicalRowDataGateway to create the compound entry
     @Test
     public void canGetExistingCompound() throws Exception
     {
@@ -50,12 +49,12 @@ public class CompoundControllerTest
         assertEquals("Water", new CompoundController("Water").getMyCompound().getName());
 
     }
-//    @Test
-//    public void exceptionOnMissingCompound()
-//    {
-//        assertThrows(CompoundNotFoundException.class, () ->
-//                new CompoundMapper("NOTHING"));
-//    }
+    @Test
+    public void exceptionOnMissingCompound()
+    {
+        assertThrows(CompoundNotFoundException.class, () ->
+                new CompoundMapper("NOTHING"));
+    }
 
     @Test
     public void canUpdateName() throws Exception {
@@ -72,10 +71,10 @@ public class CompoundControllerTest
         assertEquals("Sulfuric Base",controller.getMyCompound().getName());
 
         // Make sure it did not go all the way to the database
-        checkThatCompoundIsNotInDB("Sulfuric Acid");
+        checkThatCompoundIsNotInDB("Sulfuric Base");
     }
 
-    private void checkThatCompoundIsNotInDB(String name)
+    private void checkThatCompoundIsNotInDB(String name) throws Exception
     {
         try
         {
@@ -114,7 +113,8 @@ public class CompoundControllerTest
     }
 
     @Test
-    public void canAddAndRetrieveMultipleElement() throws Exception
+    public void canAddAndRetrieveMultipleElement()
+            throws Exception
     {
         buildWater();
 
@@ -162,7 +162,9 @@ public class CompoundControllerTest
         controller.addElement("Hydrogen");
 
         // change the name of the element
-        (new ElementController("Hydrogen")).setName("Bad Hydrogen");
+        ElementController hydrogenController = new ElementController("Hydrogen");
+        hydrogenController.setName("Bad Hydrogen");
+        hydrogenController.persist();
 
         // Make sure we are related to the renamed element
         List<String> elements = controller.getElements();

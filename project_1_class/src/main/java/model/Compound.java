@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Compound extends Chemical{
@@ -7,6 +8,7 @@ public class Compound extends Chemical{
     List<String> madeOf;
     public Compound(String name) {
         super(name);
+        madeOf = new ArrayList<String>();
     }
     public void setName(String name) { super.setName(name); }
     public String getName() { return super.getName(); }
