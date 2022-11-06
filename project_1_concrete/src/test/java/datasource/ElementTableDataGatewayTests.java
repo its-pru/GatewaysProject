@@ -21,7 +21,7 @@ public class ElementTableDataGatewayTests extends TestCase {
         assertEquals(element1.getAtomicMass(), elementList.get(0).getAtomicMass());
         assertEquals(element2.getAtomicMass(), elementList.get(1).getAtomicMass());
 
-        element1.delete(element1.getID());
-        element2.delete(element2.getID());
+        element1.delete(element1.getName());
+        element2.delete(element2.getName());
     }
 }

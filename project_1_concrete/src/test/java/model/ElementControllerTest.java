@@ -1,11 +1,14 @@
 package model;
 
-import datasource.ChemicalTableDataGateway;
+
+import datasource.ElementTableDataGateway;
+import exceptions.ElementNotFoundException;
 import exceptions.UnableToConnectException;
+import junit.framework.TestCase;
 import model.Controller.ElementController;
 import model.Element;
 import model.Mapper.ElementMapper;
-import model.Mapper.ElementNotFoundException;
+
 import org.jetbrains.annotations.NotNull;
 import org.junit.Ignore;
 import org.junit.jupiter.api.AfterEach;
@@ -18,13 +21,13 @@ import java.util.Random;
 import static org.junit.jupiter.api.Assertions.*;
 
 
-public class ElementControllerTest {
+public class ElementControllerTest extends TestCase {
 
     public static final int FIRST_ATOMIC_NUMBER_IN_DB = 19;
 
     @AfterEach
     public void rollback() throws UnableToConnectException {
-        ChemicalTableDataGateway.rollback();
+        ElementTableDataGateway.rollback();
     }
 
     @Test

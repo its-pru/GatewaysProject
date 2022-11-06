@@ -18,7 +18,7 @@ public class ElementRowDataGatewayTest extends TestCase {
             e.printStackTrace();
         }
         assertNotNull(testCreate);
-        testCreate.delete(testCreate.getID());
+        testCreate.delete(testCreate.getName());
     }
     @Test
     public void testFindElement() throws Exception {
@@ -27,15 +27,15 @@ public class ElementRowDataGatewayTest extends TestCase {
 
         ElementRowDataGateway testFind = null;
         try {
-            testFind = new ElementRowDataGateway(newElement.getID());
+            testFind = new ElementRowDataGateway(newElement.getName());
 
         } catch (SQLException e) {
             success = false;
         }
 
         assertTrue(success);
-        newElement.delete(newElement.getID());
-        testFind.delete(testFind.getID());
+        newElement.delete(newElement.getName());
+        testFind.delete(testFind.getName());
 
     }
 
@@ -51,14 +51,14 @@ public class ElementRowDataGatewayTest extends TestCase {
         exists = testExist.exists("FakeEntry", 3, 1);
         assertFalse(exists);
 
-        testExist.delete(testExist.getID());
+        testExist.delete(testExist.getName());
 
     }
 
     @Test
     public void testDeleteElement() throws Exception {
         ElementRowDataGateway testDelete = new ElementRowDataGateway(5, "Timmy", 10, 10);
-        boolean success = testDelete.delete(testDelete.getID());
+        boolean success = testDelete.delete(testDelete.getName());
         assertEquals(true, success);
 
     }
@@ -71,7 +71,7 @@ public class ElementRowDataGatewayTest extends TestCase {
         testPersists.setAtomicMass(12);
         testPersists.persist();
         assertEquals(true,testPersists.exists("Don", 3,12));
-        testPersists.delete(testPersists.getID());
+        testPersists.delete(testPersists.getName());
 
     }
 }

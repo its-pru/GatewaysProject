@@ -19,20 +19,41 @@ public class ElementRowDataGateway{
 
     private static final String elementCreateString = "INSERT INTO element VALUES (?,?,?,?)";
     private static final String existsString= "SELECT * FROM element WHERE name = ? OR atomicNumber = ? OR atomicMass = ?";
-    private static final String finderString = " SELECT * FROM element WHERE ID = ?";
+    private static final String finderString = " SELECT * FROM element WHERE name = ?";
     private static final String updateString = "UPDATE element SET name = ?, atomicNumber = ?, atomicMass = ? WHERE ID = ?";
-    private static final String deleteString = "DELETE FROM element WHERE ID = ?";
+    private static final String deleteString = "DELETE FROM element WHERE name = ?";
 
     /**
      * Create constructor for a new Element
-     * @param ID - ID of the new Element
      * @param name - Name of the new Element
      * @param atomicNumber - Atomic number of new element
      * @param atomicMass - Atomic mass of new element
      * @throws Exception - throws when class is unable to connect ot database
      */
-    public ElementRowDataGateway(long ID, String name, long atomicNumber, double atomicMass) throws Exception{
-        this.ID = ID;
+    public ElementRowDataGateway(String name, long atomicNumber, double atomicMass) throws Exception{
+        this.ID = KeyHandler.getNewKey();
+        this.name = name;
+        this.atomicNumber = atomicNumber;
+        this.atomicMass = atomicMass;
+
+        if(exists(name, atomicNumber, atomicMass)){
+            throw new UnableToCreateException("There is already an element for these parameters. Change them and try again");
+        }else {
+            try {
+                PreparedStatement stmt = JDBC.getJDBC().getConnect().prepareStatement(elementCreateString);
+                stmt.setLong(1, ID);
+                stmt.setString(2, name);
+                stmt.setLong(3, atomicNumber);
+                stmt.setDouble(4, atomicMass);
+                stmt.execute();
+            } catch (SQLException unableToCreate) {
+                unableToCreate.printStackTrace();
+                throw new UnableToCreateException("Unable to create Element. Check inputs and try again");
+            }
+        }
+    }
+    public ElementRowDataGateway(long id, String name, long atomicNumber, double atomicMass) throws Exception{
+        this.ID = id;
         this.name = name;
         this.atomicNumber = atomicNumber;
         this.atomicMass = atomicMass;
@@ -56,13 +77,13 @@ public class ElementRowDataGateway{
 
     /**
      * Finder constructor for Element
-     * @param ID - ID of Element being searched for
+     * @param name - Name of Element being searched for
      * @throws Exception
      */
-    public ElementRowDataGateway(long ID) throws Exception{
+    public ElementRowDataGateway(String name) throws Exception{
         try {
             PreparedStatement stmt = JDBC.getJDBC().getConnect().prepareStatement(finderString);
-            stmt.setLong(1, ID);
+            stmt.setString(1, name);
             ResultSet rs = stmt.executeQuery();
             rs.next();
 
@@ -101,10 +122,10 @@ public class ElementRowDataGateway{
      * @return true - returns true if the id is deleted
      * @throws Exception - throws when Element being deleted isn't found
      */
-    public boolean delete(long id)throws Exception{
+    public static boolean delete(String name)throws Exception{
         try{
             PreparedStatement stmt = JDBC.getJDBC().getConnect().prepareStatement(deleteString);
-            stmt.setLong(1, ID);
+            stmt.setString(1, name);
             stmt.execute();
         }catch (SQLException e){
             throw new EntryNotFoundException("Could not find Element with this ID. Check ID and try again");
