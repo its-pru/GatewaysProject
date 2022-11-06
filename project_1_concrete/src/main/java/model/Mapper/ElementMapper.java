@@ -49,7 +49,7 @@ public class ElementMapper {
     public Element getMyElement(){return myElement;}
 
     public void persistElement(Element element) throws Exception {
-        ElementRowDataGateway e = new ElementRowDataGateway(myElement.getNameBefore());
+        ElementRowDataGateway e = new ElementRowDataGateway(element.getNameBefore());
         e.setName(element.getName());
         e.setAtomicNumber(element.getAtomicNumber());
         e.setAtomicMass(element.getAtomicMass());

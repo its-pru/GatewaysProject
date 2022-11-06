@@ -68,7 +68,6 @@ public class Element {
     }
     public void persist() throws Exception {
         mapper.persistElement(this);
-        this.nameBefore = name;
     }
 
     public String getNameBefore(){return nameBefore;}
