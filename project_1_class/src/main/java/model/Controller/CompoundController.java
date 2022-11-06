@@ -26,11 +26,10 @@ public class CompoundController {
         CompoundMapper.createCompound(water);
     }
 
-    public void addElement(String hydrogen) throws Exception { //todo: this don't work yet
+    public void addElement(String name) throws Exception {
         CompoundMapper mapper = new CompoundMapper(myCompound.getName());
-        myCompound.addElement(hydrogen);
-        mapper.addElement(hydrogen);
-
+        mapper.addElement(name);
+        myCompound.addElement(name);
     }
 
     public double getAtomicMass() throws Exception {

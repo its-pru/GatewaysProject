@@ -50,6 +50,7 @@ public class MadeOfTableDataGateway {
             return names;
 
         } catch (SQLException e) {
+            e.printStackTrace();
             throw new EntryNotFoundException("This Compound could not be found");
         }
 
@@ -70,39 +71,43 @@ public class MadeOfTableDataGateway {
             stmt.setLong(1, elementID);
             ResultSet rs = stmt.executeQuery();
             List<Long> compounds = new ArrayList<>();
-
             while (rs.next()) {
-                compounds.add(rs.getLong("compoundID"));
+                long compound = rs.getLong("compoundID");
+                compounds.add(compound);
             }
 
             List<String> names = new ArrayList<>();
 
             for (int i = 0; i < compounds.size(); i++) {
-                names.add(ChemicalRowDataGateway.getNameFromID(compounds.get(i)));
+                String name = ChemicalRowDataGateway.getNameFromID(compounds.get(i));
+                if (names.contains(name)) {
+                    continue;
+                }
+                names.add(name);
             }
             return names;
 
         } catch (SQLException e) {
-            throw new EntryNotFoundException("This Element could not be found");
+            e.printStackTrace();
+            throw new EntryNotFoundException("Compounds could not be found");
         }
     }
 
     /**
      * Creates a new compound
      *
-     * @param CompoundID - id of compound in Chemical table
-     * @param ElementIDs - list of elements making up this compound
+     * @param compoundID - id of compound in Chemical table
+     * @param elementID - id of an element the compound is made of
      * @throws Exception - throws when breaks foreign key rules
      */
-    public static void CreateNewCompound(long CompoundID, List<Long> ElementIDs) throws Exception {
+    public static void CreateNewCompound(long compoundID, long elementID) throws Exception {
         //creates a new compound entry with its elements
         try {
-            for (int i = 0; i < ElementIDs.size(); i++) {
                 PreparedStatement stmt = JDBC.getJDBC().getConnect().prepareStatement(createNewCompound);
-                stmt.setLong(1, CompoundID);
-                stmt.setLong(2, ElementIDs.get(i));
+                stmt.setLong(1, compoundID);
+                stmt.setLong(2, elementID);
                 stmt.execute();
-            }
+
         } catch (SQLException e) {
             e.printStackTrace();
         }

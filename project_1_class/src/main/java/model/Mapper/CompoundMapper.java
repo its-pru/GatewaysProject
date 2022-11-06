@@ -12,12 +12,10 @@ import java.util.List;
 
 public class CompoundMapper {
         Compound myCompound;
-        long id;
 
     public CompoundMapper(String name) throws Exception {
         ChemicalRowDataGateway compound = new ChemicalRowDataGateway(name);
         myCompound = new Compound(compound.getName());
-        myCompound.setMadeOf(MadeOfTableDataGateway.findElements(compound.getId()));
     }
 
     public static void createCompound(String name) throws Exception {
@@ -28,10 +26,10 @@ public class CompoundMapper {
         ChemicalRowDataGateway gateway = new ChemicalRowDataGateway(name);
         gateway.delete();
     }
-    public void addElement(String name) throws Exception { //todo: this don't work yet either
-        ChemicalRowDataGateway CRDG = new ChemicalRowDataGateway(name);
-        long elementID = CRDG.getId();
-        MadeOfTableDataGateway gateway = new MadeOfTableDataGateway();
+    public void addElement(String name) throws Exception {
+        ChemicalRowDataGateway element = new ChemicalRowDataGateway(name);
+        ChemicalRowDataGateway compound = new ChemicalRowDataGateway(myCompound.getName());
+        MadeOfTableDataGateway.CreateNewCompound(compound.getId(), element.getId());
     }
 
     public Compound getMyCompound(){

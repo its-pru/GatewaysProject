@@ -154,7 +154,7 @@ public class ElementMapper {
     }
 
     public static List<String> getCompounds(String name) throws Exception {
-        ChemicalRowDataGateway chem = ChemicalRowDataGateway.createChemicalRowDataGateway(name);
+        ChemicalRowDataGateway chem = new ChemicalRowDataGateway(name);
         return MadeOfTableDataGateway.findCompounds(chem.getId());
     }
 }

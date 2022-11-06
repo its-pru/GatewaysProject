@@ -19,10 +19,10 @@ public class ChemicalRowDataGateway {
     public static final String findQuery = "SELECT * FROM chemical WHERE name = ?";
     public static final String updateQuery = "UPDATE chemical SET name = ? WHERE id = ?";
     public static final String deleteQuery = "DELETE FROM chemical WHERE id = ?";
-    public static final String nameFromID = "SELECT * FROM chemical WHERE name = ?";
+    public static final String nameFromID = "SELECT * FROM chemical WHERE id = ?";
 
     public static String getNameFromID(long id) throws SQLException {
-        PreparedStatement stmt = JDBC.getJDBC().getConnect().prepareStatement(nameFromID);
+        PreparedStatement stmt = JDBC.getJDBC().getConnect().prepareStatement(nameFromID, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
         stmt.setLong(1, id);
         stmt.execute();
         ResultSet results = stmt.getResultSet();
