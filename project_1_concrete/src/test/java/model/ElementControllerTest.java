@@ -2,8 +2,10 @@ package model;
 
 
 import datasource.ElementTableDataGateway;
+import datasource.KeyHandler;
 import exceptions.ElementNotFoundException;
 import exceptions.UnableToConnectException;
+import exceptions.UnableToGetKeyException;
 import junit.framework.TestCase;
 import model.Controller.ElementController;
 import model.Element;
@@ -26,8 +28,9 @@ public class ElementControllerTest extends TestCase {
     public static final int FIRST_ATOMIC_NUMBER_IN_DB = 19;
 
     @AfterEach
-    public void rollback() throws UnableToConnectException {
+    public void rollback() throws UnableToConnectException, UnableToGetKeyException {
         ElementTableDataGateway.rollback();
+        KeyHandler.rollback();
     }
 
     @Test

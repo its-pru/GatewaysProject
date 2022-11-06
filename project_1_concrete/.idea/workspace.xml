@@ -4,10 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e32a31b-afee-4a76-b74b-64a093499b5d" name="Changes" comment="Started ElementRowDataGatewayTest tests">
+    <list default="true" id="8e32a31b-afee-4a76-b74b-64a093499b5d" name="Changes" comment="Working on elementMapper">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/datasource/ElementRowDataGateway.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/datasource/ElementRowDataGateway.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/datasource/KeyHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/datasource/KeyHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Controller/ElementController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Controller/ElementController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/Element.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Element.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/Mapper/ElementMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Mapper/ElementMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/model/ElementControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/ElementControllerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,7 +60,7 @@
     ]
   }
 }</component>
-  <component name="RunManager" selected="JUnit.ElementControllerTest.canUpdateAndPersistName">
+  <component name="RunManager" selected="JUnit.ElementControllerTest">
     <configuration name="ElementControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="project_1_concrete" />
       <extension name="coverage">
@@ -68,6 +72,38 @@
       <option name="PACKAGE_NAME" value="model" />
       <option name="MAIN_CLASS_NAME" value="model.ElementControllerTest" />
       <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ElementControllerTest.canGetPeriod" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="project_1_concrete" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="model" />
+      <option name="MAIN_CLASS_NAME" value="model.ElementControllerTest" />
+      <option name="METHOD_NAME" value="canGetPeriod" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ElementControllerTest.canPersistEverythingExceptName" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="project_1_concrete" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="model" />
+      <option name="MAIN_CLASS_NAME" value="model.ElementControllerTest" />
+      <option name="METHOD_NAME" value="canPersistEverythingExceptName" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -104,26 +140,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="datasource in project_1_concrete" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="project_1_concrete" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="datasource.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="datasource" />
-      <option name="TEST_OBJECT" value="package" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.ElementControllerTest.canUpdateAndPersistName" />
         <item itemvalue="JUnit.ElementControllerTest" />
+        <item itemvalue="JUnit.ElementControllerTest.canPersistEverythingExceptName" />
+        <item itemvalue="JUnit.ElementControllerTest.canGetPeriod" />
+        <item itemvalue="JUnit.ElementControllerTest.canUpdateAndPersistName" />
         <item itemvalue="JUnit.ElementControllerTest.canUpdateName" />
-        <item itemvalue="JUnit.datasource in project_1_concrete" />
       </list>
     </recent_temporary>
   </component>
@@ -149,7 +172,7 @@
       <workItem from="1666811359913" duration="10000" />
       <workItem from="1667218532015" duration="60000" />
       <workItem from="1667739005478" duration="5341000" />
-      <workItem from="1667751773970" duration="1096000" />
+      <workItem from="1667751773970" duration="7635000" />
     </task>
     <task id="LOCAL-00001" summary="Created 4.5 of the gateways for Concrete Table Pattern">
       <created>1664977842398</created>
@@ -193,7 +216,14 @@
       <option name="project" value="LOCAL" />
       <updated>1667744343971</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Working on elementMapper">
+      <created>1667752974072</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1667752974072</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -217,15 +247,31 @@
     <MESSAGE value="Changes by Evan" />
     <MESSAGE value="Even Changed workspace.xml" />
     <MESSAGE value="Started ElementRowDataGatewayTest tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="Started ElementRowDataGatewayTest tests" />
+    <MESSAGE value="Working on elementMapper" />
+    <option name="LAST_COMMIT_MESSAGE" value="Working on elementMapper" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/model/ElementControllerTest.java</url>
+          <line>112</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/model/ElementControllerTest.java</url>
           <line>115</line>
-          <option name="timeStamp" value="4" />
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/model/ElementControllerTest.java</url>
+          <line>196</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/model/ElementControllerTest.java</url>
+          <line>132</line>
+          <option name="timeStamp" value="12" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

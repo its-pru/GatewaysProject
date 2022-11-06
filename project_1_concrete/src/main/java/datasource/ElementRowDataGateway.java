@@ -94,7 +94,6 @@ public class ElementRowDataGateway{
 
 
         }catch (SQLException notFound){
-
             throw new EntryNotFoundException("Element for this ID not found. Check ID and try again");
         }
     }

@@ -9,11 +9,11 @@ public class Element {
     ElementMapper mapper;
     int period;
     String nameBefore;
-    public Element(String name, double atomicMass, int atomicNumber, ElementMapper e){
+    public Element(String name, double atomicMass, int atomicNumber){
         this.name = name;
         this.atomicMass = atomicMass;
         this.atomicNumber = atomicNumber;
-        mapper = e;
+
 
         if (atomicNumber == 1 || atomicNumber == 2) {
             period = 1;

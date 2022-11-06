@@ -11,17 +11,18 @@ import java.util.List;
 public class ElementMapper {
     Element myElement;
     public ElementMapper(String name) throws ElementNotFoundException {
-        ElementRowDataGateway ERDG = null;
+        ElementRowDataGateway ERDG;
         try {
             ERDG = new ElementRowDataGateway(name);
         } catch (Exception e) {
+            e.printStackTrace();
             throw new ElementNotFoundException();
         }
-        myElement = new Element(ERDG.getName(), ERDG.getAtomicMass(), (int) ERDG.getAtomicNumber(), this);
+        myElement = new Element(ERDG.getName(), ERDG.getAtomicMass(), (int) ERDG.getAtomicNumber());
     }
 
     public ElementMapper(String name, int atomicNumber, double atomicMass) throws Exception {
-        myElement =  new Element(name, atomicMass, atomicNumber, this);
+        myElement = new Element(name, atomicMass, atomicNumber);
         ElementRowDataGateway ERDG = new ElementRowDataGateway(name, atomicNumber, atomicMass);
     }
 
@@ -37,7 +38,7 @@ public class ElementMapper {
             String name = DTOList.get(i).getName();
             double atomicMass = DTOList.get(i).getAtomicMass();
             int atomicNumber = (int)DTOList.get(i).getAtomicNumber();
-            elements[i] = new Element(name, atomicMass, atomicNumber, new ElementMapper(name));
+            elements[i] = new Element(name, atomicMass, atomicNumber);
         }
         return elements;
     }
@@ -49,7 +50,7 @@ public class ElementMapper {
     public Element getMyElement(){return myElement;}
 
     public void persistElement(Element element) throws Exception {
-        ElementRowDataGateway e = new ElementRowDataGateway(element.getNameBefore());
+        ElementRowDataGateway e = new ElementRowDataGateway(element.getName());
         e.setName(element.getName());
         e.setAtomicNumber(element.getAtomicNumber());
         e.setAtomicMass(element.getAtomicMass());

@@ -50,6 +50,7 @@ public class ElementController {
     }
 
     public void persist() throws Exception {
-        myElement.persist();
+        ElementMapper mapper = new ElementMapper(myElement.getNameBefore());
+        mapper.persistElement(myElement);
     }
 }

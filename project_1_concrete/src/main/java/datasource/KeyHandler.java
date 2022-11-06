@@ -43,6 +43,18 @@ public class KeyHandler {
         return newKey;
     }
 
+    public static void rollback() throws UnableToGetKeyException {
+        try {
+            PreparedStatement stmt = datasource.JDBC.getJDBC().getConnect().prepareStatement("DELETE FROM keyHandler");
+            stmt.execute();
+            PreparedStatement stmt2 = datasource.JDBC.getJDBC().getConnect().prepareStatement("INSERT INTO keyHandler VALUES (1)");
+            stmt2.execute();
+        }catch (SQLException e){
+            throw new UnableToGetKeyException("Unable to reset key table");
+        }
+
+    }
+
     /**
      * gets the current key used
      * @return - current key
