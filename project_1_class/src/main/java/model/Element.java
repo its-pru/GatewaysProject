@@ -1,6 +1,7 @@
 package model;
 
 import model.Mapper.ElementMapper;
+import model.Mapper.ElementNotFoundException;
 
 public class Element extends Chemical
 {
@@ -10,7 +11,7 @@ public class Element extends Chemical
     ElementMapper mapper;
 
 
-    public Element (String name, int atomicNumber, double atomicMass, ElementMapper mapper) throws Exception {
+    public Element (String name, int atomicNumber, double atomicMass, ElementMapper mapper) {
         super(name);
         this.atomicMass = atomicMass;
         this.atomicNumber = atomicNumber;
@@ -64,7 +65,7 @@ public class Element extends Chemical
 
     public void setAtomicMass(double atomicMass) {this.atomicMass = atomicMass;}
 
-    public void persist() throws Exception {
+    public void persist() throws ElementNotFoundException {
         mapper.persistElement(this);
         this.nameBefore = name;
     }

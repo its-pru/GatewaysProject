@@ -26,7 +26,7 @@ public class CompoundController {
         CompoundMapper.createCompound(water);
     }
 
-    public void addElement(String hydrogen) throws Exception {
+    public void addElement(String hydrogen) throws Exception { //todo: this don't work yet
         CompoundMapper mapper = new CompoundMapper(myCompound.getName());
         myCompound.addElement(hydrogen);
         mapper.addElement(hydrogen);

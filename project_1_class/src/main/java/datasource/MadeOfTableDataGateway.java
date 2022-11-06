@@ -1,6 +1,5 @@
 package datasource;
 
-import DTO.MadeOfDTO;
 import exceptions.EntryNotFoundException;
 
 import java.sql.PreparedStatement;
@@ -31,25 +30,29 @@ public class MadeOfTableDataGateway {
      * @param CompoundID - id being searched for
      * @throws Exception - throws when compound isnt found
      */
-    public static MadeOfDTO findElements(long CompoundID) throws Exception{
-        MadeOfDTO dto = null;
+    public static List<String> findElements(long CompoundID) throws Exception{
         try {
             JDBC jdbc = JDBC.getJDBC();
             PreparedStatement stmt = jdbc.getConnect().prepareStatement(getElementIDs);
             stmt.setLong(1, CompoundID);
             ResultSet rs = stmt.executeQuery();
 
-            List<Long> elementIDs = new ArrayList<Long>();
+            List<Long> elements = new ArrayList<>();
             while(rs.next()){
-                elementIDs.add(rs.getLong("elementID"));
+                elements.add(rs.getLong("elementID"));
             }
 
-            dto = new MadeOfDTO(CompoundID, elementIDs);
+            List<String> names = new ArrayList<>();
+
+            for (int i = 0; i < elements.size(); i++) {
+                names.add(ChemicalRowDataGateway.getNameFromID(elements.get(i)));
+            }
+            return names;
+
         } catch (SQLException e) {
             throw new EntryNotFoundException("This Compound could not be found");
         }
 
-        return dto;
     }
 
     /**
@@ -59,25 +62,27 @@ public class MadeOfTableDataGateway {
      * @return - boolean if this is successful or not
      * @throws Exception - throws when element isnt found
      */
-    public static List<MadeOfDTO> findCompoundsWithOneElement(long elementID) throws Exception {
+    public static List<String> findCompounds(long elementID) throws Exception {
         //get list of DTO's (compounds) that have a certain element in it.
         try {
             JDBC jdbc = JDBC.getJDBC();
             PreparedStatement stmt = jdbc.getConnect().prepareStatement(getCompoundIDs);
             stmt.setLong(1, elementID);
             ResultSet rs = stmt.executeQuery();
-            List<Long> elementIDs = new ArrayList<Long>();
-            List<MadeOfDTO> listOfDTOs = new ArrayList<>();
+            List<Long> compounds = new ArrayList<>();
 
             while (rs.next()) {
-                elementIDs.add(rs.getLong("elementID"));
-                MadeOfDTO DTO = new MadeOfDTO(rs.getLong("compoundID"), elementIDs);
-                listOfDTOs.add(DTO);
+                compounds.add(rs.getLong("compoundID"));
             }
-            return listOfDTOs;
+
+            List<String> names = new ArrayList<>();
+
+            for (int i = 0; i < compounds.size(); i++) {
+                names.add(ChemicalRowDataGateway.getNameFromID(compounds.get(i)));
+            }
+            return names;
 
         } catch (SQLException e) {
-            e.printStackTrace();
             throw new EntryNotFoundException("This Element could not be found");
         }
     }

@@ -1,6 +1,5 @@
 package model.Mapper;
 
-import DTO.MadeOfDTO;
 import datasource.ChemicalRowDataGateway;
 import datasource.ElementRowDataGateway;
 import datasource.MadeOfTableDataGateway;
@@ -16,22 +15,20 @@ public class CompoundMapper {
         long id;
 
     public CompoundMapper(String name) throws Exception {
-        ChemicalRowDataGateway CRDG = new ChemicalRowDataGateway(name);
-        this.id = CRDG.getId();
-        myCompound = new Compound(CRDG.getName());
-        MadeOfDTO DTO = MadeOfTableDataGateway.findElements(CRDG.getId());
-        DTO.getListOfElementIDs();
+        ChemicalRowDataGateway compound = new ChemicalRowDataGateway(name);
+        myCompound = new Compound(compound.getName());
+        myCompound.setMadeOf(MadeOfTableDataGateway.findElements(compound.getId()));
     }
 
-    public static void createCompound(String water) throws Exception {
-        ChemicalRowDataGateway.createChemicalRowDataGateway(water);
+    public static void createCompound(String name) throws Exception {
+        ChemicalRowDataGateway.createChemicalRowDataGateway(name);
     }
 
     public static void deleteCompound(String name) throws EntryNotFoundException {
         ChemicalRowDataGateway gateway = new ChemicalRowDataGateway(name);
         gateway.delete();
     }
-    public void addElement(String name) throws Exception {
+    public void addElement(String name) throws Exception { //todo: this don't work yet either
         ChemicalRowDataGateway CRDG = new ChemicalRowDataGateway(name);
         long elementID = CRDG.getId();
         MadeOfTableDataGateway gateway = new MadeOfTableDataGateway();
