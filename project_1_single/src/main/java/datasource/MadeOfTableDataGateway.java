@@ -81,6 +81,35 @@ public class MadeOfTableDataGateway {
         }
     }
 
+    public static List<String> findCompounds(long elementID) throws EntryNotFoundException {
+        //get list of DTO's (compounds) that have a certain element in it.
+        try {
+            JDBC jdbc = JDBC.getJDBC();
+            PreparedStatement stmt = jdbc.getConnect().prepareStatement(getCompoundIDs);
+            stmt.setLong(1, elementID);
+            ResultSet rs = stmt.executeQuery();
+            List<Long> compounds = new ArrayList<>();
+            while (rs.next()) {
+                long compound = rs.getLong("compoundID");
+                compounds.add(compound);
+            }
+
+            List<String> names = new ArrayList<>();
+
+            for (int i = 0; i < compounds.size(); i++) {
+                String name = ChemicalRowDataGateway.getNameFromID(compounds.get(i));
+                if (names.contains(name)) {
+                    continue;
+                }
+                names.add(name);
+            }
+            return names;
+
+        } catch (SQLException e) {
+            throw new EntryNotFoundException("Compounds could not be found");
+        }
+    }
+
     /**
      * Creates a new compound
      *

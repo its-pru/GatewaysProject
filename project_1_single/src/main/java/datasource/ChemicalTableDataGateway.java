@@ -75,11 +75,34 @@ public class ChemicalTableDataGateway {
         return sb.toString();
     }
 
+    public static List<ChemicalDTO> getElementsBetweenRange(int start, int end) throws Exception{
+        List<ChemicalDTO> elementList = new ArrayList<ChemicalDTO>();
+        JDBC jdbc = JDBC.getJDBC();
+
+        PreparedStatement stmt = jdbc.getConnect().prepareStatement("SELECT * FROM Chemical WHERE atomicNumber BETWEEN ? AND ? ");
+        stmt.setInt(1, start);
+        stmt.setInt(2, end);
+        ResultSet rs = stmt.executeQuery();
+
+        while (rs.next()) {
+
+            long id = rs.getLong("id");
+            String name = rs.getString("name");
+            long atomicNumber = rs.getLong("atomicNumber");
+            double atomicMass = rs.getDouble("atomicMass");
+            elementList.add(new ChemicalDTO(id, name, atomicNumber, atomicMass, 0, 0, Type.ELEMENT));
+        }
+
+        return elementList;
+
+
+    }
+
     public static void rollback() throws UnableToConnectException {
         try {
-            PreparedStatement delete = JDBC.getJDBC().getConnect().prepareStatement("DELETE FROM chemical");
+            PreparedStatement delete = JDBC.getJDBC().getConnect().prepareStatement("DELETE FROM Chemical");
             delete.execute();
-            PreparedStatement reset = JDBC.getJDBC().getConnect().prepareStatement("ALTER TABLE chemical AUTO_INCREMENT = 1");
+            PreparedStatement reset = JDBC.getJDBC().getConnect().prepareStatement("ALTER TABLE Chemical AUTO_INCREMENT = 1");
             reset.execute();
         } catch (SQLException e) {
             throw new UnableToConnectException("Unable to rollback database");
@@ -87,4 +110,22 @@ public class ChemicalTableDataGateway {
     }
 
 
+    public static List<ChemicalDTO> getAllChemicals() throws UnableToConnectException {
+        try {
+            List<ChemicalDTO> chemicalList = new ArrayList<ChemicalDTO>();
+            PreparedStatement stmt = JDBC.getJDBC().getConnect().prepareStatement("SELECT * FROM Chemical");
+            stmt.execute();
+            ResultSet rs = stmt.getResultSet();
+            while (rs.next()) {
+                long id = rs.getLong("ID");
+                String name = rs.getString("name");
+                long atomicMass = rs.getLong("atomicMass");
+                long atomicNumber = rs.getLong("atomicNumber");
+                chemicalList.add(new ChemicalDTO(id, name, atomicNumber, atomicMass, 0, 0, Type.ELEMENT));
+            }
+            return chemicalList;
+        } catch (SQLException e) {
+            throw new UnableToConnectException("Unable to get Chemicals");
+        }
+    }
 }

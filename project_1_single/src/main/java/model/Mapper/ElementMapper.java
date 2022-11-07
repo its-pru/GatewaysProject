@@ -1,10 +1,10 @@
 package model.Mapper;
 
 import DTO.ChemicalDTO;
-import DTO.ElementDTO;
+import Exceptions.UnableToConnectException;
 import datasource.*;
-import exceptions.EntryNotFoundException;
-import exceptions.UnableToConnectException;
+//import exceptions.EntryNotFoundException;
+//import exceptions.UnableToConnectException;
 import model.Element;
 
 import java.util.ArrayList;
@@ -13,17 +13,16 @@ import java.util.List;
 public class ElementMapper {
     public static Element[] getAllElements() throws ElementNotFoundException {
         List<ChemicalDTO> chemicals = null;
-        List<ElementDTO> elements = null;
+        List<ChemicalDTO> elements = null;
         try {
             chemicals = ChemicalTableDataGateway.getAllChemicals();
-            elements = ElementTableDataGateway.getAllElements();
         } catch (UnableToConnectException e) {
             throw new ElementNotFoundException();
         }
         List<Element> temp = new ArrayList<Element>();
 
         for (int i = 0; i < elements.size(); i++) {
-            ElementDTO element = elements.get(i);
+            ChemicalDTO element = elements.get(i);
             String name = null;
 
             for (int j = 0; j < chemicals.size(); j++) {
@@ -48,10 +47,8 @@ public class ElementMapper {
      * into my instance variable
      */
     public ElementMapper(String name, int atomicNumber, double atomicMass) throws ElementNotFoundException {
-        ChemicalRowDataGateway chemical = null; //Creating chemical in database.
         try {
-            chemical = ChemicalRowDataGateway.createChemicalRowDataGateway(name);
-            new ElementRowDataGateway(chemical.getId(), atomicNumber, atomicMass); //using already created chemical to create element in database.
+            ChemicalRowDataGateway chemical = new ChemicalRowDataGateway(name, atomicNumber, atomicMass, 0, 0, Type.ELEMENT);
         } catch (Exception e) {
             throw new ElementNotFoundException();
         }
@@ -68,18 +65,11 @@ public class ElementMapper {
         ChemicalRowDataGateway chemical = null;
         try {
             chemical = new ChemicalRowDataGateway(name);
-        } catch (EntryNotFoundException e) {
-            throw new ElementNotFoundException();
-        }
-
-        ElementRowDataGateway element = null;
-        try {
-            element = new ElementRowDataGateway(chemical.getId());
         } catch (Exception e) {
             throw new ElementNotFoundException();
         }
 
-        myElement = new Element(name, (int) element.getAtomicNumber(), element.getAtomicMass(), this);
+        myElement = new Element(name, (int) chemical.getAtomicNumber(), chemical.getAtomicMass(), this);
     }
 
     public Element getMyElement() {
@@ -92,12 +82,9 @@ public class ElementMapper {
      */
     public void deleteElement(String name) throws ElementNotFoundException {
         ChemicalRowDataGateway chemical = null;
-        ElementRowDataGateway element = null;
         try {
             chemical = new ChemicalRowDataGateway(name);
-            element = new ElementRowDataGateway(chemical.getId());
             chemical.delete();
-            element.delete();
         } catch (Exception e) {
             throw new ElementNotFoundException();
         }
@@ -106,16 +93,13 @@ public class ElementMapper {
     public void persistElement(Element newElement) throws ElementNotFoundException {
 
         ChemicalRowDataGateway chemical = null;
-        ElementRowDataGateway element = null;
         try {
             chemical = new ChemicalRowDataGateway(myElement.getNameBefore());
-            element = new ElementRowDataGateway(chemical.getId());
             chemical.setName(newElement.getName());
-            element.setAtomicNumber(newElement.getAtomicNumber());
-            element.setAtomicMass(newElement.getAtomicMass());
+            chemical.setAtomicNumber(newElement.getAtomicNumber());
+            chemical.setAtomicMass(newElement.getAtomicMass());
 
             chemical.persist();
-            element.persist();
         } catch (Exception e) {
             throw new ElementNotFoundException();
         }
@@ -132,7 +116,7 @@ public class ElementMapper {
     public static Element[] getElementsBetweenRange(int start, int end) throws ElementNotFoundException {
         List<Element> elements = new ArrayList<Element>();
         try {
-            List<ElementDTO> elementDTOs = ElementTableDataGateway.getElementsBetweenRange(start, end);
+            List<ChemicalDTO> elementDTOs = ChemicalTableDataGateway.getElementsBetweenRange(start, end);
 
             List<Long> ElementIDs = new ArrayList<Long>();
 

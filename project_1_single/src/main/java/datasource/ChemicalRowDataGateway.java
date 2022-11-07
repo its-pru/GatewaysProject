@@ -21,9 +21,10 @@ public class ChemicalRowDataGateway {
     Type type;
 
     private static final String updateCreateString = "INSERT INTO Chemical" + " set name = ?, atomicNumber = ?, atomicMass = ?, solute = ?, dissolvedBy = ?, type = ?";
-    private static final String updateFinderString = "SELECT * FROM Chemical WHERE id = ?";
+    private static final String updateFinderString = "SELECT * FROM Chemical WHERE name = ?";
     private static final String entryUpdateString = "UPDATE Chemical SET name = ?, atomicNumber = ?, atomicMass = ?, solute = ?, dissolvedBy = ?, type = ? WHERE ID = ?";
     private static final String existsString = "SELECT * FROM Chemical WHERE name = ? OR atomicNumber = ? OR atomicMass = ?";
+    public static final String nameFromID = "SELECT * FROM Chemical WHERE id = ?";
 
     JDBC jdbc = JDBC.getJDBC();
 
@@ -74,15 +75,15 @@ public class ChemicalRowDataGateway {
     /**
      * Finder Constructor for chemical row data gateway
      *
-     * @param id - id of the chemical we are searching for
+     * @param name - name of the chemical we are searching for
      * @throws Exception - exception when unable to connect to DB or when user trues to create duplicates
      */
-    public ChemicalRowDataGateway(long id) throws Exception {
+    public ChemicalRowDataGateway(String name) throws Exception {
         try {
             PreparedStatement findStatement = null;
             findStatement = jdbc.getConnect().prepareStatement(updateFinderString, ResultSet.TYPE_SCROLL_SENSITIVE,
                     ResultSet.CONCUR_UPDATABLE);
-            findStatement.setLong(1, id);
+            findStatement.setString(1, name);
             findStatement.execute();
             ResultSet results = findStatement.getResultSet();
 
@@ -96,8 +97,7 @@ public class ChemicalRowDataGateway {
             this.dissolvedBy = results.getLong("dissolvedBy");
             this.type = Type.valueOf(results.getString("type"));
         } catch (SQLException e) {
-            e.printStackTrace();
-            //throw new EntryNotFoundException("Could not find an entry for this ID");
+            throw new EntryNotFoundException("Could not find an entry for this ID");
         }
     }
 
@@ -175,6 +175,15 @@ public class ChemicalRowDataGateway {
             throw new UnableToConnectException("Unable to check if value exists. Check network connection and try again");
         }
 
+    }
+
+    public static String getNameFromID(long id) throws SQLException {
+        PreparedStatement stmt = JDBC.getJDBC().getConnect().prepareStatement(nameFromID, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+        stmt.setLong(1, id);
+        stmt.execute();
+        ResultSet results = stmt.getResultSet();
+        results.first();
+        return results.getString("name");
     }
 
     /**

@@ -79,4 +79,6 @@ public class ChemicalDTO {
     public long getSolute() {
         return solute;
     }
+
+    public long getID() {return ID;}
 }

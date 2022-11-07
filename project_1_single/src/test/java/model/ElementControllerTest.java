@@ -2,9 +2,9 @@ package model;
 
 import datasource.ChemicalTableDataGateway;
 import Exceptions.UnableToConnectException;
-import model.Controller.CompoundController;
+//import model.Controller.CompoundController;
 import model.Controller.ElementController;
-import model.Mapper.CompoundMapper;
+//import model.Mapper.CompoundMapper;
 import model.Mapper.ElementMapper;
 import model.Mapper.ElementNotFoundException;
 import org.jetbrains.annotations.NotNull;
@@ -204,7 +204,6 @@ public class ElementControllerTest {
             }
         }
     }
-
     @Test
     public void canGetAllCompoundsContainingElement() throws Exception {
         new ElementMapper("Hydrogen", 1, 2.1);
