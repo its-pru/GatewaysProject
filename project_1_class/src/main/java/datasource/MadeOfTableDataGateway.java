@@ -30,7 +30,7 @@ public class MadeOfTableDataGateway {
      * @param CompoundID - id being searched for
      * @throws Exception - throws when compound isnt found
      */
-    public static List<String> findElements(long CompoundID) throws Exception{
+    public static List<String> findElements(long CompoundID) throws EntryNotFoundException{
         try {
             JDBC jdbc = JDBC.getJDBC();
             PreparedStatement stmt = jdbc.getConnect().prepareStatement(getElementIDs);
@@ -50,7 +50,6 @@ public class MadeOfTableDataGateway {
             return names;
 
         } catch (SQLException e) {
-            e.printStackTrace();
             throw new EntryNotFoundException("This Compound could not be found");
         }
 
@@ -63,7 +62,7 @@ public class MadeOfTableDataGateway {
      * @return - boolean if this is successful or not
      * @throws Exception - throws when element isnt found
      */
-    public static List<String> findCompounds(long elementID) throws Exception {
+    public static List<String> findCompounds(long elementID) throws EntryNotFoundException {
         //get list of DTO's (compounds) that have a certain element in it.
         try {
             JDBC jdbc = JDBC.getJDBC();
@@ -88,7 +87,6 @@ public class MadeOfTableDataGateway {
             return names;
 
         } catch (SQLException e) {
-            e.printStackTrace();
             throw new EntryNotFoundException("Compounds could not be found");
         }
     }
@@ -100,7 +98,7 @@ public class MadeOfTableDataGateway {
      * @param elementID - id of an element the compound is made of
      * @throws Exception - throws when breaks foreign key rules
      */
-    public static void CreateNewCompound(long compoundID, long elementID) throws Exception {
+    public static void CreateNewCompound(long compoundID, long elementID) throws SQLException {
         //creates a new compound entry with its elements
         try {
                 PreparedStatement stmt = JDBC.getJDBC().getConnect().prepareStatement(createNewCompound);
@@ -109,7 +107,7 @@ public class MadeOfTableDataGateway {
                 stmt.execute();
 
         } catch (SQLException e) {
-            e.printStackTrace();
+
         }
     }
 
@@ -120,7 +118,7 @@ public class MadeOfTableDataGateway {
      * @return - boolean whether successful or not
      * @throws Exception - Throws when entry could not be found
      */
-    public static void deleteElements(long id) throws Exception {
+    public static void deleteElements(long id) throws EntryNotFoundException {
         //delete all elements in a certain compound
         //DELETE
         Statement deleteStatement = null;
@@ -131,7 +129,6 @@ public class MadeOfTableDataGateway {
             deleteStatement.execute(deleteString);
 
         } catch (SQLException entryNotFound) {
-            entryNotFound.printStackTrace();
             throw new EntryNotFoundException("Could not find entry with this id");
         }
     }
@@ -143,7 +140,7 @@ public class MadeOfTableDataGateway {
      * @return - boolean whether successful or not
      * @throws Exception - throws when entry for element isn't found
      */
-    public static void deleteCompounds(long id) throws Exception {
+    public static void deleteCompounds(long id) throws EntryNotFoundException {
         Statement deleteStatement = null;
         try {
             JDBC jdbc = JDBC.getJDBC();
@@ -152,7 +149,6 @@ public class MadeOfTableDataGateway {
             deleteStatement.execute(deleteString);
 
         } catch (SQLException entryNotFound) {
-            entryNotFound.printStackTrace();
             throw new EntryNotFoundException("Could not find entry with this id");
         }
     }

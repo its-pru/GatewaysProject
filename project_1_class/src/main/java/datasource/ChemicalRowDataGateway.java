@@ -112,7 +112,7 @@ public class ChemicalRowDataGateway {
      * @return - true if it already exists
      * @throws Exception - unable to check the database at all
      */
-    private boolean exists(String name) throws Exception {
+    private boolean exists(String name) throws UnableToConnectException {
         try {
             PreparedStatement stmt = JDBC.getJDBC().getConnect().prepareStatement(existsQuery);
             stmt.setString(1, name);

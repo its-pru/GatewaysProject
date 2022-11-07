@@ -1,6 +1,8 @@
 package model.Controller;
 
 import datasource.ChemicalRowDataGateway;
+import datasource.MadeOfTableDataGateway;
+import exceptions.CompoundNotFoundException;
 import exceptions.EntryNotFoundException;
 import model.Mapper.CompoundMapper;
 import model.Mapper.ElementMapper;
@@ -8,31 +10,37 @@ import java.util.ArrayList;
 import java.util.List;
 import model.Compound;
 import model.Element;
+import model.Mapper.ElementNotFoundException;
 
 public class CompoundController {
     private Compound myCompound;
 
-    public CompoundController(String name) throws Exception {
+    public CompoundController(String name) throws CompoundNotFoundException {
         CompoundMapper mapper = new CompoundMapper(name);
+
         myCompound = mapper.getMyCompound();
         //Find Mapper in DB
     }
 
-    public static void delete(String hCl) throws EntryNotFoundException {
-        CompoundMapper.deleteCompound(hCl);
+    public static void delete(String hCl) throws CompoundNotFoundException {
+        try {
+            CompoundMapper.deleteCompound(hCl);
+        } catch (Exception e) {
+            throw new CompoundNotFoundException();
+        }
     }
 
-    public static void createCompound(String water) throws Exception {
+    public static void createCompound(String water) throws CompoundNotFoundException {
         CompoundMapper.createCompound(water);
     }
 
-    public void addElement(String name) throws Exception {
+    public void addElement(String name) throws CompoundNotFoundException, ElementNotFoundException {
         CompoundMapper mapper = new CompoundMapper(myCompound.getName());
         mapper.addElement(name);
         myCompound.addElement(name);
     }
 
-    public double getAtomicMass() throws Exception {
+    public double getAtomicMass() throws ElementNotFoundException {
         List<String> madeOf = myCompound.getMadeOf();
         double atomicMass = 0;
         for(int i = 0; i < madeOf.size();i++){
@@ -43,8 +51,9 @@ public class CompoundController {
         return atomicMass;
     }
 
-    public List<String> getElements() {
-        return myCompound.getMadeOf();
+    public List<String> getElements() throws CompoundNotFoundException {
+        CompoundMapper mapper = new CompoundMapper(myCompound.getName());
+        return mapper.getMadeOf();
     }
 
     public void setName(String sulfuric_base) {
