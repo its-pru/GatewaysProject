@@ -2,6 +2,7 @@ package datasource;
 
 import DTO.ChemicalDTO;
 import DTO.MadeOfDTO;
+import Exceptions.UnableToConnectException;
 
 import java.sql.PreparedStatement;
 import java.sql.Statement;
@@ -73,5 +74,17 @@ public class ChemicalTableDataGateway {
 
         return sb.toString();
     }
+
+    public static void rollback() throws UnableToConnectException {
+        try {
+            PreparedStatement delete = JDBC.getJDBC().getConnect().prepareStatement("DELETE FROM chemical");
+            delete.execute();
+            PreparedStatement reset = JDBC.getJDBC().getConnect().prepareStatement("ALTER TABLE chemical AUTO_INCREMENT = 1");
+            reset.execute();
+        } catch (SQLException e) {
+            throw new UnableToConnectException("Unable to rollback database");
+        }
+    }
+
 
 }
