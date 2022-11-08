@@ -1,7 +1,8 @@
 package model;
 
+import exceptions.ElementNotFoundException;
 import model.Mapper.ElementMapper;
-import model.Mapper.ElementNotFoundException;
+
 
 public class Element extends Chemical
 {

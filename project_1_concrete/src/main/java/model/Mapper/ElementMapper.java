@@ -15,6 +15,11 @@ import java.util.List;
 public class ElementMapper {
     Element myElement;
 
+    /**
+     * Constructor for ElementMapper Finds myElement using Name, AtomicNumber, AtomicMass
+     * @param name
+     * @throws ElementNotFoundException
+     */
     public ElementMapper(String name) throws ElementNotFoundException {
         ElementRowDataGateway ERDG;
         try {
@@ -26,6 +31,13 @@ public class ElementMapper {
         myElement = new Element(ERDG.getName(), (int) ERDG.getAtomicNumber(), ERDG.getAtomicMass(), this);
     }
 
+    /**
+     * Contructor for ElementMapper to create myElement and set name, atomicNumber, and atomicMass
+     * @param name
+     * @param atomicNumber
+     * @param atomicMass
+     * @throws ElementNotFoundException
+     */
     public ElementMapper(String name, int atomicNumber, double atomicMass) throws ElementNotFoundException {
         myElement = new Element(name, (int) atomicNumber, atomicMass, this);
         try {
@@ -35,6 +47,13 @@ public class ElementMapper {
         }
     }
 
+    /**
+     * Retreive the elemts between the ranges of start and end
+     * @param start
+     * @param end
+     * @return elemets
+     * @throws ElementNotFoundException
+     */
     public static Element[] getElementsBetweenRange(int start, int end) throws ElementNotFoundException {
         List<Long> range = new ArrayList<>();
         for (long j = start; j <= end; j++) {
@@ -56,6 +75,11 @@ public class ElementMapper {
         return elements;
     }
 
+    /**
+     * Get all elements from the DTOList
+     * @return
+     * @throws ElementNotFoundException
+     */
     public static Element[] getAllElements() throws ElementNotFoundException {
         List<ElementDTO> DTOList = null;
         try {
@@ -73,6 +97,12 @@ public class ElementMapper {
         return elements;
     }
 
+    /**
+     * Get all compounds by name using RowDataGateways
+     * @param name
+     * @return
+     * @throws Exception
+     */
     public static List<String> getCompounds(String name) throws Exception {
         List<String> names = new ArrayList<>();
         ElementRowDataGateway element = new ElementRowDataGateway(name);
@@ -89,7 +119,11 @@ public class ElementMapper {
         return names;
     }
 
-
+    /**
+     * Delete element by name using RowDataGateway
+     * @param name
+     * @throws ElementNotFoundException
+     */
     public void deleteElement(String name) throws ElementNotFoundException {
         try {
             ElementRowDataGateway.delete(name);
@@ -102,6 +136,11 @@ public class ElementMapper {
         return myElement;
     }
 
+    /**
+     * Enter an element into the database using RowDataGateway
+     * @param element
+     * @throws ElementNotFoundException
+     */
     public void persistElement(Element element) throws ElementNotFoundException {
         try {
             ElementRowDataGateway e = new ElementRowDataGateway(element.getNameBefore());

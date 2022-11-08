@@ -1,18 +1,20 @@
 package model.Mapper;
 
 import DTO.ChemicalDTO;
-import exceptions.AlreadyExistsException;
-import exceptions.EntryNotFoundException;
+import exceptions.ElementNotFoundException;
 import exceptions.UnableToConnectException;
 import datasource.*;
-//import exceptions.EntryNotFoundException;
-//import exceptions.UnableToConnectException;
 import model.Element;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class ElementMapper {
+    /**
+     * Grabs all elements from the data source
+     *
+     * @return
+     * @throws ElementNotFoundException
+     */
     public static Element[] getAllElements() throws ElementNotFoundException {
         List<ChemicalDTO> chemicals = null;
         try {
@@ -44,8 +46,12 @@ public class ElementMapper {
 
 
     /**
-     * Create a new element in the database, and store the resulting model object
-     * into my instance variable
+     * Constructor for new objects
+     *
+     * @param name
+     * @param atomicNumber
+     * @param atomicMass
+     * @throws ElementNotFoundException
      */
     public ElementMapper(String name, int atomicNumber, double atomicMass) throws ElementNotFoundException {
         try {
@@ -60,7 +66,7 @@ public class ElementMapper {
     /**
      * Constructor for objects that exist in the db
      *
-     * @param name
+     * @param name name of the element
      */
     public ElementMapper(String name) throws ElementNotFoundException {
         ChemicalRowDataGateway chemical = null;
@@ -78,8 +84,10 @@ public class ElementMapper {
     }
 
     /**
-     * @param name
-     * @throws Exception I think this is how deleting an Element would look.
+     * Deletes element from the data source
+     *
+     * @param name name of the element
+     * @throws ElementNotFoundException
      */
     public void deleteElement(String name) throws ElementNotFoundException {
         ChemicalRowDataGateway chemical = null;

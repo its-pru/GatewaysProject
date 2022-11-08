@@ -1,66 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="@db.cs.ship.edu">
   <database-model serializer="dbm" dbms="MYSQL" family-id="MYSQL" format-version="4.43">
-    <root id="1">
-      <DefaultCasing>exact</DefaultCasing>
-      <DefaultEngine>InnoDB</DefaultEngine>
-      <DefaultTmpEngine>InnoDB</DefaultTmpEngine>
-      <Grants>swe400_21|schema||swe400_2||ALTER|G
-swe400_21|schema||swe400_2||ALTER ROUTINE|G
-swe400_21|schema||swe400_2||CREATE|G
-swe400_21|schema||swe400_2||CREATE ROUTINE|G
-swe400_21|schema||swe400_2||CREATE TEMPORARY TABLES|G
-swe400_21|schema||swe400_2||CREATE VIEW|G
-swe400_21|schema||swe400_2||DELETE|G
-swe400_21|schema||swe400_2||DROP|G
-swe400_21|schema||swe400_2||EVENT|G
-swe400_21|schema||swe400_2||EXECUTE|G
-swe400_21|schema||swe400_2||INDEX|G
-swe400_21|schema||swe400_2||INSERT|G
-swe400_21|schema||swe400_2||LOCK TABLES|G
-swe400_21|schema||swe400_2||REFERENCES|G
-swe400_21|schema||swe400_2||SELECT|G
-swe400_21|schema||swe400_2||SHOW VIEW|G
-swe400_21|schema||swe400_2||TRIGGER|G
-swe400_21|schema||swe400_2||UPDATE|G
-swe400_22|schema||swe400_2||ALTER|G
-swe400_22|schema||swe400_2||ALTER ROUTINE|G
-swe400_22|schema||swe400_2||CREATE|G
-swe400_22|schema||swe400_2||CREATE ROUTINE|G
-swe400_22|schema||swe400_2||CREATE TEMPORARY TABLES|G
-swe400_22|schema||swe400_2||CREATE VIEW|G
-swe400_22|schema||swe400_2||DELETE|G
-swe400_22|schema||swe400_2||DROP|G
-swe400_22|schema||swe400_2||EVENT|G
-swe400_22|schema||swe400_2||EXECUTE|G
-swe400_22|schema||swe400_2||INDEX|G
-swe400_22|schema||swe400_2||INSERT|G
-swe400_22|schema||swe400_2||LOCK TABLES|G
-swe400_22|schema||swe400_2||REFERENCES|G
-swe400_22|schema||swe400_2||SELECT|G
-swe400_22|schema||swe400_2||SHOW VIEW|G
-swe400_22|schema||swe400_2||TRIGGER|G
-swe400_22|schema||swe400_2||UPDATE|G
-swe400_23|schema||swe400_2||ALTER|G
-swe400_23|schema||swe400_2||ALTER ROUTINE|G
-swe400_23|schema||swe400_2||CREATE|G
-swe400_23|schema||swe400_2||CREATE ROUTINE|G
-swe400_23|schema||swe400_2||CREATE TEMPORARY TABLES|G
-swe400_23|schema||swe400_2||CREATE VIEW|G
-swe400_23|schema||swe400_2||DELETE|G
-swe400_23|schema||swe400_2||DROP|G
-swe400_23|schema||swe400_2||EVENT|G
-swe400_23|schema||swe400_2||EXECUTE|G
-swe400_23|schema||swe400_2||INDEX|G
-swe400_23|schema||swe400_2||INSERT|G
-swe400_23|schema||swe400_2||LOCK TABLES|G
-swe400_23|schema||swe400_2||REFERENCES|G
-swe400_23|schema||swe400_2||SELECT|G
-swe400_23|schema||swe400_2||SHOW VIEW|G
-swe400_23|schema||swe400_2||TRIGGER|G
-swe400_23|schema||swe400_2||UPDATE|G</Grants>
-      <ServerVersion>8.0.25</ServerVersion>
-    </root>
+    <root id="1"/>
     <collation id="2" parent="1" name="armscii8_general_ci">
       <Charset>armscii8</Charset>
       <DefaultForCharset>1</DefaultForCharset>

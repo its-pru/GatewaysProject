@@ -15,13 +15,22 @@ import model.Mapper.ElementNotFoundException;
 public class CompoundController {
     private Compound myCompound;
 
+    /**
+     *Constructor for Compound Controller. Creates mapper object sets compound model object variables.
+     * @param name
+     * @throws CompoundNotFoundException
+     */
     public CompoundController(String name) throws CompoundNotFoundException {
         CompoundMapper mapper = new CompoundMapper(name);
 
         myCompound = mapper.getMyCompound();
-        //Find Mapper in DB
     }
 
+    /**
+     * deletes Compound from database by calling the mappers deleteCompound.
+     * @param hCl
+     * @throws CompoundNotFoundException
+     */
     public static void delete(String hCl) throws CompoundNotFoundException {
         try {
             CompoundMapper.deleteCompound(hCl);
@@ -30,16 +39,32 @@ public class CompoundController {
         }
     }
 
+    /**
+     * creates Compound in database by calling createCompound with the mapper object.
+     * @param water
+     * @throws CompoundNotFoundException
+     */
     public static void createCompound(String water) throws CompoundNotFoundException {
         CompoundMapper.createCompound(water);
     }
 
+    /**
+     * adds element to compound by creating mapper and calling its addElement() method.
+     * @param name
+     * @throws CompoundNotFoundException
+     * @throws ElementNotFoundException
+     */
     public void addElement(String name) throws CompoundNotFoundException, ElementNotFoundException {
         CompoundMapper mapper = new CompoundMapper(myCompound.getName());
         mapper.addElement(name);
         myCompound.addElement(name);
     }
 
+    /**
+     * gets atomic mass of whole compound
+     * @return atomic mass of whole compound
+     * @throws ElementNotFoundException
+     */
     public double getAtomicMass() throws ElementNotFoundException {
         List<String> madeOf = myCompound.getMadeOf();
         double atomicMass = 0;
@@ -51,6 +76,11 @@ public class CompoundController {
         return atomicMass;
     }
 
+    /**
+     * getting the names of the elements that make up the compound.
+     * @return list of strings of elements that make up a compound.
+     * @throws CompoundNotFoundException
+     */
     public List<String> getElements() throws CompoundNotFoundException {
         CompoundMapper mapper = new CompoundMapper(myCompound.getName());
         return mapper.getMadeOf();
@@ -60,7 +90,6 @@ public class CompoundController {
         myCompound.setName(sulfuric_base);
     }
 
-    //TODO: ponder changing return type to Compound
     public Compound getMyCompound() {
         return myCompound;
     }

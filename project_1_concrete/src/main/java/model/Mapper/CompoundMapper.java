@@ -17,6 +17,11 @@ import java.util.List;
 public class CompoundMapper {
     Compound myCompound;
 
+    /**
+     * Constructor for CompoundMapper to find myCompound by name
+     * @param name
+     * @throws CompoundNotFoundException
+     */
     public CompoundMapper(String name) throws CompoundNotFoundException {
         CompoundRowDataGateway compound;
         try {
@@ -29,6 +34,11 @@ public class CompoundMapper {
         }
     }
 
+    /**
+     * Create compound bu name using RowDataGateway
+     * @param name
+     * @throws CompoundNotFoundException
+     */
     public static void createCompound(String name) throws CompoundNotFoundException {
         try {
             CompoundRowDataGateway.createCompound(name);
@@ -37,6 +47,11 @@ public class CompoundMapper {
         }
     }
 
+    /**
+     * Delete compound by name using RowDataGateway
+     * @param name
+     * @throws Exception
+     */
     public static void deleteCompound(String name) throws Exception {
         try {
             CompoundRowDataGateway gateway = new CompoundRowDataGateway(name);
@@ -46,6 +61,12 @@ public class CompoundMapper {
         }
     }
 
+    /**
+     * Add element by name using RowDataGateways
+     * @param name
+     * @throws ElementNotFoundException
+     * @throws CompoundNotFoundException
+     */
     public void addElement(String name) throws ElementNotFoundException, CompoundNotFoundException {
         ElementRowDataGateway ERDG;
         CompoundRowDataGateway CRDG;

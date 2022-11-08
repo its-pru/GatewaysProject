@@ -2,12 +2,12 @@ package model;
 
 import datasource.ChemicalTableDataGateway;
 import exceptions.CompoundNotFoundException;
+import exceptions.ElementNotFoundException;
 import exceptions.UnableToConnectException;
 import model.Controller.CompoundController;
 import model.Controller.ElementController;
 import model.Mapper.CompoundMapper;
 import model.Mapper.ElementMapper;
-import model.Mapper.ElementNotFoundException;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 

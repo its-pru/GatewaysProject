@@ -1,4 +1,4 @@
-package model.Mapper;
+package exceptions;
 
 public class ElementNotFoundException extends Exception
 {

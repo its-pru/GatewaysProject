@@ -14,7 +14,11 @@ import java.util.List;
 
 public class CompoundMapper {
     Compound myCompound;
-
+    /**
+     * Constructor for CompoundMapper to find myCompound by name
+     * @param name
+     * @throws CompoundNotFoundException
+     */
     public CompoundMapper(String name) throws CompoundNotFoundException {
         ChemicalRowDataGateway compound = null;
         try {
@@ -25,7 +29,11 @@ public class CompoundMapper {
             throw new CompoundNotFoundException();
         }
     }
-
+    /**
+     * Create compound bu name using RowDataGateway
+     * @param name
+     * @throws CompoundNotFoundException
+     */
     public static void createCompound(String name) throws CompoundNotFoundException {
         try {
             ChemicalRowDataGateway.createChemicalRowDataGateway(name);
@@ -34,10 +42,23 @@ public class CompoundMapper {
         }
     }
 
+    /**
+     * Deletes compound in the data source
+     * @param name
+     * @throws EntryNotFoundException
+     * @throws SQLException
+     */
     public static void deleteCompound(String name) throws EntryNotFoundException, SQLException {
         ChemicalRowDataGateway gateway = new ChemicalRowDataGateway(name);
         gateway.delete();
     }
+
+    /**
+     * Adds element to the compound
+     * @param name
+     * @throws ElementNotFoundException
+     * @throws CompoundNotFoundException
+     */
     public void addElement(String name) throws ElementNotFoundException, CompoundNotFoundException {
         ChemicalRowDataGateway element = null;
         try {

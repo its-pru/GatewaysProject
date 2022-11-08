@@ -11,6 +11,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ElementMapper {
+    /**
+     * Grabs all elements in the data source
+     *
+     * @return list of elements
+     * @throws ElementNotFoundException
+     */
     public static Element[] getAllElements() throws ElementNotFoundException {
         List<ChemicalDTO> chemicals = null;
         List<ElementDTO> elements = null;
@@ -44,8 +50,12 @@ public class ElementMapper {
 
 
     /**
-     * Create a new element in the database, and store the resulting model object
-     * into my instance variable
+     * Constructor for elements that do not exist in the data source
+     *
+     * @param name
+     * @param atomicNumber
+     * @param atomicMass
+     * @throws ElementNotFoundException
      */
     public ElementMapper(String name, int atomicNumber, double atomicMass) throws ElementNotFoundException {
         ChemicalRowDataGateway chemical = null; //Creating chemical in database.
@@ -60,7 +70,7 @@ public class ElementMapper {
     }
 
     /**
-     * Constructor for objects that exist in the db
+     * Constructor for objects that exist in the data source
      *
      * @param name
      */
@@ -87,6 +97,7 @@ public class ElementMapper {
     }
 
     /**
+     * Delete element by name using RowDataGateways
      * @param name
      * @throws Exception I think this is how deleting an Element would look.
      */
@@ -103,6 +114,12 @@ public class ElementMapper {
         }
     }
 
+    /**
+     * Saves the element in the data source
+     *
+     * @param newElement
+     * @throws ElementNotFoundException
+     */
     public void persistElement(Element newElement) throws ElementNotFoundException {
 
         ChemicalRowDataGateway chemical = null;

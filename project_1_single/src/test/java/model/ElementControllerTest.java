@@ -1,6 +1,7 @@
 package model;
 
 import datasource.ChemicalTableDataGateway;
+import exceptions.ElementNotFoundException;
 import exceptions.UnableToConnectException;
 //import model.Controller.CompoundController;
 import model.Controller.CompoundController;
@@ -8,7 +9,6 @@ import model.Controller.ElementController;
 //import model.Mapper.CompoundMapper;
 import model.Mapper.CompoundMapper;
 import model.Mapper.ElementMapper;
-import model.Mapper.ElementNotFoundException;
 import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
@@ -206,45 +206,45 @@ public class ElementControllerTest {
             }
         }
     }
-//    @Test
-//    public void canGetAllCompoundsContainingElement() throws Exception {
-//        new ElementMapper("Hydrogen", 1, 2.1);
-//        new ElementMapper("Oxygen", 8, 15.99);
-//        new ElementMapper("Sodium", 11, 22.990);
-//
-//        CompoundMapper.createCompound("Water");
-//        CompoundController waterController = new CompoundController("Water");
-//        waterController.addElement("Hydrogen");
-//        waterController.addElement("Hydrogen");
-//        waterController.addElement("Oxygen");
-//
-//        CompoundMapper.createCompound("Sodium Hydroxide");
-//        CompoundController h2SController = new CompoundController("Sodium Hydroxide");
-//        h2SController.addElement("Hydrogen");
-//        h2SController.addElement("Oxygen");
-//        h2SController.addElement("Sodium");
-//
-//        // Now check that we can retrieve the compounds made of an element
-//        //Simple case: only one compound
-//        ElementController sodiumController = new ElementController("Sodium");
-//        List<String> compoundNames = sodiumController.getCompoundsContaining();
-//        assertEquals(1, compoundNames.size());
-//        assertTrue(compoundNames.contains("Sodium Hydroxide"));
-//
-//        // Case: More than one compound
-//        ElementController oxygenController = new ElementController("Oxygen");
-//        compoundNames = oxygenController.getCompoundsContaining();
-//        assertEquals(2, compoundNames.size());
-//        assertTrue(compoundNames.contains("Water"));
-//        assertTrue(compoundNames.contains("Sodium Hydroxide"));
-//
-//        // Case: Names shouldn't be duplicated
-//        ElementController hydrogenController = new ElementController("Hydrogen");
-//        compoundNames = hydrogenController.getCompoundsContaining();
-//        assertEquals(2, compoundNames.size());
-//        assertTrue(compoundNames.contains("Water"));
-//        assertTrue(compoundNames.contains("Sodium Hydroxide"));
-//    }
+    @Test
+    public void canGetAllCompoundsContainingElement() throws Exception {
+        new ElementMapper("Hydrogen", 1, 2.1);
+        new ElementMapper("Oxygen", 8, 15.99);
+        new ElementMapper("Sodium", 11, 22.990);
+
+        CompoundMapper.createCompound("Water");
+        CompoundController waterController = new CompoundController("Water");
+        waterController.addElement("Hydrogen");
+        waterController.addElement("Hydrogen");
+        waterController.addElement("Oxygen");
+
+        CompoundMapper.createCompound("Sodium Hydroxide");
+        CompoundController h2SController = new CompoundController("Sodium Hydroxide");
+        h2SController.addElement("Hydrogen");
+        h2SController.addElement("Oxygen");
+        h2SController.addElement("Sodium");
+
+        // Now check that we can retrieve the compounds made of an element
+        //Simple case: only one compound
+        ElementController sodiumController = new ElementController("Sodium");
+        List<String> compoundNames = sodiumController.getCompoundsContaining();
+        assertEquals(1, compoundNames.size());
+        assertTrue(compoundNames.contains("Sodium Hydroxide"));
+
+        // Case: More than one compound
+        ElementController oxygenController = new ElementController("Oxygen");
+        compoundNames = oxygenController.getCompoundsContaining();
+        assertEquals(2, compoundNames.size());
+        assertTrue(compoundNames.contains("Water"));
+        assertTrue(compoundNames.contains("Sodium Hydroxide"));
+
+        // Case: Names shouldn't be duplicated
+        ElementController hydrogenController = new ElementController("Hydrogen");
+        compoundNames = hydrogenController.getCompoundsContaining();
+        assertEquals(2, compoundNames.size());
+        assertTrue(compoundNames.contains("Water"));
+        assertTrue(compoundNames.contains("Sodium Hydroxide"));
+    }
 
     private void fillDBWithSequentialRecords(int firstAtomicNumber,
                                              int lastAtomicNumber) throws ElementNotFoundException {
