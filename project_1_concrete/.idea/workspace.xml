@@ -5,22 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8e32a31b-afee-4a76-b74b-64a093499b5d" name="Changes" comment="Working on elementMapper">
-      <change afterPath="$PROJECT_DIR$/src/main/java/model/Chemical.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/datasource/CompoundRowDataGateway.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/datasource/CompoundRowDataGateway.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/datasource/ElementRowDataGateway.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/datasource/ElementRowDataGateway.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/datasource/ElementTableDataGateway.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/datasource/ElementTableDataGateway.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/datasource/MadeOfTableDataGateway.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/datasource/MadeOfTableDataGateway.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Compound.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Compound.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Controller/CompoundController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Controller/CompoundController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Controller/ElementController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Controller/ElementController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Element.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Element.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/Mapper/CompoundMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Mapper/CompoundMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Mapper/ElementMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Mapper/ElementMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/datasource/ElementTableDataGatewayTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/datasource/ElementTableDataGatewayTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/model/ElementControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/ElementControllerTest.java" afterDir="false" />
     </list>
+    <list id="25a58a73-f554-493d-b2bb-a54fa9de4148" name="Changes by Evan" comment="" />
+    <list id="e0dfc662-6904-4732-a65f-d774ed8ed506" name="Changes by socce" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -47,29 +37,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "last_opened_file_path": "/home/crimsin/IdeaProjects/SWE400F20222/project_1_concrete",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Problems",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/crimsin/IdeaProjects/SWE400F20222/project_1_concrete&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Problems&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
     ]
   }
-}]]></component>
-  <component name="RunManager" selected="JUnit.CompoundControllerTest.correctAtomicWeight">
+}</component>
+  <component name="RunManager" selected="JUnit.CompoundControllerTest">
     <configuration name="CompoundControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="project_1_concrete" />
       <extension name="coverage">
@@ -150,8 +141,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.CompoundControllerTest.correctAtomicWeight" />
         <item itemvalue="JUnit.CompoundControllerTest" />
+        <item itemvalue="JUnit.CompoundControllerTest.correctAtomicWeight" />
         <item itemvalue="JUnit.ElementControllerTest" />
         <item itemvalue="JUnit.ElementControllerTest.canGetAllCompoundsContainingElement" />
         <item itemvalue="JUnit.ElementControllerTest.canPersistEverythingExceptName" />
@@ -183,7 +174,8 @@
       <workItem from="1667751773970" duration="7635000" />
       <workItem from="1667859490403" duration="3740000" />
       <workItem from="1667863239456" duration="3362000" />
-      <workItem from="1667866983825" duration="13762000" />
+      <workItem from="1667866983825" duration="14063000" />
+      <workItem from="1667881249902" duration="759000" />
     </task>
     <task id="LOCAL-00001" summary="Created 4.5 of the gateways for Concrete Table Pattern">
       <created>1664977842398</created>
@@ -273,6 +265,15 @@
           <properties class="exceptions.CompoundNotFoundException" package="exceptions" />
           <option name="timeStamp" value="20" />
         </breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/test/java/model/CompoundControllerTest.java</url>
+          <line>180</line>
+          <properties class="model.CompoundControllerTest" method="correctAtomicWeight">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>

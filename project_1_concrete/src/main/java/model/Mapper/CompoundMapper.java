@@ -76,10 +76,12 @@ public class CompoundMapper {
             List<Long> elementIDs = MadeOfTableDataGateway.findElements(compound.getID());
             List<ElementDTO> elements = ElementTableDataGateway.getAllElements();
             List<String> elementNames = new ArrayList<>();
-            for (int i = 0; i < elements.size(); i++) {
-                ElementDTO temp = elements.get(i);
-                if (elementIDs.contains(temp.getID())) {
-                        elementNames.add(temp.getName());
+            for (int i = 0; i < elementIDs.size(); i++) {
+                long temp = elementIDs.get(i);
+                for (int j = 0; j < elements.size(); j++) {
+                    if (elements.get(j).getID() == temp) {
+                        elementNames.add(elements.get(j).getName());
+                    }
                 }
             }
             return elementNames;

@@ -117,7 +117,6 @@ public class MadeOfTableDataGateway {
         }catch (SQLException e){
             throw new UnableToConnectException("Unable to fetch results. Check connection and try again!");
         }
-
         return ElementIDs;
     }
 
