@@ -1,8 +1,8 @@
 package model;
 
 import datasource.ChemicalTableDataGateway;
-import Exceptions.CompoundNotFoundException;
-import Exceptions.UnableToConnectException;
+import exceptions.CompoundNotFoundException;
+import exceptions.UnableToConnectException;
 import model.Controller.CompoundController;
 import model.Controller.ElementController;
 import model.Mapper.CompoundMapper;

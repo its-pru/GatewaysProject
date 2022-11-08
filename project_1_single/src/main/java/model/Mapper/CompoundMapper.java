@@ -2,8 +2,8 @@ package model.Mapper;
 
 import datasource.ChemicalRowDataGateway;
 import datasource.MadeOfTableDataGateway;
-import Exceptions.CompoundNotFoundException;
-import Exceptions.EntryNotFoundException;
+import exceptions.CompoundNotFoundException;
+import exceptions.EntryNotFoundException;
 import model.Chemical;
 import model.Compound;
 
@@ -41,7 +41,7 @@ public class CompoundMapper {
         ChemicalRowDataGateway element = null;
         try {
             element = new ChemicalRowDataGateway(name);
-        } catch (EntryNotFoundException e) {
+        } catch (Exception e) {
             throw new ElementNotFoundException();
         }
         ChemicalRowDataGateway compound = null;

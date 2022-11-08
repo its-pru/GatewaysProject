@@ -1,10 +1,10 @@
 package model.Controller;
 
-import Exceptions.CompoundNotFoundException;
+import exceptions.CompoundNotFoundException;
 import datasource.ChemicalRowDataGateway;
 import datasource.MadeOfTableDataGateway;
-import Exceptions.CompoundNotFoundException;
-import Exceptions.EntryNotFoundException;
+import exceptions.CompoundNotFoundException;
+import exceptions.EntryNotFoundException;
 import model.Mapper.CompoundMapper;
 import model.Mapper.ElementMapper;
 import java.util.ArrayList;
