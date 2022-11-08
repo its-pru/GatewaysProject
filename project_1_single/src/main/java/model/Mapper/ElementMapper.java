@@ -1,7 +1,9 @@
 package model.Mapper;
 
 import DTO.ChemicalDTO;
-import exceptions.UnableToConnectException;
+import Exceptions.AlreadyExistsException;
+import Exceptions.EntryNotFoundException;
+import Exceptions.UnableToConnectException;
 import datasource.*;
 //import exceptions.EntryNotFoundException;
 //import exceptions.UnableToConnectException;
@@ -13,7 +15,6 @@ import java.util.List;
 public class ElementMapper {
     public static Element[] getAllElements() throws ElementNotFoundException {
         List<ChemicalDTO> chemicals = null;
-        List<ChemicalDTO> elements = null;
         try {
             chemicals = ChemicalTableDataGateway.getAllChemicals();
         } catch (UnableToConnectException e) {
@@ -21,8 +22,8 @@ public class ElementMapper {
         }
         List<Element> temp = new ArrayList<Element>();
 
-        for (int i = 0; i < elements.size(); i++) {
-            ChemicalDTO element = elements.get(i);
+        for (int i = 0; i < chemicals.size(); i++) {
+            ChemicalDTO element = chemicals.get(i);
             String name = null;
 
             for (int j = 0; j < chemicals.size(); j++) {

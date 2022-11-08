@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CompoundMapper {
-        Compound myCompound;
+    Compound myCompound;
 
     public CompoundMapper(String name) throws CompoundNotFoundException {
         ChemicalRowDataGateway compound = null;

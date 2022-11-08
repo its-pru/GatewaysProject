@@ -103,6 +103,7 @@ public class ChemicalTableDataGateway {
             PreparedStatement reset = JDBC.getJDBC().getConnect().prepareStatement("ALTER TABLE Chemical AUTO_INCREMENT = 1");
             reset.execute();
         } catch (SQLException e) {
+            e.printStackTrace();
             throw new UnableToConnectException("Unable to rollback database");
         }
     }

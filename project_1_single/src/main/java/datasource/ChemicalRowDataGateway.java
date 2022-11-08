@@ -21,7 +21,7 @@ public class ChemicalRowDataGateway {
     private static final String updateCreateString = "INSERT INTO Chemical" + " set name = ?, atomicNumber = ?, atomicMass = ?, solute = ?, dissolvedBy = ?, type = ?";
     private static final String updateFinderString = "SELECT * FROM Chemical WHERE name = ?";
     private static final String entryUpdateString = "UPDATE Chemical SET name = ?, atomicNumber = ?, atomicMass = ?, solute = ?, dissolvedBy = ?, type = ? WHERE ID = ?";
-    private static final String existsString = "SELECT * FROM Chemical WHERE name = ? OR atomicNumber = ? OR atomicMass = ?";
+    private static final String existsString = "SELECT * FROM Chemical WHERE name = ? AND atomicNumber = ? AND atomicMass = ?";
     public static final String nameFromID = "SELECT * FROM Chemical WHERE id = ?";
 
     JDBC jdbc = JDBC.getJDBC();
@@ -76,7 +76,7 @@ public class ChemicalRowDataGateway {
      * @param name - name of the chemical we are searching for
      * @throws Exception - exception when unable to connect to DB or when user trues to create duplicates
      */
-    public ChemicalRowDataGateway(String name) throws Exception {
+    public ChemicalRowDataGateway(String name) throws EntryNotFoundException {
         try {
             PreparedStatement findStatement = null;
             findStatement = jdbc.getConnect().prepareStatement(updateFinderString, ResultSet.TYPE_SCROLL_SENSITIVE,
@@ -96,6 +96,22 @@ public class ChemicalRowDataGateway {
             this.type = Type.valueOf(results.getString("type"));
         } catch (SQLException e) {
             throw new EntryNotFoundException("Could not find an entry for this ID");
+        }
+    }
+
+    public static ChemicalRowDataGateway createChemicalRowDataGateway(String name) throws Exception {
+        try {
+            PreparedStatement stmt = JDBC.getJDBC().getConnect().prepareStatement(updateCreateString);
+            stmt.setString(1, name);
+            stmt.setLong(2,0);
+            stmt.setLong(3,0);
+            stmt.setLong(4,0);
+            stmt.setLong(5,0);
+            stmt.setInt(6, 1);
+            stmt.execute();
+            return new ChemicalRowDataGateway(name);
+        } catch (SQLException UnableToConnect) {
+            throw new UnableToConnectException("Unable to create Chemical. Check connection and try again!");
         }
     }
 
@@ -131,7 +147,7 @@ public class ChemicalRowDataGateway {
      * @return - whether delete was successful or not
      * @throws Exception - throws when there isn't an entry found for the input ID
      */
-    public boolean delete() throws Exception {
+    public boolean delete() throws EntryNotFoundException {
         //DELETE FROM Chemical where id =?
         Statement deleteStatement = null;
         try {

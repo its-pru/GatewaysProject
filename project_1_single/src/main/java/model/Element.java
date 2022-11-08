@@ -37,6 +37,9 @@ public class Element extends Chemical
         else if (atomicNumber >= 87 && atomicNumber <=118) {
             period = 7;
         }
+        else {
+            period = 0;
+        }
     }
 
     public String getName()

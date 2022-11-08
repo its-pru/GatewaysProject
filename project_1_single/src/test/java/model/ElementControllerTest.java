@@ -3,8 +3,10 @@ package model;
 import datasource.ChemicalTableDataGateway;
 import exceptions.UnableToConnectException;
 //import model.Controller.CompoundController;
+import model.Controller.CompoundController;
 import model.Controller.ElementController;
 //import model.Mapper.CompoundMapper;
+import model.Mapper.CompoundMapper;
 import model.Mapper.ElementMapper;
 import model.Mapper.ElementNotFoundException;
 import org.jetbrains.annotations.NotNull;
@@ -256,10 +258,8 @@ public class ElementControllerTest {
         loadDB(testData);
     }
 
-    private static void checkPeriodForAtomicNumber(int atomicNumber,
-                                                   int expectedPeriod) throws ElementNotFoundException {
-        ElementMapper mapper = new ElementMapper("Name" + atomicNumber,
-                atomicNumber, 42.2);
+    private static void checkPeriodForAtomicNumber(int atomicNumber, int expectedPeriod) throws ElementNotFoundException {
+        ElementMapper mapper = new ElementMapper("Name" + atomicNumber, atomicNumber, 42.2);
         assertEquals(expectedPeriod, mapper.getMyElement().getPeriod());
     }
 
