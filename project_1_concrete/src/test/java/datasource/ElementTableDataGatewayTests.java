@@ -16,7 +16,7 @@ public class ElementTableDataGatewayTests extends TestCase {
         List<Long> listOfIDs = new ArrayList<Long>();
         listOfIDs.add(element1.getID());
         listOfIDs.add(element2.getID());
-        List<ElementDTO> elementList = ElementTableDataGateway.getElements(listOfIDs);
+        List<ElementDTO> elementList = ElementTableDataGateway.getElements((int) element1.getID(), (int) element2.getID());
 
         assertEquals(element1.getAtomicMass(), elementList.get(0).getAtomicMass());
         assertEquals(element2.getAtomicMass(), elementList.get(1).getAtomicMass());

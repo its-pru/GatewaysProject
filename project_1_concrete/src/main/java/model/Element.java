@@ -1,20 +1,21 @@
 package model;
 
+import exceptions.ElementNotFoundException;
 import model.Mapper.ElementMapper;
 
-public class Element {
-    String name;
-    double atomicMass;
+public class Element extends Chemical
+{
     int atomicNumber;
-    ElementMapper mapper;
+    double atomicMass;
     int period;
-    String nameBefore;
-    public Element(String name, double atomicMass, int atomicNumber){
-        this.name = name;
+    ElementMapper mapper;
+
+
+    public Element (String name, int atomicNumber, double atomicMass, ElementMapper mapper) {
+        super(name);
         this.atomicMass = atomicMass;
         this.atomicNumber = atomicNumber;
-
-
+        this.mapper = mapper;
         if (atomicNumber == 1 || atomicNumber == 2) {
             period = 1;
         }
@@ -38,37 +39,35 @@ public class Element {
         }
     }
 
-    public void setName(String name){
-        nameBefore = this.name;
-        this.name = name;
-    }
-
-    public String getName(){
+    public String getName()
+    {
         return name;
     }
 
-    public int getPeriod(){
-        return period;
-    }
-
-    public void setAtomicNumber(int atomicNumber){
-        this.atomicNumber = atomicNumber;
-    }
-
-    public int getAtomicNumber(){
+    public int getAtomicNumber()
+    {
         return atomicNumber;
     }
 
-    public void setAtomicMass(double mass){
-        atomicMass = mass;
-    }
-
-    public double getAtomicMass(){
+    public double getAtomicMass()
+    {
         return atomicMass;
     }
-    public void persist() throws Exception {
-        mapper.persistElement(this);
+
+    public int getPeriod()
+    {
+        return period;
     }
 
-    public String getNameBefore(){return nameBefore;}
+    public void setName(String name) {this.name = name;}
+
+    public void setAtomicNumber(int atomicNumber) {this.atomicNumber = atomicNumber;}
+
+    public void setAtomicMass(double atomicMass) {this.atomicMass = atomicMass;}
+
+    public void persist() throws ElementNotFoundException {
+        mapper.persistElement(this);
+        this.nameBefore = name;
+    }
 }
+

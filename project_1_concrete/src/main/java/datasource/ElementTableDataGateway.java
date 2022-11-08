@@ -15,18 +15,16 @@ public class ElementTableDataGateway {
     /**
      * Selects a group of chemicals based on ids
      *
-     * @param ID - list of ids
+     * @param start - start of range
+     * @param end - end of range
      */
-    public static List<ElementDTO> getElements(List<Long> ID) throws Exception {
+    public static List<ElementDTO> getElements(int start, int end) throws Exception {
         JDBC jdbc = JDBC.getJDBC();
-        List<ElementDTO> ElementList = new ArrayList<ElementDTO>();
-        String query = "SELECT * FROM element WHERE ID in (";
+        List<ElementDTO> ElementList = new ArrayList<>();
         try {
-            PreparedStatement stmt = jdbc.getConnect().prepareStatement(queryBuilder(ID.size(), query));
-            for (int i = 0; i < ID.size(); i++) {
-                stmt.setLong(i + 1, ID.get(i));
-            }
-
+            PreparedStatement stmt = jdbc.getConnect().prepareStatement("SELECT * FROM element WHERE atomicNumber BETWEEN ? AND ? ");
+            stmt.setInt(1, start);
+            stmt.setInt(2, end);
             stmt.execute();
             ResultSet rs = stmt.getResultSet();
             while (rs.next()) {
@@ -39,7 +37,6 @@ public class ElementTableDataGateway {
         }catch(SQLException e){
             throw new UnableToConnectException("Unable to connect. Check connection and try again");
         }
-
         return ElementList;
     }
 

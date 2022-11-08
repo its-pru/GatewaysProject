@@ -1,42 +1,46 @@
 package model.Controller;
 
 
+import datasource.MadeOfTableDataGateway;
 import exceptions.CompoundNotFoundException;
-import model.Compound;
+import exceptions.ElementNotFoundException;
+import exceptions.EntryNotFoundException;
 import model.Mapper.CompoundMapper;
 import model.Mapper.ElementMapper;
-
+import java.util.ArrayList;
 import java.util.List;
+import model.Compound;
+import model.Element;
 
 public class CompoundController {
-    private final Compound myCompound;
+    private Compound myCompound;
 
-    public CompoundController(String name) throws Exception {
-        try {
-            CompoundMapper mapper = new CompoundMapper(name);
-            myCompound = mapper.getMyCompound();
-        }catch (Exception e){
-            throw new CompoundNotFoundException();
-        }
+    public CompoundController(String name) throws CompoundNotFoundException {
+        CompoundMapper mapper = new CompoundMapper(name);
+
+        myCompound = mapper.getMyCompound();
         //Find Mapper in DB
     }
 
-    public static void delete(String hCl) throws Exception {
-        CompoundMapper.deleteCompound(hCl);
+    public static void delete(String hCl) throws CompoundNotFoundException {
+        try {
+            CompoundMapper.deleteCompound(hCl);
+        } catch (Exception e) {
+            throw new CompoundNotFoundException();
+        }
     }
 
-    public static void createCompound(String water) throws Exception {
+    public static void createCompound(String water) throws CompoundNotFoundException {
         CompoundMapper.createCompound(water);
     }
 
-    public void addElement(String hydrogen) throws Exception {
+    public void addElement(String name) throws CompoundNotFoundException, ElementNotFoundException {
         CompoundMapper mapper = new CompoundMapper(myCompound.getName());
-        myCompound.addElement(hydrogen);
-        mapper.addElement(hydrogen);
-
+        mapper.addElement(name);
+        myCompound.addElement(name);
     }
 
-    public double getAtomicMass() throws Exception {
+    public double getAtomicMass() throws ElementNotFoundException {
         List<String> madeOf = myCompound.getMadeOf();
         double atomicMass = 0;
         for(int i = 0; i < madeOf.size();i++){
@@ -47,8 +51,9 @@ public class CompoundController {
         return atomicMass;
     }
 
-    public List<String> getElements() {
-        return myCompound.getMadeOf();
+    public List<String> getElements() throws CompoundNotFoundException {
+        CompoundMapper mapper = new CompoundMapper(myCompound.getName());
+        return mapper.getMadeOf();
     }
 
     public void setName(String sulfuric_base) {

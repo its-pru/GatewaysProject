@@ -9,7 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class ElementRowDataGateway{
+public class ElementRowDataGateway {
 
     //Instance variables for each element
     long ID;
@@ -17,8 +17,8 @@ public class ElementRowDataGateway{
     long atomicNumber;
     double atomicMass;
 
-    private static final String elementCreateString = "INSERT INTO element VALUES (?,?,?,?)";
-    private static final String existsString= "SELECT * FROM element WHERE name = ? OR atomicNumber = ? OR atomicMass = ?";
+    private static final String elementCreateString = "INSERT INTO element (ID, name, atomicNumber, atomicMass) VALUES (?,?,?,?)";
+    private static final String existsString = "SELECT * FROM element WHERE name = ? AND atomicNumber = ? AND atomicMass = ?";
     private static final String finderString = " SELECT * FROM element WHERE name = ?";
     private static final String finderStringWithID = " SELECT * FROM element WHERE ID = ?";
     private static final String updateString = "UPDATE element SET name = ?, atomicNumber = ?, atomicMass = ? WHERE ID = ?";
@@ -26,20 +26,21 @@ public class ElementRowDataGateway{
 
     /**
      * Create constructor for a new Element
-     * @param name - Name of the new Element
+     *
+     * @param name         - Name of the new Element
      * @param atomicNumber - Atomic number of new element
-     * @param atomicMass - Atomic mass of new element
+     * @param atomicMass   - Atomic mass of new element
      * @throws Exception - throws when class is unable to connect ot database
      */
-    public ElementRowDataGateway(String name, long atomicNumber, double atomicMass) throws Exception{
+    public ElementRowDataGateway(String name, long atomicNumber, double atomicMass) throws Exception {
         this.ID = KeyHandler.getNewKey();
         this.name = name;
         this.atomicNumber = atomicNumber;
         this.atomicMass = atomicMass;
 
-        if(exists(name, atomicNumber, atomicMass)){
+        if (exists(name, atomicNumber, atomicMass)) {
             throw new UnableToCreateException("There is already an element for these parameters. Change them and try again");
-        }else {
+        } else {
             try {
                 PreparedStatement stmt = JDBC.getJDBC().getConnect().prepareStatement(elementCreateString);
                 stmt.setLong(1, ID);
@@ -53,15 +54,16 @@ public class ElementRowDataGateway{
             }
         }
     }
-    public ElementRowDataGateway(long id, String name, long atomicNumber, double atomicMass) throws Exception{
+
+    public ElementRowDataGateway(long id, String name, long atomicNumber, double atomicMass) throws Exception {
         this.ID = id;
         this.name = name;
         this.atomicNumber = atomicNumber;
         this.atomicMass = atomicMass;
 
-        if(exists(name, atomicNumber, atomicMass)){
+        if (exists(name, atomicNumber, atomicMass)) {
             throw new UnableToCreateException("There is already an element for these parameters. Change them and try again");
-        }else {
+        } else {
             try {
                 PreparedStatement stmt = JDBC.getJDBC().getConnect().prepareStatement(elementCreateString);
                 stmt.setLong(1, ID);
@@ -78,28 +80,32 @@ public class ElementRowDataGateway{
 
     /**
      * Finder constructor for Element
+     *
      * @param name - Name of Element being searched for
      * @throws Exception
      */
-    public ElementRowDataGateway(String name) throws Exception{
+    public ElementRowDataGateway(String name) throws Exception {
         try {
-            PreparedStatement stmt = JDBC.getJDBC().getConnect().prepareStatement(finderString);
+            PreparedStatement stmt = JDBC.getJDBC().getConnect().prepareStatement(finderString, ResultSet.TYPE_SCROLL_SENSITIVE,
+                    ResultSet.CONCUR_UPDATABLE
+            );
             stmt.setString(1, name);
-            ResultSet rs = stmt.executeQuery();
-            rs.next();
+            stmt.execute();
+            ResultSet rs = stmt.getResultSet();
+            rs.first();
 
-            this.ID = ID;
+            this.ID = rs.getLong("ID");
             this.name = rs.getString("name");
             this.atomicNumber = rs.getLong("atomicNumber");
             this.atomicMass = rs.getDouble("atomicMass");
 
 
-        }catch (SQLException notFound){
+        } catch (SQLException notFound) {
             throw new EntryNotFoundException("Element for this ID not found. Check ID and try again");
         }
     }
 
-    public ElementRowDataGateway(long id) throws Exception{
+    public ElementRowDataGateway(long id) throws Exception {
         try {
             PreparedStatement stmt = JDBC.getJDBC().getConnect().prepareStatement(finderStringWithID);
             stmt.setLong(1, id);
@@ -112,24 +118,25 @@ public class ElementRowDataGateway{
             this.atomicMass = rs.getDouble("atomicMass");
 
 
-        }catch (SQLException notFound){
+        } catch (SQLException notFound) {
             throw new EntryNotFoundException("Element for this ID not found. Check ID and try again");
         }
     }
 
     /**
      * Updates row in database with current values held
+     *
      * @throws Exception - throws when persist fails to update the element
      */
-    public void persist() throws Exception{
-        try{
+    public void persist() throws Exception {
+        try {
             PreparedStatement stmt = JDBC.getJDBC().getConnect().prepareStatement(updateString);
             stmt.setString(1, name);
             stmt.setLong(2, atomicNumber);
             stmt.setDouble(3, atomicMass);
             stmt.setLong(4, ID);
             stmt.execute();
-        }catch (SQLException e){
+        } catch (SQLException e) {
             throw new UnableToUpdateException("Unable to update element. Check network connection and try again!");
         }
     }
@@ -140,12 +147,12 @@ public class ElementRowDataGateway{
      * @return true - returns true if the id is deleted
      * @throws Exception - throws when Element being deleted isn't found
      */
-    public static boolean delete(String name)throws Exception{
-        try{
+    public static boolean delete(String name) throws Exception {
+        try {
             PreparedStatement stmt = JDBC.getJDBC().getConnect().prepareStatement(deleteString);
             stmt.setString(1, name);
             stmt.execute();
-        }catch (SQLException e){
+        } catch (SQLException e) {
             throw new EntryNotFoundException("Could not find Element with this ID. Check ID and try again");
         }
         return true;
@@ -153,15 +160,16 @@ public class ElementRowDataGateway{
 
     /**
      * Checks to see if an element exists for a set of parameters
-     * @param name - name being searched for
+     *
+     * @param name         - name being searched for
      * @param atomicNumber - atomic number being searched for
-     * @param atomicMass - atomic mass being searched for
+     * @param atomicMass   - atomic mass being searched for
      * @return - True if exists, False if not
      * @throws UnableToConnectException
      */
     public boolean exists(String name, long atomicNumber, double atomicMass) throws UnableToConnectException {
         PreparedStatement exists = null;
-        try{
+        try {
             exists = JDBC.getJDBC().getConnect().prepareStatement(existsString);
             exists.setString(1, name);
             exists.setLong(2, atomicNumber);
@@ -177,38 +185,43 @@ public class ElementRowDataGateway{
 
     /**
      * gets ID of element
+     *
      * @return - ElementID
      */
-    public long getID(){
+    public long getID() {
         return ID;
     }
 
     /**
      * sets the ID of current Element
+     *
      * @param ID - ID elementID is being set to
      */
-    public void setID(long ID){
+    public void setID(long ID) {
         this.ID = ID;
     }
 
     /**
      * gets the name of current Element
+     *
      * @return
      */
-    public String getName(){
+    public String getName() {
         return name;
     }
 
     /**
      * sets the name of current Element
+     *
      * @param name - Name Element is being set to
      */
-    public void setName(String name){
+    public void setName(String name) {
         this.name = name;
     }
 
     /**
      * gets the atomic number of current element
+     *
      * @return - Atomic Number of current Element
      */
     public long getAtomicNumber() {
@@ -217,25 +230,28 @@ public class ElementRowDataGateway{
 
     /**
      * sets the AtomicNumber of current Element
+     *
      * @param - New Atomic Number for Element
      */
-    public void setAtomicNumber(long atomicNumber){
-        this.atomicMass = atomicNumber;
+    public void setAtomicNumber(long atomicNumber) {
+        this.atomicNumber = atomicNumber;
     }
 
     /**
      * gets the atomic mass of the element
+     *
      * @return - Atomic Mass of current Element
      */
-    public double getAtomicMass(){
+    public double getAtomicMass() {
         return atomicMass;
     }
 
     /**
      * sets the Atomic Mass of Element
+     *
      * @param atomicMass - New Atomic Mass
      */
-    public void setAtomicMass(double atomicMass){
+    public void setAtomicMass(double atomicMass) {
         this.atomicMass = atomicMass;
     }
 }

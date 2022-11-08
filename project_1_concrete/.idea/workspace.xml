@@ -5,22 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8e32a31b-afee-4a76-b74b-64a093499b5d" name="Changes" comment="Working on elementMapper">
-      <change afterPath="$PROJECT_DIR$/src/main/java/exceptions/CompoundNotFoundException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/model/Compound.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/model/Mapper/CompoundMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project_1_class/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../project_1_class/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project_1_class/.idea/runConfigurations.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/Chemical.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/95222f8c-cc4b-42a6-8fde-a184bbb4e26f.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/95222f8c-cc4b-42a6-8fde-a184bbb4e26f.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/datasource/CompoundRowDataGateway.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/datasource/CompoundRowDataGateway.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/datasource/ElementRowDataGateway.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/datasource/ElementRowDataGateway.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/datasource/ElementTableDataGateway.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/datasource/ElementTableDataGateway.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/datasource/MadeOfTableDataGateway.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/datasource/MadeOfTableDataGateway.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Compound.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Compound.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/Controller/CompoundController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Controller/CompoundController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Mapper/CompoundMapper" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/datasource/CompoundRowDataGatewayTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/datasource/CompoundRowDataGatewayTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/datasource/MadeOfTableDataGatewayTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/datasource/MadeOfTableDataGatewayTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/model/CompoundControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/CompoundControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Controller/ElementController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Controller/ElementController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Element.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Element.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Mapper/CompoundMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Mapper/CompoundMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Mapper/ElementMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Mapper/ElementMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/datasource/ElementTableDataGatewayTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/datasource/ElementTableDataGatewayTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/model/ElementControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/ElementControllerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,7 +53,8 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/home/taylor/Desktop/400Project1/project_1_concrete",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "last_opened_file_path": "/home/crimsin/IdeaProjects/SWE400F20222/project_1_concrete",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -69,7 +69,7 @@
     ]
   }
 }]]></component>
-  <component name="RunManager" selected="JUnit.CompoundControllerTest.canDelete">
+  <component name="RunManager" selected="JUnit.CompoundControllerTest.correctAtomicWeight">
     <configuration name="CompoundControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="project_1_concrete" />
       <extension name="coverage">
@@ -85,7 +85,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CompoundControllerTest.canDelete" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CompoundControllerTest.correctAtomicWeight" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="project_1_concrete" />
       <extension name="coverage">
         <pattern>
@@ -95,7 +95,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="model" />
       <option name="MAIN_CLASS_NAME" value="model.CompoundControllerTest" />
-      <option name="METHOD_NAME" value="canDelete" />
+      <option name="METHOD_NAME" value="correctAtomicWeight" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -116,7 +116,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ElementControllerTest.canGetPeriod" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ElementControllerTest.canGetAllCompoundsContainingElement" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="project_1_concrete" />
       <extension name="coverage">
         <pattern>
@@ -126,7 +126,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="model" />
       <option name="MAIN_CLASS_NAME" value="model.ElementControllerTest" />
-      <option name="METHOD_NAME" value="canGetPeriod" />
+      <option name="METHOD_NAME" value="canGetAllCompoundsContainingElement" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -150,11 +150,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.CompoundControllerTest.canDelete" />
+        <item itemvalue="JUnit.CompoundControllerTest.correctAtomicWeight" />
         <item itemvalue="JUnit.CompoundControllerTest" />
         <item itemvalue="JUnit.ElementControllerTest" />
+        <item itemvalue="JUnit.ElementControllerTest.canGetAllCompoundsContainingElement" />
         <item itemvalue="JUnit.ElementControllerTest.canPersistEverythingExceptName" />
-        <item itemvalue="JUnit.ElementControllerTest.canGetPeriod" />
       </list>
     </recent_temporary>
   </component>
@@ -183,6 +183,7 @@
       <workItem from="1667751773970" duration="7635000" />
       <workItem from="1667859490403" duration="3740000" />
       <workItem from="1667863239456" duration="3362000" />
+      <workItem from="1667866983825" duration="13762000" />
     </task>
     <task id="LOCAL-00001" summary="Created 4.5 of the gateways for Concrete Table Pattern">
       <created>1664977842398</created>
@@ -264,30 +265,14 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/model/ElementControllerTest.java</url>
-          <line>112</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/model/ElementControllerTest.java</url>
-          <line>115</line>
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/model/ElementControllerTest.java</url>
-          <line>196</line>
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/model/ElementControllerTest.java</url>
-          <line>132</line>
-          <option name="timeStamp" value="12" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/model/CompoundControllerTest.java</url>
           <line>100</line>
           <option name="timeStamp" value="13" />
         </line-breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="exceptions.CompoundNotFoundException" package="exceptions" />
+          <option name="timeStamp" value="20" />
+        </breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>

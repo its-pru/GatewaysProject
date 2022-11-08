@@ -14,8 +14,9 @@ public class CompoundRowDataGateway {
     private long ID;
     private String name;
 
-    private static final String createQuery = "INSERT INTO compound VALUE (?,?)";
+    private static final String createQuery = "INSERT INTO compound (ID, name) VALUE (?,?)";
     private static final String findQuery = "SELECT * FROM compound WHERE ID = ?";
+    private static final String findQueryName = "SELECT * FROM compound WHERE name = ?";
     private static final String updateQuery = "UPDATE compound SET name = ? WHERE ID = ?";
     private static final String deleteQuery = "DELETE FROM compound WHERE name = ?";
     private static final String existsQuery = "SELECT * FROM compound WHERE name = ?";
@@ -45,6 +46,7 @@ public class CompoundRowDataGateway {
             stmt.setString(2, name);
             stmt.execute();
         }catch (Exception e){
+            e.printStackTrace();
             throw new UnableToConnectException("Unable to create a new compound");
         }
     }
@@ -69,14 +71,14 @@ public class CompoundRowDataGateway {
 
     public CompoundRowDataGateway(String name) throws Exception{
         try {
-            PreparedStatement stmt = JDBC.getJDBC().getConnect().prepareStatement(findQuery);
+            PreparedStatement stmt = JDBC.getJDBC().getConnect().prepareStatement(findQueryName);
             stmt.setString(1, name);
             ResultSet rs = stmt.executeQuery();
             rs.next();
             this.ID = rs.getLong("ID");
             this.name = rs.getString("name");
         }catch (SQLException unableToFind){
-            throw new EntryNotFoundException("Unable to find compound with this ID. Check ID and try again!");
+            throw new EntryNotFoundException("Unable to find comasdasdasdasad");
         }
 
     }
@@ -86,7 +88,6 @@ public class CompoundRowDataGateway {
             PreparedStatement delete = JDBC.getJDBC().getConnect().prepareStatement("DELETE FROM compound");
             delete.execute();
         } catch (SQLException e) {
-            e.printStackTrace();
             throw new UnableToConnectException("Unable to rollback database");
         }
     }
