@@ -1,13 +1,11 @@
 package datasource;
 
-import Exceptions.*;
+import exceptions.*;
 
 import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 
 //use count for ID's?

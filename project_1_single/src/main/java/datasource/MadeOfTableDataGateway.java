@@ -1,7 +1,7 @@
 package datasource;
 
 import DTO.MadeOfDTO;
-import Exceptions.EntryNotFoundException;
+import exceptions.EntryNotFoundException;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,10 +9,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 
-import DTO.ChemicalDTO;
-
 import java.util.ArrayList;
-import java.util.Map;
 
 public class MadeOfTableDataGateway {
     //Take ID of compound from Chemical, get all ids of elements that make up this compound; return as list

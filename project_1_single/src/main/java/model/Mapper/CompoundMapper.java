@@ -1,15 +1,12 @@
 //package model.Mapper;
 //
 //import datasource.ChemicalRowDataGateway;
-//import datasource.ElementRowDataGateway;
 //import datasource.MadeOfTableDataGateway;
 //import exceptions.CompoundNotFoundException;
 //import exceptions.EntryNotFoundException;
-//import model.Chemical;
 //import model.Compound;
 //
 //import java.sql.SQLException;
-//import java.util.ArrayList;
 //import java.util.List;
 //
 //public class CompoundMapper {

@@ -1,4 +1,4 @@
-package Exceptions;
+package exceptions;
 
 public class CompoundNotFoundException extends Exception{
     public CompoundNotFoundException(){

@@ -1,7 +1,7 @@
 package model.Mapper;
 
 import DTO.ChemicalDTO;
-import Exceptions.UnableToConnectException;
+import exceptions.UnableToConnectException;
 import datasource.*;
 //import exceptions.EntryNotFoundException;
 //import exceptions.UnableToConnectException;

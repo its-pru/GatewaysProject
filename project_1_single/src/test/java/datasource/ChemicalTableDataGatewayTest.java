@@ -2,16 +2,11 @@ package datasource;
 
 
 import DTO.ChemicalDTO;
-import Exceptions.AlreadyExistsException;
 import junit.framework.TestCase;
-import junit.framework.TestResult;
-import org.junit.Assert;
 import org.junit.Test;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.sql.ResultSet;
 
 public class ChemicalTableDataGatewayTest extends TestCase {
 
