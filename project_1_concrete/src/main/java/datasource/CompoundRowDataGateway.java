@@ -17,7 +17,7 @@ public class CompoundRowDataGateway {
     private static final String createQuery = "INSERT INTO compound VALUE (?,?)";
     private static final String findQuery = "SELECT * FROM compound WHERE ID = ?";
     private static final String updateQuery = "UPDATE compound SET name = ? WHERE ID = ?";
-    private static final String deleteQuery = "DELETE FROM compound WHERE ID = ?";
+    private static final String deleteQuery = "DELETE FROM compound WHERE name = ?";
     private static final String existsQuery = "SELECT * FROM compound WHERE name = ?";
     /**
      * Create constructor for new Compound
@@ -35,6 +35,17 @@ public class CompoundRowDataGateway {
             stmt.setLong(1, ID);
             stmt.setString(2, name);
             stmt.execute();
+        }
+    }
+
+    public static void createCompound(String name) throws UnableToConnectException {
+        try {
+            PreparedStatement stmt = JDBC.getJDBC().getConnect().prepareStatement(createQuery);
+            stmt.setLong(1, KeyHandler.getNewKey());
+            stmt.setString(2, name);
+            stmt.execute();
+        }catch (Exception e){
+            throw new UnableToConnectException("Unable to create a new compound");
         }
     }
 
@@ -56,6 +67,30 @@ public class CompoundRowDataGateway {
 
     }
 
+    public CompoundRowDataGateway(String name) throws Exception{
+        try {
+            PreparedStatement stmt = JDBC.getJDBC().getConnect().prepareStatement(findQuery);
+            stmt.setString(1, name);
+            ResultSet rs = stmt.executeQuery();
+            rs.next();
+            this.ID = rs.getLong("ID");
+            this.name = rs.getString("name");
+        }catch (SQLException unableToFind){
+            throw new EntryNotFoundException("Unable to find compound with this ID. Check ID and try again!");
+        }
+
+    }
+
+    public static void rollback() throws UnableToConnectException{
+        try{
+            PreparedStatement delete = JDBC.getJDBC().getConnect().prepareStatement("DELETE FROM compound");
+            delete.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new UnableToConnectException("Unable to rollback database");
+        }
+    }
+
     /**
      * Updates Database with current values for current compound
      * @throws Exception
@@ -75,10 +110,10 @@ public class CompoundRowDataGateway {
      * Deletes entry with the current elements ID
      * @throws Exception - Throws when SQL is unable to connect
      */
-    public boolean delete(long ID) throws Exception{
+    public boolean delete(String name) throws Exception{
         try{
             PreparedStatement stmt = JDBC.getJDBC().getConnect().prepareStatement(deleteQuery);
-            stmt.setLong(1, ID);
+            stmt.setString(1, name);
             stmt.execute();
         }catch(SQLException unableToDelete){
             throw new UnableToConnectException("Unable to delete element. Check Connection any try again");

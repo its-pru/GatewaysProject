@@ -28,7 +28,7 @@ public class MadeOfTableDataGatewayTests extends TestCase {
 
 
         MadeOfTableDataGateway.deleteCompounds(h2o.getID());
-        h2o.delete(h2o.getID());
+        h2o.delete(h2o.getName());
         hydrogen.delete(hydrogen.getName());
         oxygen.delete(oxygen.getName());
 
@@ -56,10 +56,10 @@ public class MadeOfTableDataGatewayTests extends TestCase {
 
         MadeOfTableDataGateway.deleteCompounds(h2o.getID());
         MadeOfTableDataGateway.deleteCompounds(hydrogenPeroxide.getID());
-        h2o.delete(h2o.getID());
+        h2o.delete(h2o.getName());
         hydrogen.delete(hydrogen.getName());
         oxygen.delete(oxygen.getName());
-        hydrogenPeroxide.delete((hydrogenPeroxide.getID()));
+        hydrogenPeroxide.delete((hydrogenPeroxide.getName()));
     }
 
     @Test
@@ -79,7 +79,7 @@ public class MadeOfTableDataGatewayTests extends TestCase {
         catch (Exception e) {
             thrown = true;
         }
-        hydrogen.delete(hydrogen.getID());
+        hydrogen.delete(hydrogen.getName());
         helium.delete(helium.getName());
         assertFalse(thrown);
 
@@ -106,7 +106,7 @@ public class MadeOfTableDataGatewayTests extends TestCase {
         catch (Exception e) {
             fail();
         }
-        water.delete(water.getID());
+        water.delete(water.getName());
         hydrogen.delete(hydrogen.getName());
         helium.delete(helium.getName());
 

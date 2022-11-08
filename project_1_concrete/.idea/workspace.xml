@@ -5,13 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8e32a31b-afee-4a76-b74b-64a093499b5d" name="Changes" comment="Working on elementMapper">
+      <change afterPath="$PROJECT_DIR$/src/main/java/exceptions/CompoundNotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/Compound.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/Mapper/CompoundMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../project_1_class/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../project_1_class/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../project_1_class/.idea/runConfigurations.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/95222f8c-cc4b-42a6-8fde-a184bbb4e26f.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/95222f8c-cc4b-42a6-8fde-a184bbb4e26f.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/datasource/CompoundRowDataGateway.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/datasource/CompoundRowDataGateway.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/datasource/ElementRowDataGateway.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/datasource/ElementRowDataGateway.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/datasource/KeyHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/datasource/KeyHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Controller/ElementController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Controller/ElementController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Element.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Element.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Mapper/ElementMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Mapper/ElementMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/model/ElementControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/ElementControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/datasource/MadeOfTableDataGateway.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/datasource/MadeOfTableDataGateway.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Controller/CompoundController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Controller/CompoundController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Mapper/CompoundMapper" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/datasource/CompoundRowDataGatewayTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/datasource/CompoundRowDataGatewayTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/datasource/MadeOfTableDataGatewayTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/datasource/MadeOfTableDataGatewayTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/model/CompoundControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/CompoundControllerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,28 +48,59 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Taylor/Desktop/SWE400 Project/project_1_concrete&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Global Libraries&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/home/taylor/Desktop/400Project1/project_1_concrete",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Problems",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mysql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
     ]
   }
-}</component>
-  <component name="RunManager" selected="JUnit.ElementControllerTest">
+}]]></component>
+  <component name="RunManager" selected="JUnit.CompoundControllerTest.canDelete">
+    <configuration name="CompoundControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="project_1_concrete" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="model" />
+      <option name="MAIN_CLASS_NAME" value="model.CompoundControllerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CompoundControllerTest.canDelete" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="project_1_concrete" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="model" />
+      <option name="MAIN_CLASS_NAME" value="model.CompoundControllerTest" />
+      <option name="METHOD_NAME" value="canDelete" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ElementControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="project_1_concrete" />
       <extension name="coverage">
@@ -108,45 +148,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ElementControllerTest.canUpdateAndPersistName" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="project_1_concrete" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="model.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="model" />
-      <option name="MAIN_CLASS_NAME" value="model.ElementControllerTest" />
-      <option name="METHOD_NAME" value="canUpdateAndPersistName" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ElementControllerTest.canUpdateName" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="project_1_concrete" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="model.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="model" />
-      <option name="MAIN_CLASS_NAME" value="model.ElementControllerTest" />
-      <option name="METHOD_NAME" value="canUpdateName" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.CompoundControllerTest.canDelete" />
+        <item itemvalue="JUnit.CompoundControllerTest" />
         <item itemvalue="JUnit.ElementControllerTest" />
         <item itemvalue="JUnit.ElementControllerTest.canPersistEverythingExceptName" />
         <item itemvalue="JUnit.ElementControllerTest.canGetPeriod" />
-        <item itemvalue="JUnit.ElementControllerTest.canUpdateAndPersistName" />
-        <item itemvalue="JUnit.ElementControllerTest.canUpdateName" />
       </list>
     </recent_temporary>
   </component>
@@ -173,6 +181,8 @@
       <workItem from="1667218532015" duration="60000" />
       <workItem from="1667739005478" duration="5341000" />
       <workItem from="1667751773970" duration="7635000" />
+      <workItem from="1667859490403" duration="3740000" />
+      <workItem from="1667863239456" duration="3362000" />
     </task>
     <task id="LOCAL-00001" summary="Created 4.5 of the gateways for Concrete Table Pattern">
       <created>1664977842398</created>
@@ -272,6 +282,11 @@
           <url>file://$PROJECT_DIR$/src/test/java/model/ElementControllerTest.java</url>
           <line>132</line>
           <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/model/CompoundControllerTest.java</url>
+          <line>100</line>
+          <option name="timeStamp" value="13" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

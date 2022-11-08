@@ -1,6 +1,7 @@
 package datasource;
 
 import exceptions.UnableToConnectException;
+import exceptions.UnableToCreateException;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -41,6 +42,27 @@ public class MadeOfTableDataGateway {
             e.printStackTrace();
         }
 
+    }
+
+    public static void rollback() throws UnableToConnectException{
+        try{
+            PreparedStatement delete = JDBC.getJDBC().getConnect().prepareStatement("DELETE FROM madeOf");
+            delete.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new UnableToConnectException("Unable to rollback database");
+        }
+    }
+
+    public static void createNewCompound(long compoundID, long elementID) throws UnableToCreateException {
+        try{
+            PreparedStatement stmt = JDBC.getJDBC().getConnect().prepareStatement(createNewCompoundStatement);
+            stmt.setLong(1, compoundID);
+            stmt.setLong(2, elementID);
+            stmt.execute();
+        } catch (SQLException e) {
+            throw new UnableToCreateException("Unable to add new element to compound");
+        }
     }
 
     /**

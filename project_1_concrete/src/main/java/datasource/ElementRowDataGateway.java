@@ -20,6 +20,7 @@ public class ElementRowDataGateway{
     private static final String elementCreateString = "INSERT INTO element VALUES (?,?,?,?)";
     private static final String existsString= "SELECT * FROM element WHERE name = ? OR atomicNumber = ? OR atomicMass = ?";
     private static final String finderString = " SELECT * FROM element WHERE name = ?";
+    private static final String finderStringWithID = " SELECT * FROM element WHERE ID = ?";
     private static final String updateString = "UPDATE element SET name = ?, atomicNumber = ?, atomicMass = ? WHERE ID = ?";
     private static final String deleteString = "DELETE FROM element WHERE name = ?";
 
@@ -88,6 +89,24 @@ public class ElementRowDataGateway{
             rs.next();
 
             this.ID = ID;
+            this.name = rs.getString("name");
+            this.atomicNumber = rs.getLong("atomicNumber");
+            this.atomicMass = rs.getDouble("atomicMass");
+
+
+        }catch (SQLException notFound){
+            throw new EntryNotFoundException("Element for this ID not found. Check ID and try again");
+        }
+    }
+
+    public ElementRowDataGateway(long id) throws Exception{
+        try {
+            PreparedStatement stmt = JDBC.getJDBC().getConnect().prepareStatement(finderStringWithID);
+            stmt.setLong(1, id);
+            ResultSet rs = stmt.executeQuery();
+            rs.next();
+
+            this.ID = id;
             this.name = rs.getString("name");
             this.atomicNumber = rs.getLong("atomicNumber");
             this.atomicMass = rs.getDouble("atomicMass");

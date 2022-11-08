@@ -17,7 +17,7 @@ public class CompoundRowDataGatewayTest extends TestCase {
             e.printStackTrace();
         }
         assertNotNull(testCreate);
-        testCreate.delete(testCreate.getID());
+        testCreate.delete(testCreate.getName());
     }
     @Test
     public void testFindCompound() throws Exception {
@@ -33,8 +33,8 @@ public class CompoundRowDataGatewayTest extends TestCase {
         }
 
         assertTrue(success);
-        newElement.delete(newElement.getID());
-        testFind.delete(testFind.getID());
+        newElement.delete(newElement.getName());
+        testFind.delete(testFind.getName());
 
     }
 
@@ -50,14 +50,14 @@ public class CompoundRowDataGatewayTest extends TestCase {
         exists = testExist.exists("Rick");
         assertFalse(exists);
 
-        testExist.delete(testExist.getID());
+        testExist.delete(testExist.getName());
 
     }
 
     @Test
     public void testDeleteCompound() throws Exception {
         CompoundRowDataGateway testDelete = new CompoundRowDataGateway(5, "Timmy");
-        boolean success = testDelete.delete(testDelete.getID());
+        boolean success = testDelete.delete(testDelete.getName());
         assertEquals(true, success);
 
     }
@@ -68,7 +68,7 @@ public class CompoundRowDataGatewayTest extends TestCase {
         testPersists.setName("Don");
         testPersists.setName("Tony");
 
-        testPersists.delete(testPersists.getID());
+        testPersists.delete(testPersists.getName());
 
     }
 }
